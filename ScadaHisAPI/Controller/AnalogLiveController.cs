@@ -10,7 +10,7 @@ namespace ScadaHisAPI
     public class AnalogLiveController : ApiController
     {
         // GET api/AnalogLive/{TagName}
-        [Route("api/AnalogLive/{TagName}")]
+        [Route("AnalogLive/{TagName}")]
         [HttpGet]
         public DataPoint Get(string TagName)
         {
@@ -18,7 +18,7 @@ namespace ScadaHisAPI
         }
 
         // POST api/AnalogLive
-        [Route("api/AnalogLive")]
+        [Route("AnalogLive")]
         [HttpPost]
         public IEnumerable<DataPoint> Post([FromBody]string[] TagNameList)
         {
@@ -26,7 +26,7 @@ namespace ScadaHisAPI
         }
 
         // POST api/PowerLive/Power
-        [Route("api/AnalogLive/Power")]
+        [Route("AnalogLive/Power")]
         [HttpPost]
         public IEnumerable<DataPoint> Power([FromBody]string[] FactoryList)
         {

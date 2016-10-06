@@ -10,7 +10,7 @@ namespace ScadaHisAPI
     public class OpReportController : ApiController
     {
         // GET api/OpReport/Transformer/{FactoryName}/{day}/{month}/{year}
-        [Route("api/OpReport/Transformer/{FactoryName}/{day}/{month}/{year}")]
+        [Route("OpReport/Transformer/{FactoryName}/{day}/{month}/{year}")]
         [HttpGet]
         public IEnumerable<OpReportTransformer> Transformer(string FactoryName, int day, int month, int year)
         {
@@ -20,7 +20,7 @@ namespace ScadaHisAPI
         }
 
         // GET api/OpReport/Generator/{FactoryName}/{day}/{month}/{year}
-        [Route("api/OpReport/Generator/{FactoryName}/{day}/{month}/{year}")]
+        [Route("OpReport/Generator/{FactoryName}/{day}/{month}/{year}")]
         [HttpGet]
         public IEnumerable<OpReportGenerator> Generator(string FactoryName, int day, int month, int year)
         {
@@ -48,7 +48,7 @@ namespace ScadaHisAPI
         }
 
         // GET api/OpReport/Feeder/{FactoryName}/{day}/{month}/{year}
-        [Route("api/OpReport/Feeder/{FactoryName}/{day}/{month}/{year}")]
+        [Route("OpReport/Feeder/{FactoryName}/{day}/{month}/{year}")]
         [HttpGet]
         public IEnumerable<OpReportFeeder> Feeder(string FactoryName, int day, int month, int year)
         {

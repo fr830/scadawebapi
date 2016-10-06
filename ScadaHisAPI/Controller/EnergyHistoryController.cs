@@ -12,7 +12,7 @@ namespace ScadaHisAPI
     public class EnergyHistoryController : ApiController
     {
         // POST api/EnergyHistory/hourly/{start=start}/{end=end}
-        [Route("api/EnergyHistory/hourly/{start=start}/{end=end}")]
+        [Route("EnergyHistory/hourly/{start=start}/{end=end}")]
         [HttpPost]
         public /*IEnumerable<DataPoint>*/ IHttpActionResult Hourly([FromUri]DateTime start, [FromUri]DateTime end, [FromBody]string[] FactoryList)
         {
@@ -44,7 +44,7 @@ namespace ScadaHisAPI
         }
 
         // POST api/EnergyHistory/hourlySummary/{start=start}/{end=end}
-        [Route("api/EnergyHistory/hourlySummary/{start=start}/{end=end}")]
+        [Route("EnergyHistory/hourlySummary/{start=start}/{end=end}")]
         [HttpPost]
         public IEnumerable<DataPoint> HourlySummary([FromUri]DateTime start, [FromUri]DateTime end, [FromBody]string[] FactoryList)
         {
@@ -71,7 +71,7 @@ namespace ScadaHisAPI
         }
 
         // POST api/EnergyHistory/daily/{start=start}/{end=end}/
-        [Route("api/EnergyHistory/daily/{start=start}/{end=end}")]
+        [Route("EnergyHistory/daily/{start=start}/{end=end}")]
         [HttpPost]
         public IEnumerable<DataPoint> Daily([FromUri]DateTime start, [FromUri]DateTime end, [FromBody]string[] FactoryList)
         {
@@ -103,7 +103,7 @@ namespace ScadaHisAPI
         }
 
         // POST api/EnergyHistory/DailySummary/{start=start}/{end=end}/
-        [Route("api/EnergyHistory/dailySummary/{start=start}/{end=end}")]
+        [Route("EnergyHistory/dailySummary/{start=start}/{end=end}")]
         [HttpPost]
         public IEnumerable<DataPoint> DailySummary([FromUri]DateTime start, [FromUri]DateTime end, [FromBody]string[] FactoryList)
         {
@@ -131,7 +131,7 @@ namespace ScadaHisAPI
 
 
         // POST api/EnergyHistory/ThisWeek/{now=now}
-        [Route("api/EnergyHistory/ThisWeek/{now=now}")]
+        [Route("EnergyHistory/ThisWeek/{now=now}")]
         [HttpPost]
         public IEnumerable<DataPoint> ThisWeek([FromUri]DateTime now, [FromBody]string[] FactoryList)
         {
@@ -141,7 +141,7 @@ namespace ScadaHisAPI
         }
 
         // POST api/EnergyHistory/LastWeek/{now=now}
-        [Route("api/EnergyHistory/LastWeek/{now=now}")]
+        [Route("EnergyHistory/LastWeek/{now=now}")]
         [HttpPost]
         public IEnumerable<DataPoint> LastWeek([FromUri]DateTime now, [FromBody]string[] FactoryList)
         {
@@ -154,7 +154,7 @@ namespace ScadaHisAPI
         }
 
         // POST api/EnergyHistory/Week2Week/{now=now}
-        [Route("api/EnergyHistory/Week2Week/{now=now}")]
+        [Route("EnergyHistory/Week2Week/{now=now}")]
         [HttpPost]
         public IEnumerable<DataPoint> Week2Week([FromUri]DateTime now, [FromBody]string[] FactoryList)
         {

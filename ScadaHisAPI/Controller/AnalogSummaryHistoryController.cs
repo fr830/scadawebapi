@@ -12,7 +12,7 @@ namespace ScadaHisAPI
 
         // POST api/AnalogSummaryHistory/Average/{start}/{end}/{CycleMinutes}
         // QueryString api/AnalogSummaryHistory/Average?start={start}&end={end}&CycleMinutes={CycleMinutes}
-        [Route("api/AnalogSummaryHistory/Average/{start=start}/{end=end}/{CycleMinutes=CycleMinutes}")]
+        [Route("AnalogSummaryHistory/Average/{start=start}/{end=end}/{CycleMinutes=CycleMinutes}")]
         [HttpPost]
         public IEnumerable<DataPoint> Average([FromUri]DateTime start, [FromUri]DateTime end, [FromUri]int CycleMinutes, [FromBody]string[] TagNameList)
         {
@@ -21,7 +21,7 @@ namespace ScadaHisAPI
 
         // POST api/AnalogSummaryHistory/Maximum/{start}/{end}/{CycleMinutes}
         // QueryString api/AnalogSummaryHistory/Maximum?start={start}&end={end}&CycleMinutes={CycleMinutes}
-        [Route("api/AnalogSummaryHistory/Maximum/{start=start}/{end=end}/{CycleMinutes=CycleMinutes}")]
+        [Route("AnalogSummaryHistory/Maximum/{start=start}/{end=end}/{CycleMinutes=CycleMinutes}")]
         [HttpPost]
         public IEnumerable<DataPoint> Maximum([FromUri]DateTime start, [FromUri]DateTime end, [FromUri]int CycleMinutes, [FromBody]string[] TagNameList)
         {
@@ -30,7 +30,7 @@ namespace ScadaHisAPI
 
         // POST api/AnalogSummaryHistory/Minimum/{start}/{end}/{CycleMinutes}
         // QueryString api/AnalogSummaryHistory/Minimum?start={start}&end={end}&CycleMinutes={CycleMinutes}
-        [Route("api/AnalogSummaryHistory/Minimum/{start=start}/{end=end}/{CycleMinutes=CycleMinutes}")]
+        [Route("AnalogSummaryHistory/Minimum/{start=start}/{end=end}/{CycleMinutes=CycleMinutes}")]
         [HttpPost]
         public IEnumerable<DataPoint> Minimum([FromUri]DateTime start, [FromUri]DateTime end, [FromUri]int CycleMinutes, [FromBody]string[] TagNameList)
         {

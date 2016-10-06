@@ -11,7 +11,7 @@ namespace ScadaHisAPI
     public class PowerTrendController : ApiController
     {
         // POST api/PowerTrend/{start=start}/{end=end}
-        [Route("api/PowerTrend/{start=start}/{end=end}")]
+        [Route("PowerTrend/{start=start}/{end=end}")]
         [HttpPost]
         public IEnumerable<DataPoint> PowerTrend([FromUri]DateTime start, [FromUri]DateTime end, [FromBody]string[] FactoryList)
         {
@@ -35,7 +35,7 @@ namespace ScadaHisAPI
         }
 
         // POST api/PowerTrend/ThisWeek/{now=now}
-        [Route("api/PowerTrend/ThisWeek/{now=now}")]
+        [Route("PowerTrend/ThisWeek/{now=now}")]
         [HttpPost]
         public IEnumerable<DataPoint> ThisWeek([FromUri]DateTime now, [FromBody]string[] FactoryList)
         {
@@ -45,7 +45,7 @@ namespace ScadaHisAPI
         }
 
         // GET "api/Trend/U/{FactoryName}/{start=start}/{end=end}"
-        [Route("api/Trend/U/{FactoryName}/{start=start}/{end=end}")]
+        [Route("Trend/U/{FactoryName}/{start=start}/{end=end}")]
         [HttpGet]
         public IEnumerable<DataPoint> TrendU(string FactoryName, DateTime start, DateTime end)
         {
@@ -66,7 +66,7 @@ namespace ScadaHisAPI
         }
 
         // GET "api/Trend/I/{FactoryName}/{start=start}/{end=end}"
-        [Route("api/Trend/I/{FactoryName}/{start=start}/{end=end}")]
+        [Route("Trend/I/{FactoryName}/{start=start}/{end=end}")]
         [HttpGet]
         public IEnumerable<DataPoint> TrendI(string FactoryName, DateTime start, DateTime end)
         {
@@ -87,7 +87,7 @@ namespace ScadaHisAPI
         }
 
         // GET "api/Trend/P/{FactoryName}/{start=start}/{end=end}"
-        [Route("api/Trend/P/{FactoryName}/{start=start}/{end=end}")]
+        [Route("Trend/P/{FactoryName}/{start=start}/{end=end}")]
         [HttpGet]
         public IEnumerable<DataPoint> TrendP(string FactoryName, DateTime start, DateTime end)
         {

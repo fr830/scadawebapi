@@ -89,7 +89,6 @@
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="Report.html" />
-    <Content Include="TestClient.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -144,13 +143,6 @@
     <Compile Include="OpReportUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Defines\SongTranh2Define.cs" />
-    <Compile Include="TestClient.aspx.cs">
-      <DependentUpon>TestClient.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="TestClient.aspx.designer.cs">
-      <DependentUpon>TestClient.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Defines\UongBiDefine.cs" />
     <Compile Include="WebAPIConfig.cs" />
     <Compile Include="Utils.cs" />
@@ -202,7 +194,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>2883</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:7322/</IISUrl>
+          <IISUrl>http://localhost:7322/api</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

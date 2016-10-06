@@ -11,7 +11,7 @@ namespace ScadaHisAPI
     {
         // POST api/AnalogHistory/{start}/{end}/{CycleMinutes}
         // QueryString api/AnalogHistory?start={start}&end={end}&CycleMinutes={CycleMinutes}
-        [Route("api/AnalogHistory/{start=start}/{end=end}/{CycleMinutes=CycleMinutes}")]
+        [Route("AnalogHistory/{start=start}/{end=end}/{CycleMinutes=CycleMinutes}")]
         [HttpPost]
         public IEnumerable<DataPoint> Post([FromUri]DateTime start, [FromUri]DateTime end, [FromUri]int CycleMinutes, [FromBody]string[] TagNameList)
         {

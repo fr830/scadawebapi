@@ -10,7 +10,7 @@ namespace ScadaHisAPI
     public class DiscreteLiveController : ApiController
     {
         // GET api/DiscreteLive/{TagName}
-        [Route("api/DiscreteLive/{TagName}")]
+        [Route("DiscreteLive/{TagName}")]
         [HttpGet]
         public DataPoint Get(string TagName)
         {
@@ -18,7 +18,7 @@ namespace ScadaHisAPI
         }
 
         // POST api/DiscreteLive
-        [Route("api/DiscreteLive")]
+        [Route("DiscreteLive")]
         [HttpPost]
         public IEnumerable<DataPoint> Post([FromBody]string[] TagNameList)
         {
