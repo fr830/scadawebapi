@@ -1,0 +1,442 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HisModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="HisModelStoreContainer">
+          <EntitySet Name="AnalogHistory" EntityType="HisModel.Store.AnalogHistory" store:Type="Views" store:Schema="dbo" store:Name="AnalogHistory">
+            <DefiningQuery>SELECT 
+      [AnalogHistory].[DateTime] AS [DateTime], 
+      [AnalogHistory].[TagName] AS [TagName], 
+      [AnalogHistory].[Value] AS [Value], 
+      [AnalogHistory].[Quality] AS [Quality], 
+      [AnalogHistory].[QualityDetail] AS [QualityDetail], 
+      [AnalogHistory].[OPCQuality] AS [OPCQuality], 
+      [AnalogHistory].[wwTagKey] AS [wwTagKey], 
+      [AnalogHistory].[wwRowCount] AS [wwRowCount], 
+      [AnalogHistory].[wwResolution] AS [wwResolution], 
+      [AnalogHistory].[wwEdgeDetection] AS [wwEdgeDetection], 
+      [AnalogHistory].[wwRetrievalMode] AS [wwRetrievalMode], 
+      [AnalogHistory].[wwTimeDeadband] AS [wwTimeDeadband], 
+      [AnalogHistory].[wwValueDeadband] AS [wwValueDeadband], 
+      [AnalogHistory].[wwTimeZone] AS [wwTimeZone], 
+      [AnalogHistory].[wwVersion] AS [wwVersion], 
+      [AnalogHistory].[wwCycleCount] AS [wwCycleCount], 
+      [AnalogHistory].[wwTimeStampRule] AS [wwTimeStampRule], 
+      [AnalogHistory].[wwInterpolationType] AS [wwInterpolationType], 
+      [AnalogHistory].[wwQualityRule] AS [wwQualityRule], 
+      [AnalogHistory].[wwParameters] AS [wwParameters]
+      FROM [dbo].[AnalogHistory] AS [AnalogHistory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="AnalogLive" EntityType="HisModel.Store.AnalogLive" store:Type="Views" store:Schema="dbo" store:Name="AnalogLive">
+            <DefiningQuery>SELECT 
+      [AnalogLive].[DateTime] AS [DateTime], 
+      [AnalogLive].[TagName] AS [TagName], 
+      [AnalogLive].[Value] AS [Value], 
+      [AnalogLive].[Quality] AS [Quality], 
+      [AnalogLive].[QualityDetail] AS [QualityDetail], 
+      [AnalogLive].[OPCQuality] AS [OPCQuality], 
+      [AnalogLive].[wwTagKey] AS [wwTagKey], 
+      [AnalogLive].[wwRetrievalMode] AS [wwRetrievalMode], 
+      [AnalogLive].[wwTimeDeadband] AS [wwTimeDeadband], 
+      [AnalogLive].[wwValueDeadband] AS [wwValueDeadband], 
+      [AnalogLive].[wwTimeZone] AS [wwTimeZone], 
+      [AnalogLive].[wwParameters] AS [wwParameters]
+      FROM [dbo].[AnalogLive] AS [AnalogLive]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="AnalogSummaryHistory" EntityType="HisModel.Store.AnalogSummaryHistory" store:Type="Views" store:Schema="dbo" store:Name="AnalogSummaryHistory">
+            <DefiningQuery>SELECT 
+      [AnalogSummaryHistory].[TagName] AS [TagName], 
+      [AnalogSummaryHistory].[StartDateTime] AS [StartDateTime], 
+      [AnalogSummaryHistory].[EndDateTime] AS [EndDateTime], 
+      [AnalogSummaryHistory].[OPCQuality] AS [OPCQuality], 
+      [AnalogSummaryHistory].[PercentGood] AS [PercentGood], 
+      [AnalogSummaryHistory].[First] AS [First], 
+      [AnalogSummaryHistory].[FirstDateTime] AS [FirstDateTime], 
+      [AnalogSummaryHistory].[Last] AS [Last], 
+      [AnalogSummaryHistory].[LastDateTime] AS [LastDateTime], 
+      [AnalogSummaryHistory].[Minimum] AS [Minimum], 
+      [AnalogSummaryHistory].[MinDateTime] AS [MinDateTime], 
+      [AnalogSummaryHistory].[Maximum] AS [Maximum], 
+      [AnalogSummaryHistory].[MaxDateTime] AS [MaxDateTime], 
+      [AnalogSummaryHistory].[Average] AS [Average], 
+      [AnalogSummaryHistory].[StdDev] AS [StdDev], 
+      [AnalogSummaryHistory].[Integral] AS [Integral], 
+      [AnalogSummaryHistory].[ValueCount] AS [ValueCount], 
+      [AnalogSummaryHistory].[SourceTag] AS [SourceTag], 
+      [AnalogSummaryHistory].[SourceServer] AS [SourceServer], 
+      [AnalogSummaryHistory].[wwCycleCount] AS [wwCycleCount], 
+      [AnalogSummaryHistory].[wwResolution] AS [wwResolution], 
+      [AnalogSummaryHistory].[wwTimeZone] AS [wwTimeZone], 
+      [AnalogSummaryHistory].[wwVersion] AS [wwVersion], 
+      [AnalogSummaryHistory].[wwTagKey] AS [wwTagKey], 
+      [AnalogSummaryHistory].[wwRetrievalMode] AS [wwRetrievalMode]
+      FROM [dbo].[AnalogSummaryHistory] AS [AnalogSummaryHistory]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="DiscreteLive" EntityType="HisModel.Store.DiscreteLive" store:Type="Views" store:Schema="dbo" store:Name="DiscreteLive">
+            <DefiningQuery>SELECT 
+      [DiscreteLive].[DateTime] AS [DateTime], 
+      [DiscreteLive].[TagName] AS [TagName], 
+      [DiscreteLive].[Value] AS [Value], 
+      [DiscreteLive].[Quality] AS [Quality], 
+      [DiscreteLive].[QualityDetail] AS [QualityDetail], 
+      [DiscreteLive].[OPCQuality] AS [OPCQuality], 
+      [DiscreteLive].[wwTagKey] AS [wwTagKey], 
+      [DiscreteLive].[wwRetrievalMode] AS [wwRetrievalMode], 
+      [DiscreteLive].[wwTimeDeadband] AS [wwTimeDeadband], 
+      [DiscreteLive].[wwTimeZone] AS [wwTimeZone], 
+      [DiscreteLive].[wwParameters] AS [wwParameters]
+      FROM [dbo].[DiscreteLive] AS [DiscreteLive]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Runtime.dbo.AnalogHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="AnalogHistory">
+          <Key>
+            <PropertyRef Name="DateTime" />
+            <PropertyRef Name="TagName" />
+            <PropertyRef Name="Quality" />
+            <PropertyRef Name="wwTagKey" />
+          </Key>
+          <Property Name="DateTime" Type="datetime2" Nullable="false" />
+          <Property Name="TagName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Value" Type="float" />
+          <Property Name="Quality" Type="tinyint" Nullable="false" />
+          <Property Name="QualityDetail" Type="int" />
+          <Property Name="OPCQuality" Type="int" />
+          <Property Name="wwTagKey" Type="int" Nullable="false" />
+          <Property Name="wwRowCount" Type="int" />
+          <Property Name="wwResolution" Type="int" />
+          <Property Name="wwEdgeDetection" Type="nvarchar" MaxLength="16" />
+          <Property Name="wwRetrievalMode" Type="nvarchar" MaxLength="16" />
+          <Property Name="wwTimeDeadband" Type="int" />
+          <Property Name="wwValueDeadband" Type="float" />
+          <Property Name="wwTimeZone" Type="nvarchar" MaxLength="50" />
+          <Property Name="wwVersion" Type="nvarchar" MaxLength="30" />
+          <Property Name="wwCycleCount" Type="int" />
+          <Property Name="wwTimeStampRule" Type="nvarchar" MaxLength="20" />
+          <Property Name="wwInterpolationType" Type="nvarchar" MaxLength="20" />
+          <Property Name="wwQualityRule" Type="nvarchar" MaxLength="20" />
+          <Property Name="wwParameters" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Runtime.dbo.AnalogLive' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="AnalogLive">
+          <Key>
+            <PropertyRef Name="DateTime" />
+            <PropertyRef Name="TagName" />
+            <PropertyRef Name="Quality" />
+            <PropertyRef Name="wwTagKey" />
+          </Key>
+          <Property Name="DateTime" Type="datetime2" Nullable="false" />
+          <Property Name="TagName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Value" Type="float" />
+          <Property Name="Quality" Type="tinyint" Nullable="false" />
+          <Property Name="QualityDetail" Type="int" />
+          <Property Name="OPCQuality" Type="int" />
+          <Property Name="wwTagKey" Type="int" Nullable="false" />
+          <Property Name="wwRetrievalMode" Type="nvarchar" MaxLength="16" />
+          <Property Name="wwTimeDeadband" Type="int" />
+          <Property Name="wwValueDeadband" Type="float" />
+          <Property Name="wwTimeZone" Type="nvarchar" MaxLength="50" />
+          <Property Name="wwParameters" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Runtime.dbo.AnalogSummaryHistory' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="AnalogSummaryHistory">
+          <Key>
+            <PropertyRef Name="TagName" />
+            <PropertyRef Name="StartDateTime" />
+            <PropertyRef Name="EndDateTime" />
+            <PropertyRef Name="wwTimeZone" />
+            <PropertyRef Name="wwVersion" />
+            <PropertyRef Name="wwTagKey" />
+            <PropertyRef Name="wwRetrievalMode" />
+          </Key>
+          <Property Name="TagName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="StartDateTime" Type="datetime2" Nullable="false" />
+          <Property Name="EndDateTime" Type="datetime2" Nullable="false" />
+          <Property Name="OPCQuality" Type="int" />
+          <Property Name="PercentGood" Type="float" />
+          <Property Name="First" Type="float" />
+          <Property Name="FirstDateTime" Type="datetime2" />
+          <Property Name="Last" Type="float" />
+          <Property Name="LastDateTime" Type="datetime2" />
+          <Property Name="Minimum" Type="float" />
+          <Property Name="MinDateTime" Type="datetime2" />
+          <Property Name="Maximum" Type="float" />
+          <Property Name="MaxDateTime" Type="datetime2" />
+          <Property Name="Average" Type="float" />
+          <Property Name="StdDev" Type="float" />
+          <Property Name="Integral" Type="float" />
+          <Property Name="ValueCount" Type="int" />
+          <Property Name="SourceTag" Type="nvarchar" MaxLength="256" />
+          <Property Name="SourceServer" Type="nvarchar" MaxLength="256" />
+          <Property Name="wwCycleCount" Type="int" />
+          <Property Name="wwResolution" Type="int" />
+          <Property Name="wwTimeZone" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="wwVersion" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="wwTagKey" Type="int" Nullable="false" />
+          <Property Name="wwRetrievalMode" Type="nvarchar" Nullable="false" MaxLength="16" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Runtime.dbo.DiscreteLive' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="DiscreteLive">
+          <Key>
+            <PropertyRef Name="DateTime" />
+            <PropertyRef Name="TagName" />
+            <PropertyRef Name="Quality" />
+            <PropertyRef Name="wwTagKey" />
+          </Key>
+          <Property Name="DateTime" Type="datetime2" Nullable="false" />
+          <Property Name="TagName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Value" Type="float" />
+          <Property Name="Quality" Type="tinyint" Nullable="false" />
+          <Property Name="QualityDetail" Type="int" />
+          <Property Name="OPCQuality" Type="int" />
+          <Property Name="wwTagKey" Type="int" Nullable="false" />
+          <Property Name="wwRetrievalMode" Type="nvarchar" MaxLength="16" />
+          <Property Name="wwTimeDeadband" Type="int" />
+          <Property Name="wwTimeZone" Type="nvarchar" MaxLength="50" />
+          <Property Name="wwParameters" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HisModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="HisRuntimeEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="AnalogLives" EntityType="HisModel.AnalogLive" />
+          <EntitySet Name="AnalogSummaryHistories" EntityType="HisModel.AnalogSummaryHistory" />
+          <EntitySet Name="DiscreteLives" EntityType="HisModel.DiscreteLive" />
+          <EntitySet Name="AnalogHistories" EntityType="HisModel.AnalogHistory" />
+        </EntityContainer>
+        <EntityType Name="AnalogLive">
+          <Key>
+            <PropertyRef Name="DateTime" />
+            <PropertyRef Name="TagName" />
+            <PropertyRef Name="Quality" />
+            <PropertyRef Name="wwTagKey" />
+          </Key>
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="TagName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Value" Type="Double" />
+          <Property Name="Quality" Type="Byte" Nullable="false" />
+          <Property Name="QualityDetail" Type="Int32" />
+          <Property Name="OPCQuality" Type="Int32" />
+          <Property Name="wwTagKey" Type="Int32" Nullable="false" />
+          <Property Name="wwRetrievalMode" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="wwTimeDeadband" Type="Int32" />
+          <Property Name="wwValueDeadband" Type="Double" />
+          <Property Name="wwTimeZone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="wwParameters" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="AnalogSummaryHistory">
+          <Key>
+            <PropertyRef Name="TagName" />
+            <PropertyRef Name="StartDateTime" />
+            <PropertyRef Name="EndDateTime" />
+            <PropertyRef Name="wwTimeZone" />
+            <PropertyRef Name="wwVersion" />
+            <PropertyRef Name="wwTagKey" />
+            <PropertyRef Name="wwRetrievalMode" />
+          </Key>
+          <Property Name="TagName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="StartDateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="EndDateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="OPCQuality" Type="Int32" />
+          <Property Name="PercentGood" Type="Double" />
+          <Property Name="First" Type="Double" />
+          <Property Name="FirstDateTime" Type="DateTime" Precision="7" />
+          <Property Name="Last" Type="Double" />
+          <Property Name="LastDateTime" Type="DateTime" Precision="7" />
+          <Property Name="Minimum" Type="Double" />
+          <Property Name="MinDateTime" Type="DateTime" Precision="7" />
+          <Property Name="Maximum" Type="Double" />
+          <Property Name="MaxDateTime" Type="DateTime" Precision="7" />
+          <Property Name="Average" Type="Double" />
+          <Property Name="StdDev" Type="Double" />
+          <Property Name="Integral" Type="Double" />
+          <Property Name="ValueCount" Type="Int32" />
+          <Property Name="SourceTag" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="SourceServer" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="wwCycleCount" Type="Int32" />
+          <Property Name="wwResolution" Type="Int32" />
+          <Property Name="wwTimeZone" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="wwVersion" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="wwTagKey" Type="Int32" Nullable="false" />
+          <Property Name="wwRetrievalMode" Type="String" Nullable="false" MaxLength="16" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="DiscreteLive">
+          <Key>
+            <PropertyRef Name="DateTime" />
+            <PropertyRef Name="TagName" />
+            <PropertyRef Name="Quality" />
+            <PropertyRef Name="wwTagKey" />
+          </Key>
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="TagName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Value" Type="Double" />
+          <Property Name="Quality" Type="Byte" Nullable="false" />
+          <Property Name="QualityDetail" Type="Int32" />
+          <Property Name="OPCQuality" Type="Int32" />
+          <Property Name="wwTagKey" Type="Int32" Nullable="false" />
+          <Property Name="wwRetrievalMode" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="wwTimeDeadband" Type="Int32" />
+          <Property Name="wwTimeZone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="wwParameters" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="AnalogHistory">
+          <Key>
+            <PropertyRef Name="DateTime" />
+            <PropertyRef Name="TagName" />
+            <PropertyRef Name="Quality" />
+            <PropertyRef Name="wwTagKey" />
+          </Key>
+          <Property Type="DateTime" Name="DateTime" Nullable="false" Precision="7" />
+          <Property Type="String" Name="TagName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="Value" />
+          <Property Type="Byte" Name="Quality" Nullable="false" />
+          <Property Type="Int32" Name="QualityDetail" />
+          <Property Type="Int32" Name="OPCQuality" />
+          <Property Type="Int32" Name="wwTagKey" Nullable="false" />
+          <Property Type="Int32" Name="wwRowCount" />
+          <Property Type="Int32" Name="wwResolution" />
+          <Property Type="String" Name="wwEdgeDetection" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="wwRetrievalMode" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="wwTimeDeadband" />
+          <Property Type="Double" Name="wwValueDeadband" />
+          <Property Type="String" Name="wwTimeZone" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="wwVersion" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="wwCycleCount" />
+          <Property Type="String" Name="wwTimeStampRule" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="wwInterpolationType" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="wwQualityRule" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="wwParameters" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HisModelStoreContainer" CdmEntityContainer="HisRuntimeEntities">
+          <EntitySetMapping Name="AnalogLives">
+            <EntityTypeMapping TypeName="HisModel.AnalogLive">
+              <MappingFragment StoreEntitySet="AnalogLive">
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+                <ScalarProperty Name="QualityDetail" ColumnName="QualityDetail" />
+                <ScalarProperty Name="OPCQuality" ColumnName="OPCQuality" />
+                <ScalarProperty Name="wwTagKey" ColumnName="wwTagKey" />
+                <ScalarProperty Name="wwRetrievalMode" ColumnName="wwRetrievalMode" />
+                <ScalarProperty Name="wwTimeDeadband" ColumnName="wwTimeDeadband" />
+                <ScalarProperty Name="wwValueDeadband" ColumnName="wwValueDeadband" />
+                <ScalarProperty Name="wwTimeZone" ColumnName="wwTimeZone" />
+                <ScalarProperty Name="wwParameters" ColumnName="wwParameters" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnalogSummaryHistories">
+            <EntityTypeMapping TypeName="HisModel.AnalogSummaryHistory">
+              <MappingFragment StoreEntitySet="AnalogSummaryHistory">
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="OPCQuality" ColumnName="OPCQuality" />
+                <ScalarProperty Name="PercentGood" ColumnName="PercentGood" />
+                <ScalarProperty Name="First" ColumnName="First" />
+                <ScalarProperty Name="FirstDateTime" ColumnName="FirstDateTime" />
+                <ScalarProperty Name="Last" ColumnName="Last" />
+                <ScalarProperty Name="LastDateTime" ColumnName="LastDateTime" />
+                <ScalarProperty Name="Minimum" ColumnName="Minimum" />
+                <ScalarProperty Name="MinDateTime" ColumnName="MinDateTime" />
+                <ScalarProperty Name="Maximum" ColumnName="Maximum" />
+                <ScalarProperty Name="MaxDateTime" ColumnName="MaxDateTime" />
+                <ScalarProperty Name="Average" ColumnName="Average" />
+                <ScalarProperty Name="StdDev" ColumnName="StdDev" />
+                <ScalarProperty Name="Integral" ColumnName="Integral" />
+                <ScalarProperty Name="ValueCount" ColumnName="ValueCount" />
+                <ScalarProperty Name="SourceTag" ColumnName="SourceTag" />
+                <ScalarProperty Name="SourceServer" ColumnName="SourceServer" />
+                <ScalarProperty Name="wwCycleCount" ColumnName="wwCycleCount" />
+                <ScalarProperty Name="wwResolution" ColumnName="wwResolution" />
+                <ScalarProperty Name="wwTimeZone" ColumnName="wwTimeZone" />
+                <ScalarProperty Name="wwVersion" ColumnName="wwVersion" />
+                <ScalarProperty Name="wwTagKey" ColumnName="wwTagKey" />
+                <ScalarProperty Name="wwRetrievalMode" ColumnName="wwRetrievalMode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiscreteLives">
+            <EntityTypeMapping TypeName="HisModel.DiscreteLive">
+              <MappingFragment StoreEntitySet="DiscreteLive">
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+                <ScalarProperty Name="QualityDetail" ColumnName="QualityDetail" />
+                <ScalarProperty Name="OPCQuality" ColumnName="OPCQuality" />
+                <ScalarProperty Name="wwTagKey" ColumnName="wwTagKey" />
+                <ScalarProperty Name="wwRetrievalMode" ColumnName="wwRetrievalMode" />
+                <ScalarProperty Name="wwTimeDeadband" ColumnName="wwTimeDeadband" />
+                <ScalarProperty Name="wwTimeZone" ColumnName="wwTimeZone" />
+                <ScalarProperty Name="wwParameters" ColumnName="wwParameters" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnalogHistories">
+            <EntityTypeMapping TypeName="HisModel.AnalogHistory">
+              <MappingFragment StoreEntitySet="AnalogHistory">
+                <ScalarProperty Name="wwParameters" ColumnName="wwParameters" />
+                <ScalarProperty Name="wwQualityRule" ColumnName="wwQualityRule" />
+                <ScalarProperty Name="wwInterpolationType" ColumnName="wwInterpolationType" />
+                <ScalarProperty Name="wwTimeStampRule" ColumnName="wwTimeStampRule" />
+                <ScalarProperty Name="wwCycleCount" ColumnName="wwCycleCount" />
+                <ScalarProperty Name="wwVersion" ColumnName="wwVersion" />
+                <ScalarProperty Name="wwTimeZone" ColumnName="wwTimeZone" />
+                <ScalarProperty Name="wwValueDeadband" ColumnName="wwValueDeadband" />
+                <ScalarProperty Name="wwTimeDeadband" ColumnName="wwTimeDeadband" />
+                <ScalarProperty Name="wwRetrievalMode" ColumnName="wwRetrievalMode" />
+                <ScalarProperty Name="wwEdgeDetection" ColumnName="wwEdgeDetection" />
+                <ScalarProperty Name="wwResolution" ColumnName="wwResolution" />
+                <ScalarProperty Name="wwRowCount" ColumnName="wwRowCount" />
+                <ScalarProperty Name="wwTagKey" ColumnName="wwTagKey" />
+                <ScalarProperty Name="OPCQuality" ColumnName="OPCQuality" />
+                <ScalarProperty Name="QualityDetail" ColumnName="QualityDetail" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

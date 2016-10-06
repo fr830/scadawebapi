@@ -1,0 +1,624 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+<!--     <script src="Scripts/jquery-3.1.0.min.js"></script> -->
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+    <style type="text/css">
+        #Result
+        {
+            width: 551px;
+            height: 272px;
+        }
+    </style>
+</head>
+<body>
+		<form>
+         <div id="PowerTag">
+             <p>TagName #1 <input id="TagName1" type ="text" value ="UONGBIMR_907_P" />    
+                Factory #1 <input id="Factory1" type ="text" value ="UONGBIMR"/> (for Energy Method)
+             </p>
+             <p>TagName #2 <input id="TagName2" type ="text" value ="UONGBIMR_908_P" />    
+                Factory #2 <input id="Factory2" type ="text" value =""/> (for Energy Method)
+             </p>
+		     <p>TagName #3 <input id="TagName3" type ="text" value ="BANVE_COM_Ptotal" />    
+                Factory #3 <input id="Factory3" type ="text" value ="BANVE" /> (for Energy Method)
+		     </p>
+		     <p>TagName #4 <input id="TagName4" type ="text" value ="DAININH_COM_Ptotal"/>    
+                Factory #4 <input id="Factory4" type ="text" value ="DAININH"/> (for Energy Method)
+		     </p>
+		     <p>TagName #5 <input id="TagName5" type ="text" value ="DONGNAI3_COM_Ptotal"/>    
+                Factory #5 <input id="Factory5" type ="text" value ="DONGNAI3"/> (for Energy Method)
+		     </p>
+             <p>TagName #6 <input id="TagName6" type ="text" value ="DONGNAI4_COM_Ptotal"/>    
+                Factory #6 <input id="Factory6" type ="text" value ="DONGNAI4"/> (for Energy Method)
+             </p>
+             <p>TagName #7 <input id="TagName7" type ="text" value ="SONGTRANH2_COM_Ptotal"/>    
+                Factory #7 <input id="Factory7" type ="text" value ="SONGTRANH2"/> (for Energy Method)
+             </p>
+         </div> 
+		 <p>
+			<input id="Get" type="button" value="GetLive" />
+			<input id="GetHis" type="button" value="GetHis" />
+            <input id="GetHisSum" type="button" value="GetHisSum" />
+         </p>
+         <p>
+            <input id="GetEnergyDay" type="button" value="Energy today" />
+            <input id="GetTotalEnergyDay" type="button" value="Energy Summary today" />    
+            <input id="GetEnergyMonth" type="button" value="Energy this Month" />
+            <input id="GetTotalEnergyMonth" type="button" value="Energy Summary this Month" />
+            <!--<input id="GetTotalEnergyThisWeek" type="button" value="Energy Summary this Week" />-->
+            <input id="GetTotalEnergyLastWeek" type="button" value="Energy Summary from last Week" />
+         </p>
+         <p>
+            <input id="GetPowerLive" type="button" value="Power Live" />
+            <input id="GetPowerTrendDay" type="button" value="Power Trend today" />
+            <input id="GetPowerTrendWeek" type="button" value="Power Trend this week" />
+            <input id="GetPowerTrendMonth" type="button" value="Power Trend this Month" />
+            <input id="Clear" type="button" value="Clear" />
+         </p>
+		</form>
+    <p>
+		<textarea id="Result" name="S1" ></textarea>
+	</p>
+</body>
+</html>
+
+<script>
+    var message = "";
+    var Timer;
+
+    $("#Get").click(function () {
+        //Timer = setInterval(liveFunc, 3000);
+        liveFunc();
+    });
+
+    $("#Clear").click(function () {
+        message = "";
+        $("#Result").text("");
+        //clearInterval(Timer);
+    });
+
+    $("#GetHis").click(function () {
+        hisFunc();
+    });
+
+    $("#GetHisSum").click(function () {
+        hisSumFunc();
+    });
+
+    $("#GetEnergyDay").click(function () {
+        hisDayEnergyFunc();
+    });
+
+    $("#GetTotalEnergyDay").click(function () {
+        hisDayTotalEnergyFunc();
+    });
+
+    $("#GetEnergyMonth").click(function () {
+        hisMonthEnergyFunc();
+    });
+
+    $("#GetTotalEnergyMonth").click(function () {
+        hisMonthTotalEnergyFunc();
+    });
+
+    //$("#GetTotalEnergyThisWeek").click(function () {
+    //    hisThisWeekTotalEnergyFunc();
+    //});
+
+    $("#GetTotalEnergyLastWeek").click(function () {
+        hisLastWeekTotalEnergyFunc();
+    });
+
+    $("#GetPowerLive").click(function () {
+        powerLive();
+    });
+
+    $("#GetPowerTrendDay").click(function () {
+        powerTrendDay();
+    });
+
+    $("#GetPowerTrendWeek").click(function () {
+        powerTrendWeek();
+    });
+
+    $("#GetPowerTrendMonth").click(function () {
+        powerTrendMonth();
+    });
+
+
+    function liveFunc() {
+        var list = {};
+        var k = 0;
+        $('[id^=TagName]').each(function (i, item) {
+            list[k++] = item.value;
+        });
+        
+        var result = {}
+
+        $.ajax({
+            url: "/api/AnalogLive",
+            type: "POST",
+            data: { "": list },
+            dataType: "json",
+            crossDomain: true,
+            success: function (data) {
+                message = "";
+                $.each(data, function (i, item) {
+                    //var x;
+                    //for (x = 0; x < k; x++) {
+                    //    if (item.TagName == list[x]) result[x] = item.Value;
+                    //}
+                    
+                    message += item.DateTime + " ";
+                    message += item.TagName + " ";
+                    message += item.Value + "\n";
+                });
+
+                //var x = 0;
+                //for (x = 0; x < k; x++) {
+                //    message += result[x] + "\n";
+                //}
+
+                $("#Result").text(message);
+            }
+        });
+    };
+
+    function hisFunc() {
+        var list = {};
+        var k = 0;
+
+        var end = new Date();
+
+        var start = new Date();
+        start.setHours(0);
+        start.setMinutes(0);
+        start.setSeconds(0);
+
+
+        $('[id^=TagName]').each(function (i, item) {
+            list[k++] = item.value;
+        });
+
+        var uri = "/api/AnalogHistory?start=" + start.toISOString() + "&end=" + end.toISOString() + "&CycleMinutes=60";
+
+        $("#Result").text(uri);
+
+        $.ajax({
+            url: uri,
+            type: "POST",
+            data: { "": list },
+            dataType: "json",
+            crossDomain: true,
+            success: function (data) {
+                message = "";
+                $.each(data, function (i, item) {
+                    message += item.DateTime + " ";
+                    message += item.TagName + " ";
+                    message += item.Value + "\n";
+                });
+                $("#Result").text(message);
+            }
+        });
+    };
+
+    function hisSumFunc() {
+        var list = {};
+        var k = 0;
+
+        var end = new Date();
+
+        var start = new Date();
+        start.setHours(0);
+        start.setMinutes(0);
+        start.setSeconds(0);
+
+
+        $('[id^=TagName]').each(function (i, item) {
+            list[k++] = item.value;
+        });
+
+        var uri = "/api/AnalogSummaryHistory/Average?start=" + start.toISOString() + "&end=" + end.toISOString() + "&CycleMinutes=60";
+
+        $("#Result").text(uri);
+
+        $.ajax({
+            url: uri,
+            type: "POST",
+            data: { "": list },
+            dataType: "json",
+            crossDomain: true,
+            success: function (data) {
+                message = "";
+                $.each(data, function (i, item) {
+                    message += item.DateTime + " ";
+                    message += item.TagName + " ";
+                    message += item.Value + "\n";
+                });
+                $("#Result").text(message);
+            }
+        });
+    };
+
+    function hisDayEnergyFunc() {
+        var list = {};
+        var k = 0;
+
+        var end = new Date();
+        end.setMinutes(0);
+        end.setSeconds(0);
+        end.setMilliseconds(0);
+
+        var start = new Date();
+        start.setHours(0);
+        start.setMinutes(0);
+        start.setSeconds(0);
+        start.setMilliseconds(0);
+
+
+        $('[id^=Factory]').each(function (i, item) {
+            list[k++] = item.value;
+        });
+
+
+        var uri = "/api/EnergyHistory/hourly?start=" + start.toISOString() + "&end=" + end.toISOString();
+
+        $("#Result").text(uri);
+
+        $.ajax({
+            url: uri,
+            type: "POST",
+            data: { "": list },
+            dataType: "json",
+            crossDomain: true,
+            success: function (data) {
+                message = "";
+                $.each(data, function (i, item) {
+                    message += item.DateTime + " ";
+                    message += item.TagName + " ";
+                    message += item.Value + "\n";
+                });
+                $("#Result").text(message);
+            }
+        });
+    };
+
+    function hisDayTotalEnergyFunc() {
+        var list = {};
+        var k = 0;
+
+        var end = new Date();
+        end.setMinutes(0);
+        end.setSeconds(0);
+        end.setMilliseconds(0);
+
+        var start = new Date();
+        start.setHours(0);
+        start.setMinutes(0);
+        start.setSeconds(0);
+        start.setMilliseconds(0);
+
+
+        $('[id^=Factory]').each(function (i, item) {
+            list[k++] = item.value;
+        });
+
+
+        var uri = "/api/EnergyHistory/hourlysummary?start=" + start.toISOString() + "&end=" + end.toISOString();
+
+        $("#Result").text(uri);
+
+        $.ajax({
+            url: uri,
+            type: "POST",
+            data: { "": list },
+            dataType: "json",
+            crossDomain: true,
+            success: function (data) {
+                message = "";
+                $.each(data, function (i, item) {
+                    message += item.DateTime + " ";
+                    message += item.TagName + " ";
+                    message += item.Value + "\n";
+                });
+                $("#Result").text(message);
+            }
+        });
+    };
+
+    function hisMonthEnergyFunc() {
+        var list = {};
+        var k = 0;
+
+        var end = new Date();
+
+        var start = new Date();
+        start.setDate(1);
+        start.setHours(0);
+        start.setMinutes(0);
+        start.setSeconds(0);
+        start.setMilliseconds(0);
+
+
+        $('[id^=Factory]').each(function (i, item) {
+            list[k++] = item.value;
+        });
+
+        var uri = "/api/EnergyHistory/daily?start=" + start.toISOString() + "&end=" + end.toISOString();
+
+        $("#Result").text(uri);
+
+        $.ajax({
+            url: uri,
+            type: "POST",
+            data: { "": list },
+            dataType: "json",
+            crossDomain: true,
+            success: function (data) {
+                message = "";
+                $.each(data, function (i, item) {
+                    message += item.DateTime + " ";
+                    message += item.TagName + " ";
+                    message += item.Value + "\n";
+                });
+                $("#Result").text(message);
+            }
+        });
+    };
+
+    function hisMonthTotalEnergyFunc() {
+        var list = {};
+        var k = 0;
+
+        var end = new Date();
+
+        var start = new Date();
+        start.setDate(1);
+        start.setHours(0);
+        start.setMinutes(0);
+        start.setSeconds(0);
+        start.setMilliseconds(0);
+
+
+        $('[id^=Factory]').each(function (i, item) {
+            list[k++] = item.value;
+        });
+
+        var uri = "/api/EnergyHistory/dailysummary?start=" + start.toISOString() + "&end=" + end.toISOString();
+
+        $("#Result").text(uri);
+
+        $.ajax({
+            url: uri,
+            type: "POST",
+            data: { "": list },
+            dataType: "json",
+            crossDomain: true,
+            success: function (data) {
+                message = "";
+                $.each(data, function (i, item) {
+                    message += item.DateTime + " ";
+                    message += item.TagName + " ";
+                    message += item.Value + "\n";
+                });
+                $("#Result").text(message);
+            }
+        });
+    };
+
+    //function hisThisWeekTotalEnergyFunc() {
+    //    var list = {};
+    //    var k = 0;
+
+    //    var now = new Date();
+
+    //    $('[id^=Factory]').each(function (i, item) {
+    //        list[k++] = item.value;
+    //    });
+
+    //    var uri = "/api/EnergyHistory/ThisWeek?now=" + now.toISOString();
+
+    //    $("#Result").text(uri);
+
+    //    $.ajax({
+    //        url: uri,
+    //        type: "POST",
+    //        data: { "": list },
+    //        dataType: "json",
+    //        crossDomain: true,
+    //        success: function (data) {
+    //            message = "";
+    //            $.each(data, function (i, item) {
+    //                message += item.DateTime + " ";
+    //                message += item.TagName + " ";
+    //                message += item.Value + "\n";
+    //            });
+    //            $("#Result").text(message);
+    //        }
+    //    });
+    //};
+
+    function hisLastWeekTotalEnergyFunc() {
+        var list = {};
+        var k = 0;
+
+        var now = new Date();
+
+        $('[id^=Factory]').each(function (i, item) {
+            list[k++] = item.value;
+        });
+
+        var uri = "/api/EnergyHistory/Week2Week?now=" + now.toISOString();
+
+        $("#Result").text(uri);
+
+        $.ajax({
+            url: uri,
+            type: "POST",
+            data: { "": list },
+            dataType: "json",
+            crossDomain: true,
+            success: function (data) {
+                message = "";
+                $.each(data, function (i, item) {
+                    message += item.DateTime + " ";
+                    message += item.TagName + " ";
+                    message += item.Value + "\n";
+                });
+                $("#Result").text(message);
+            }
+        });
+
+    };
+
+    function powerLive() {
+        var list = {};
+        var k = 0;
+
+        $('[id^=Factory]').each(function (i, item) {
+            list[k++] = item.value;
+        });
+
+        var uri = "/api/AnalogLive/Power";
+
+        $("#Result").text(uri);
+
+        $.ajax({
+            url: uri,
+            type: "POST",
+            data: { "": list },
+            dataType: "json",
+            crossDomain: true,
+            success: function (data) {
+                message = "";
+                $.each(data, function (i, item) {
+                    message += item.DateTime + " ";
+                    message += item.TagName + " ";
+                    message += item.Value + "\n";
+                });
+                $("#Result").text(message);
+            }
+        });
+    };
+
+    function powerTrendDay() {
+        var list = {};
+        var k = 0;
+
+        var end = new Date();
+        end.setMinutes(0);
+        end.setSeconds(0);
+        end.setMilliseconds(0);
+
+        var start = new Date();
+        start.setHours(0);
+        start.setMinutes(0);
+        start.setSeconds(0);
+        start.setMilliseconds(0);
+
+
+        $('[id^=Factory]').each(function (i, item) {
+            list[k++] = item.value;
+        });
+
+        var uri = "/api/PowerTrend?start=" + start.toISOString() + "&end=" + end.toISOString();
+
+        $("#Result").text(uri);
+
+        $.ajax({
+            url: uri,
+            type: "POST",
+            data: { "": list },
+            dataType: "json",
+            crossDomain: true,
+            success: function (data) {
+                message = "";
+                $.each(data, function (i, item) {
+                    message += item.DateTime + " ";
+                    message += item.TagName + " ";
+                    message += item.Value + "\n";
+                });
+                $("#Result").text(message);
+            }
+        });
+    };
+
+    function powerTrendWeek() {
+        var list = {};
+        var k = 0;
+
+        var now = new Date();
+
+        $('[id^=Factory]').each(function (i, item) {
+            list[k++] = item.value;
+        });
+
+        var uri = "/api/PowerTrend/ThisWeek?now=" + now.toISOString();
+
+        $("#Result").text(uri);
+
+        $.ajax({
+            url: uri,
+            type: "POST",
+            data: { "": list },
+            dataType: "json",
+            crossDomain: true,
+            success: function (data) {
+                message = "";
+                $.each(data, function (i, item) {
+                    message += item.DateTime + " ";
+                    message += item.TagName + " ";
+                    message += item.Value + "\n";
+                });
+                $("#Result").text(message);
+            }
+        });
+    };
+
+    function powerTrendMonth() {
+        var list = {};
+        var k = 0;
+
+        var end = new Date();
+        end.setMinutes(0);
+        end.setSeconds(0);
+        end.setMilliseconds(0);
+
+        var start = new Date();
+        start.setDate(1);
+        start.setHours(0);
+        start.setMinutes(0);
+        start.setSeconds(0);
+        start.setMilliseconds(0);
+
+
+        $('[id^=Factory]').each(function (i, item) {
+            list[k++] = item.value;
+        });
+
+        var uri = "/api/PowerTrend?start=" + start.toISOString() + "&end=" + end.toISOString();
+
+        $("#Result").text(uri);
+
+        $.ajax({
+            url: uri,
+            type: "POST",
+            data: { "": list },
+            dataType: "json",
+            crossDomain: true,
+            success: function (data) {
+                message = "";
+                $.each(data, function (i, item) {
+                    message += item.DateTime + " ";
+                    message += item.TagName + " ";
+                    message += item.Value + "\n";
+                });
+                $("#Result").text(message);
+            }
+        });
+    };
+    
+
+</script>

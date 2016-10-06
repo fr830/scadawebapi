@@ -1,0 +1,276 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+<!--     <script src="Scripts/jquery-3.1.0.min.js"></script> -->
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+    <style type="text/css">
+        #Result
+        {
+            width: 1135px;
+            height: 366px;
+        }
+    </style>
+</head>
+<body>
+		<form>
+         <div id="FactoryName">
+             <p>   
+                Factory Name <input id="Factory" type ="text" value ="UONGBIMR"/>
+                        Ngay <input id="Ngay" type ="text"/>
+                / <input id="Thang" type ="text"/>
+                / <input id="Nam" type ="text"/>
+             </p>
+         </div> 
+         <p>
+            <input id="Generator" type="button" value="Máy phát" />
+            <input id="Feeder" type="button" value="Xuất Tuyến" />
+            <input id="Clear" type="button" value="Clear" />
+         </p>
+		</form>
+    <p>
+		<textarea id="Result" name="S1" ></textarea>
+	</p>
+</body>
+</html>
+
+<script>
+    var message = "";
+    var Timer;
+    var now = new Date();
+
+    document.getElementById("Ngay").value = now.getDate();
+    document.getElementById("Thang").value = now.getMonth() + 1;
+    document.getElementById("Nam").value = now.getFullYear();
+
+    $("#Clear").click(function () {
+        message = "";
+        $("#Result").text("");
+    });
+
+    $("#Generator").click(function () {
+        generatorReport();
+    });
+
+    $("#Feeder").click(function () {
+        feederReport();
+    });
+
+    function generatorReport() {
+        var fac_id = document.getElementById('Factory').value;
+        var day = document.getElementById('Ngay').value;
+        var month = document.getElementById('Thang').value;
+        var year = document.getElementById('Nam').value;
+
+        var uri = "/api/OpReport/Generator/" + fac_id + "/" + day + "/" + month + "/" + year;
+
+        $("#Result").text(uri);
+
+        var result = {}
+
+        $.ajax({
+            url: uri,
+            type: "GET",
+            dataType: "json",
+            crossDomain: true,
+            success: function (data) {
+                message = "";
+                $.each(data, function (i, item) {
+                    var k = 0;
+
+                    /* Tên tổ máy */
+                    message += "\n" + item.Name;
+
+                    /* Tên title Params */
+                    message += "\n" + item.Params.Name;
+
+                    if (!!item.Params.Uab.Values) {
+                        message += "\n" + item.Params.Uab.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Params.Uab.Values[k];
+                        }
+                    }
+
+                    if (!!item.Params.Ubc.Values) {
+                        message += "\n" + item.Params.Ubc.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Params.Ubc.Values[k];
+                        }
+                    }
+
+                    if (!!item.Params.Uca.Values) {
+                        message += "\n" + item.Params.Uca.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Params.Uca.Values[k];
+                        }
+                    }
+
+                    if (!!item.Params.Ia.Values) {
+                        message += "\n" + item.Params.Ia.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Params.Ia.Values[k];
+                        }
+                    }
+
+                    if (!!item.Params.Ib.Values) {
+                        message += "\n" + item.Params.Ib.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Params.Ib.Values[k];
+                        }
+                    }
+
+                    if (!!item.Params.Ic.Values) {
+                        message += "\n" + item.Params.Ic.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Params.Ic.Values[k];
+                        }
+                    }
+
+                    if (!!item.Params.P.Values) {
+                        message += "\n" + item.Params.P.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Params.P.Values[k];
+                        }
+                    }
+
+                    if (!!item.Params.Q.Values) {
+                        message += "\n" + item.Params.Q.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Params.Q.Values[k];
+                        }
+                    }
+
+                    if (!!item.Params.F.Values) {
+                        message += "\n" + item.Params.F.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Params.F.Values[k];
+                        }
+                    }
+
+                    /* Tên title Rotor */
+                    message += "\n" + item.Rotor.Name;
+
+                    if (!!item.Rotor.U.Values) {
+                        message += "\n" + item.Rotor.U.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Rotor.U.Values[k];
+                        }
+                    }
+
+                    if (!!item.Rotor.I.Values) {
+                        message += "\n" + item.Rotor.I.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Rotor.I.Values[k];
+                        }
+                    }
+
+                    if (!!item.Rotor.Velocity.Values) {
+                        message += "\n" + item.Rotor.Velocity.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Rotor.Velocity.Values[k];
+                        }
+                    }
+                });
+
+                $("#Result").text(message);
+            }
+        });
+    };
+
+    function feederReport() {
+        var fac_id = document.getElementById('Factory').value;
+        var day = document.getElementById('Ngay').value;
+        var month = document.getElementById('Thang').value;
+        var year = document.getElementById('Nam').value;
+
+        var uri = "/api/OpReport/Feeder/" + fac_id + "/" + day + "/" + month + "/" + year;
+
+        $("#Result").text(uri);
+
+        var result = {}
+
+        $.ajax({
+            url: uri,
+            type: "GET",
+            dataType: "json",
+            crossDomain: true,
+            success: function (data) {
+                message = "";
+                $.each(data, function (i, item) {
+                    var k = 0;
+
+                    /* Tên Xuat tuyen */
+                    message += "\n" + item.Name;
+
+                    if (!!item.Uab.Values) {
+                        message += "\n" + item.Uab.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Uab.Values[k];
+                        }
+                    }
+
+                    if (!!item.Ubc.Values) {
+                        message += "\n" + item.Ubc.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Ubc.Values[k];
+                        }
+                    }
+
+                    if (!!item.Uca.Values) {
+                        message += "\n" + item.Uca.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Uca.Values[k];
+                        }
+                    }
+
+                    if (!!item.Ia.Values) {
+                        message += "\n" + item.Ia.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Ia.Values[k];
+                        }
+                    }
+
+                    if (!!item.Ib.Values) {
+                        message += "\n" + item.Ib.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Ib.Values[k];
+                        }
+                    }
+
+                    if (!!item.Ic.Values) {
+                        message += "\n" + item.Ic.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Ic.Values[k];
+                        }
+                    }
+
+                    if (!!item.P.Values) {
+                        message += "\n" + item.P.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.P.Values[k];
+                        }
+                    }
+
+                    if (!!item.Q.Values) {
+                        message += "\n" + item.Q.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.Q.Values[k];
+                        }
+                    }
+
+                    if (!!item.F.Values) {
+                        message += "\n" + item.F.Name + ": ";
+                        for (k = 0; k < 24; k++) {
+                            message += " " + item.F.Values[k];
+                        }
+                    }
+                });
+
+                $("#Result").text(message);
+            }
+        });
+    };
+
+
+
+</script>
