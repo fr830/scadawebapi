@@ -36,7 +36,7 @@ namespace ScadaHisAPI
 
                     time = time.AddHours(1);
 
-                } while (time.CompareTo(end) < 0);
+                } while (time.CompareTo(end) <= 0);
 
                 return Ok(result);
             }
@@ -63,7 +63,7 @@ namespace ScadaHisAPI
 
                     time = time.AddHours(1);
 
-                } while (time.CompareTo(end) < 0);
+                } while (time.CompareTo(end) <= 0);
 
                 return result;
             }
@@ -95,7 +95,7 @@ namespace ScadaHisAPI
 
                     time = time.AddDays(1);
 
-                } while (time.CompareTo(end) < 0);
+                } while (time.CompareTo(end) <= 0);
 
                 return result;
             }
@@ -122,7 +122,7 @@ namespace ScadaHisAPI
 
                     time = time.AddDays(1);
 
-                } while (time.CompareTo(end) < 0);
+                } while (time.CompareTo(end) <= 0);
 
                 return result;
             }
