@@ -14,11 +14,11 @@ namespace ScadaHisAPI
         // POST api/EnergyHistory/hourly/{start=start}/{end=end}
         [Route("EnergyHistory/hourly/{start=start}/{end=end}")]
         [HttpPost]
-        public /*IEnumerable<DataPoint>*/ IHttpActionResult Hourly([FromUri]DateTime start, [FromUri]DateTime end, [FromBody]string[] FactoryList)
+        public IEnumerable<DataPoint> Hourly([FromUri]DateTime start, [FromUri]DateTime end, [FromBody]string[] FactoryList)
         {
             try
             {
-                var energy = EnergyUtils.EnergyHistory(start, end, FactoryList);
+                List<DataPoint> energy = EnergyUtils.EnergyHistory(start, end, FactoryList);
 
                 List<DataPoint> result = new List<DataPoint>();
 
@@ -36,11 +36,11 @@ namespace ScadaHisAPI
 
                     time = time.AddHours(1);
 
-                } while (time.CompareTo(end) <= 0);
+                } while (time.CompareTo(end) < 0);
 
-                return Ok(result);
+                return result;
             }
-            catch { return Ok(new List<DataPoint>()); }
+            catch { return new List<DataPoint>(); }
         }
 
         // POST api/EnergyHistory/hourlySummary/{start=start}/{end=end}
@@ -63,7 +63,7 @@ namespace ScadaHisAPI
 
                     time = time.AddHours(1);
 
-                } while (time.CompareTo(end) <= 0);
+                } while (time.CompareTo(end) < 0);
 
                 return result;
             }
@@ -95,7 +95,7 @@ namespace ScadaHisAPI
 
                     time = time.AddDays(1);
 
-                } while (time.CompareTo(end) <= 0);
+                } while (time.CompareTo(end) < 0);
 
                 return result;
             }
@@ -122,7 +122,7 @@ namespace ScadaHisAPI
 
                     time = time.AddDays(1);
 
-                } while (time.CompareTo(end) <= 0);
+                } while (time.CompareTo(end) < 0);
 
                 return result;
             }

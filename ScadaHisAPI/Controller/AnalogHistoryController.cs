@@ -15,7 +15,7 @@ namespace ScadaHisAPI
         [HttpPost]
         public IEnumerable<DataPoint> Post([FromUri]DateTime start, [FromUri]DateTime end, [FromUri]int CycleMinutes, [FromBody]string[] TagNameList)
         {
-            return ScadaHisDao.AnalogHistory(start, end, CycleMinutes, TagNameList);
+            return ScadaHisDao.AnalogHistoryCyclic(start, end, CycleMinutes, TagNameList).ToList();
         }
     }
 }

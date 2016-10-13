@@ -122,11 +122,11 @@ namespace ScadaHisAPI
             return new List<string>();
         }
 
-        public static double[] GetHourlyValues(string TagName, List<DataPoint> datalist)
+        public static double? GetHourlyValues(string TagName, IEnumerable<DataPoint> datalist)
         {
-            if (TagName == null || datalist.Count == 0) return null;
+            if (TagName == null || datalist.Count() == 0) return null;
 
-            return (from p in datalist where p.TagName == TagName orderby p.DateTime select (p.Value != null ? Math.Round((double)p.Value, 3) : 0)).ToArray();
+            return (from p in datalist where p.TagName == TagName select (p.Value != null ? (double?)Math.Round((double)p.Value, 2) : 0)).FirstOrDefault();
         }
    }
 }

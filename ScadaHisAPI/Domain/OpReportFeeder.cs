@@ -56,21 +56,21 @@ namespace ScadaHisAPI
             F = new OpReportHourlyData(_Define.strNameF);
         }
 
-        public bool ParsingValues(OpReportFeederTagNames TagNames, List<DataPoint> datalist)
+        public bool ParsingValues(int index, OpReportFeederTagNames TagNames, IEnumerable<DataPoint> datalist)
         {
-            if ((datalist.Count == 0) || (TagNames == null)) return false;
+            if ((datalist.Count() == 0) || (TagNames == null)) return false;
 
-            this.Uab.Values = OpReportUtils.GetHourlyValues(TagNames.Uab, datalist);
-            this.Ubc.Values = OpReportUtils.GetHourlyValues(TagNames.Ubc, datalist);
-            this.Uca.Values = OpReportUtils.GetHourlyValues(TagNames.Uca, datalist);
+            this.Uab.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Uab, datalist));
+            this.Ubc.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ubc, datalist));
+            this.Uca.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Uca, datalist));
 
-            this.Ia.Values = OpReportUtils.GetHourlyValues(TagNames.Ia, datalist);
-            this.Ib.Values = OpReportUtils.GetHourlyValues(TagNames.Ib, datalist);
-            this.Ic.Values = OpReportUtils.GetHourlyValues(TagNames.Ic, datalist);
+            this.Ia.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ia, datalist));
+            this.Ib.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ib, datalist));
+            this.Ic.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ic, datalist));
 
-            this.P.Values = OpReportUtils.GetHourlyValues(TagNames.P, datalist);
-            this.Q.Values = OpReportUtils.GetHourlyValues(TagNames.Q, datalist);
-            this.F.Values = OpReportUtils.GetHourlyValues(TagNames.F, datalist);
+            this.P.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.P, datalist));
+            this.Q.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Q, datalist));
+            this.F.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.F, datalist));
 
             return true;
         }

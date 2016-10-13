@@ -28,20 +28,29 @@ namespace ScadaHisAPI
 
             List<OpReportGeneratorTagNames> TagNames = OpReportUtils.GetGeneratorTagNames(FactoryName);
 
+            List<string> TagNameQuery = new List<string>();
+
             DateTime start = new DateTime(year, month, day);
             DateTime end = start.AddDays(1);
 
-            for (int i  = 0; i < TagNames.Count; i++)
+            foreach (OpReportGeneratorTagNames tag in TagNames)
             {
-                OpReportGeneratorTagNames taglist = TagNames.ElementAt(i);
-
-                List<DataPoint> data = ScadaHisDao.AnalogSummaryHistoryCyclic(start, end, 60, taglist.ToStringArray(), ScadaHisDao.SummaryType.Maximum);
-
-                OpReportGenerator gen = new OpReportGenerator(taglist.Name);
-
-                gen.ParsingValues(taglist, data);
-
+                OpReportGenerator gen = new OpReportGenerator(tag.Name);
                 result.Add(gen);
+                TagNameQuery.AddRange(tag.ToStringArray());
+            }
+
+            while (start < end)
+            {
+                DateTime end2 = start.AddMinutes(60);
+                List<DataPoint> data = ScadaHisDao.AnalogSummaryHistory(start, end2, TagNameQuery.ToArray(), ScadaHisDao.SummaryType.Maximum).ToList();
+
+                for (int i = 0; i < result.Count; i++)
+                {
+                    result.ElementAt(i).ParsingValues(start.Hour, TagNames.ElementAt(i), data);
+                }
+
+                start = end2;
             }
 
             return result;
@@ -56,20 +65,29 @@ namespace ScadaHisAPI
 
             List<OpReportFeederTagNames> TagNames = OpReportUtils.GetFeederTagNames(FactoryName);
 
+            List<string> TagNameQuery = new List<string>();
+
             DateTime start = new DateTime(year, month, day);
             DateTime end = start.AddDays(1);
 
-            for (int i = 0; i < TagNames.Count; i++)
+            foreach (OpReportFeederTagNames tag in TagNames)
             {
-                OpReportFeederTagNames taglist = TagNames.ElementAt(i);
-
-                List<DataPoint> data = ScadaHisDao.AnalogSummaryHistoryCyclic(start, end, 60, taglist.ToStringArray(), ScadaHisDao.SummaryType.Maximum);
-
-                OpReportFeeder feeder = new OpReportFeeder(taglist.Name);
-
-                feeder.ParsingValues(taglist, data);
-
+                OpReportFeeder feeder = new OpReportFeeder(tag.Name);
                 result.Add(feeder);
+                TagNameQuery.AddRange(tag.ToStringArray());
+            }
+
+            while (start < end)
+            {
+                DateTime end2 = start.AddMinutes(60);
+                List<DataPoint> data = ScadaHisDao.AnalogSummaryHistory(start, end2, TagNameQuery.ToArray(), ScadaHisDao.SummaryType.Maximum).ToList();
+
+                for (int i = 0; i < result.Count; i++)
+                {
+                    result.ElementAt(i).ParsingValues(start.Hour, TagNames.ElementAt(i), data);
+                }
+
+                start = end2;
             }
 
             return result;

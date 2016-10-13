@@ -13,12 +13,19 @@ namespace ScadaHisAPI
         public string Name { get; set; }
 
         [DataMemberAttribute]
-        public double[] Values { get; set; }
+        public List<double?> Values { get; set; }
 
         public OpReportHourlyData(string name)
         {
             this.Name = name;
-            Values = new double[24];
+            this.Values = null;
         }
+
+        public void SetValues(int index, double? value)
+        {
+            if (value == null) return;
+            if (this.Values == null) this.Values = new List<double?>(new double?[index]);
+            Values.Add(value);
+        } 
     }
 }

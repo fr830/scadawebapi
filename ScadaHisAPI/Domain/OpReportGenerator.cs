@@ -26,29 +26,29 @@ namespace ScadaHisAPI
             Rotor = new OpReportGeneratorRotor(_Define.strNameGenRotor);
         }
 
-        public bool ParsingValues(OpReportGeneratorTagNames TagNames, List<DataPoint> datalist)
+        public bool ParsingValues(int index, OpReportGeneratorTagNames TagNames, IEnumerable<DataPoint> datalist)
         {
-            if ((datalist.Count == 0) || (TagNames == null)) return false;
+            if ((datalist.Count() == 0) || (TagNames == null)) return false;
 
-            this.Params.Uab.Values = OpReportUtils.GetHourlyValues(TagNames.Uab, datalist);
-            this.Params.Ubc.Values = OpReportUtils.GetHourlyValues(TagNames.Ubc, datalist);
-            this.Params.Uca.Values = OpReportUtils.GetHourlyValues(TagNames.Uca, datalist);
+            this.Params.Uab.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Uab, datalist));
+            this.Params.Ubc.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ubc, datalist));
+            this.Params.Uca.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Uca, datalist));
 
-            //this.Params.Ua.Values = OpReportUtils.GetHourlyValues(TagNames.Ua, datalist);
-            //this.Params.Ub.Values = OpReportUtils.GetHourlyValues(TagNames.Ub, datalist);
-            //this.Params.Uc.Values = OpReportUtils.GetHourlyValues(TagNames.Uc, datalist);
+            //this.Params.Ua.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ua, datalist));
+            //this.Params.Ub.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ub, datalist));
+            //this.Params.Uc.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Uc, datalist));
 
-            this.Params.Ia.Values = OpReportUtils.GetHourlyValues(TagNames.Ia, datalist);
-            this.Params.Ib.Values = OpReportUtils.GetHourlyValues(TagNames.Ib, datalist);
-            this.Params.Ic.Values = OpReportUtils.GetHourlyValues(TagNames.Ic, datalist);
+            this.Params.Ia.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ia, datalist));
+            this.Params.Ib.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ib, datalist));
+            this.Params.Ic.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ic, datalist));
 
-            this.Params.P.Values = OpReportUtils.GetHourlyValues(TagNames.P, datalist);
-            this.Params.Q.Values = OpReportUtils.GetHourlyValues(TagNames.Q, datalist);
-            this.Params.F.Values = OpReportUtils.GetHourlyValues(TagNames.F, datalist);
+            this.Params.P.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.P, datalist));
+            this.Params.Q.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Q, datalist));
+            this.Params.F.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.F, datalist));
 
-            this.Rotor.U.Values = OpReportUtils.GetHourlyValues(TagNames.URotor, datalist);
-            this.Rotor.I.Values = OpReportUtils.GetHourlyValues(TagNames.IRotor, datalist);
-            this.Rotor.Velocity.Values = OpReportUtils.GetHourlyValues(TagNames.VRotor, datalist);
+            this.Rotor.U.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.URotor, datalist));
+            this.Rotor.I.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.IRotor, datalist));
+            this.Rotor.Velocity.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.VRotor, datalist));
 
             return true;
         }

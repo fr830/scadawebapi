@@ -14,15 +14,15 @@ namespace ScadaHisAPI
             Minimum = 2,
         }
 
-        public static List<DataPoint> AnalogLive(string[] TagNameList)
+        static HisRuntimeEntities db = new HisRuntimeEntities();
+
+        public static IEnumerable<DataPoint> AnalogLive(string[] TagNameList)
         {
             try
             {
-                HisRuntimeEntities db = new HisRuntimeEntities();
-
                 DateTime now = DateTime.Now;
 
-                List<DataPoint> q = (from p in db.AnalogLives
+                var q = (from p in db.AnalogLives
                                      where TagNameList.Contains(p.TagName)
                                      select new DataPoint
                                      {
@@ -31,19 +31,15 @@ namespace ScadaHisAPI
                                          Value = p.Value,
                                      }).ToList();
 
-                return (from p in q where Math.Abs((p.DateTime - now).TotalHours) < 1 select p).ToList();
-
-                //return q;
+                return (from p in q where Math.Abs((p.DateTime - now).TotalHours) < 1 select p);
             }
-            catch { return new List<DataPoint>(); }
+            catch { return null; }
         }
 
-        public static List<DataPoint> DiscreteLive(string[] TagNameList)
+        public static IEnumerable<DataPoint> DiscreteLive(string[] TagNameList)
         {
             try
             {
-                HisRuntimeEntities db = new HisRuntimeEntities();
-
                 var q = (from p in db.DiscreteLives
                          where TagNameList.Contains(p.TagName)
                          select new DataPoint
@@ -53,16 +49,38 @@ namespace ScadaHisAPI
                              Value = p.Value,
                          });
 
-                return q.ToList();
+                return q;
             }
-            catch { return new List<DataPoint>(); }
+            catch { return null; }
         }
 
-        public static List<DataPoint> AnalogHistory(DateTime start, DateTime end, int CycleMinutes, string[] TagNameList)
+        public static IEnumerable<DataPoint> AnalogHistory(DateTime start, DateTime end, string[] TagNameList)
         {
             try
             {
-                HisRuntimeEntities db = new HisRuntimeEntities();
+                /* workaround: to prevent invalid Tagname request to server */
+                string str_null = "";
+
+                var q = (from p in db.AnalogHistories
+                         where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.DateTime >= start && p.DateTime <= end && p.OPCQuality >= 192
+                         orderby p.DateTime
+                         select new DataPoint
+                         {
+                             DateTime = p.DateTime,
+                             TagName = p.TagName,
+                             Value = p.Value
+                         });                 
+
+                return q;
+            }
+            catch { return null; }
+        }
+
+        public static IEnumerable<DataPoint> AnalogHistoryCyclic(DateTime start, DateTime end, int CycleMinutes, string[] TagNameList)
+        {
+            try
+            {
+                List<DataPoint> result = new List<DataPoint>();
 
                 /* workaround: to prevent invalid Tagname request to server */
                 string str_null = "";
@@ -77,33 +95,31 @@ namespace ScadaHisAPI
                              Value = p.Value
                          });
 
-                return q.ToList();
+                return q;
             }
-            catch { return new List<DataPoint>(); }
+            catch { return null; }
         }
 
-        public static List<DataPoint> AnalogSummaryHistory(DateTime start, DateTime end, string[] TagNameList, SummaryType summaryType)
+        public static IEnumerable<DataPoint> AnalogSummaryHistory(DateTime start, DateTime end, string[] TagNameList, SummaryType summaryType)
         {
             try
             {
-                HisRuntimeEntities db = new HisRuntimeEntities();
-
                 /* workaround: to prevent invalid Tagname request to server */
                 string str_null = "";
 
-                List<DataPoint> q = (from p in db.AnalogSummaryHistories
-                                     where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.StartDateTime >= start && p.EndDateTime <= end /*&& p.OPCQuality >= 192*/
+                var q = (from p in db.AnalogSummaryHistories
+                                     where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.StartDateTime >= start && p.EndDateTime <= end && p.OPCQuality >= 192
                                      orderby p.StartDateTime
                                      select new DataPoint
                                      {
                                          DateTime = p.StartDateTime,
                                          TagName = p.TagName,
                                          Value = summaryType == SummaryType.Average ? p.Average : (summaryType == SummaryType.Maximum ? p.Maximum : p.Minimum),
-                                     }).ToList();
+                                     });
 
                 return q;
             }
-            catch { return new List<DataPoint>(); }
+            catch { return null; }
         }
 
         public static List<DataPoint> AnalogSummaryHistoryCyclic(DateTime start, DateTime end, int CycleMinutes, string[] TagNameList, SummaryType summaryType)
@@ -112,8 +128,6 @@ namespace ScadaHisAPI
             {
                 List<DataPoint> result = new List<DataPoint>();
 
-                HisRuntimeEntities db = new HisRuntimeEntities();
-
                 /* workaround: to prevent invalid Tagname request to server */
                 string str_null = "";
 
@@ -121,20 +135,20 @@ namespace ScadaHisAPI
                 {
                     DateTime end2 = start.AddMinutes(CycleMinutes);
 
-                    List<DataPoint> q = (from p in db.AnalogSummaryHistories
-                                         where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.StartDateTime >= start && p.EndDateTime <= end2 /*&& p.OPCQuality >= 192*/
+                    var q = (from p in db.AnalogSummaryHistories
+                                         where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.StartDateTime >= start && p.EndDateTime <= end2 && p.OPCQuality >= 192
                                          orderby p.StartDateTime
                                          select new DataPoint
                                          {
                                              DateTime = p.StartDateTime,
                                              TagName = p.TagName,
                                              Value = summaryType == SummaryType.Average ? p.Average : (summaryType == SummaryType.Maximum ? p.Maximum : p.Minimum),
-                                         }).ToList();
+                                         });
 
                     start = end2;
 
                     if (q != null)
-                        result.AddRange(q);
+                        result.AddRange(q.ToList());
                 }
 
                 return result;
@@ -142,7 +156,7 @@ namespace ScadaHisAPI
             catch { return new List<DataPoint>(); }
         }
 
-        public static List<DataPoint> AnalogSummaryFullRetrieval(DateTime start, DateTime end, string[] TagNameList)
+        public static IEnumerable<DataPoint> AnalogSummaryFullRetrieval(DateTime start, DateTime end, string[] TagNameList)
         {
             string full_mode = "Full";
 
@@ -151,10 +165,8 @@ namespace ScadaHisAPI
 
             try
             {
-                HisRuntimeEntities db = new HisRuntimeEntities();
-
                 var q = (from p in db.AnalogSummaryHistories
-                         where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.StartDateTime >= start && p.EndDateTime <= end && p.wwRetrievalMode == full_mode /*&& p.OPCQuality >= 192 */
+                         where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.StartDateTime >= start && p.EndDateTime <= end && p.wwRetrievalMode == full_mode && p.OPCQuality >= 192
                          select new DataPoint
                          {
                              DateTime = p.StartDateTime,
@@ -162,9 +174,9 @@ namespace ScadaHisAPI
                              Value = p.Average,
                          });
 
-                return q.ToList();
+                return q;
             }
-            catch { return new List<DataPoint>(); }
+            catch { return null; }
         }
     }
 }

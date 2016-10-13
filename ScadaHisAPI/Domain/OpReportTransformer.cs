@@ -30,13 +30,13 @@ namespace ScadaHisAPI
             Secondary2 = new OpReportTransformerWind(_Define.strNameTransSecondary2);
         }
 
-        public bool ParsingValues(OpReportTransformerTagNames TagNames, List<DataPoint> datalist)
+        public bool ParsingValues(int index, OpReportTransformerTagNames TagNames, IEnumerable<DataPoint> datalist)
         {
-            if ((datalist.Count == 0) || (TagNames == null)) return false;
+            if ((datalist.Count() == 0) || (TagNames == null)) return false;
 
-            this.Primary.ParsingValues(TagNames, datalist);
-            this.Secondary1.ParsingValues(TagNames, datalist);
-            this.Secondary2.ParsingValues(TagNames, datalist);
+            this.Primary.ParsingValues(index, TagNames, datalist);
+            this.Secondary1.ParsingValues(index, TagNames, datalist);
+            this.Secondary2.ParsingValues(index, TagNames, datalist);
 
             return true;
         }
@@ -88,20 +88,20 @@ namespace ScadaHisAPI
             WindTemp = new OpReportHourlyData(_Define.strNameWindTemp);
         }
 
-        public bool ParsingValues(OpReportTransformerTagNames TagNames, List<DataPoint> datalist)
+        public bool ParsingValues(int index, OpReportTransformerTagNames TagNames, IEnumerable<DataPoint> datalist)
         {
-            if ((datalist.Count == 0) || (TagNames == null)) return false;
+            if ((datalist.Count() == 0) || (TagNames == null)) return false;
 
-            this.Ua.Values = OpReportUtils.GetHourlyValues(TagNames.Ua, datalist);
-            this.Ub.Values = OpReportUtils.GetHourlyValues(TagNames.Ub, datalist);
-            this.Uc.Values = OpReportUtils.GetHourlyValues(TagNames.Uc, datalist);
+            this.Ua.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ua, datalist));
+            this.Ub.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ub, datalist));
+            this.Uc.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Uc, datalist));
 
-            this.Ia.Values = OpReportUtils.GetHourlyValues(TagNames.Ia, datalist);
-            this.Ib.Values = OpReportUtils.GetHourlyValues(TagNames.Ib, datalist);
-            this.Ic.Values = OpReportUtils.GetHourlyValues(TagNames.Ic, datalist);
+            this.Ia.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ia, datalist));
+            this.Ib.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ib, datalist));
+            this.Ic.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ic, datalist));
 
-            this.OilTemp.Values = OpReportUtils.GetHourlyValues(TagNames.OilTemp, datalist);
-            this.WindTemp.Values = OpReportUtils.GetHourlyValues(TagNames.WindTemp, datalist);
+            this.OilTemp.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.OilTemp, datalist));
+            this.WindTemp.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.WindTemp, datalist));
 
             return true;
         }

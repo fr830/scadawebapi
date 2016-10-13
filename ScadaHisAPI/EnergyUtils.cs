@@ -11,14 +11,14 @@ namespace ScadaHisAPI
         {
             string[] TagNameList = FactoryToPowerTag(FactoryList, ".1H");
 
-            return ScadaHisDao.AnalogSummaryFullRetrieval(start, end, TagNameList);
+            return ScadaHisDao.AnalogSummaryFullRetrieval(start, end, TagNameList).ToList();
         }
 
         public static List<DataPoint> PowerHistory30M(DateTime start, DateTime end, string[] FactoryList)
         {
             string[] TagNameList = FactoryToPowerTag(FactoryList, ".30M");
 
-            return ScadaHisDao.AnalogSummaryFullRetrieval(start, end, TagNameList);
+            return ScadaHisDao.AnalogSummaryFullRetrieval(start, end, TagNameList).ToList();
         }
 
         public static double? GetEnergyByHour(IEnumerable<DataPoint> list, DateTime time, string FactoryName)
@@ -60,7 +60,6 @@ namespace ScadaHisAPI
         public static string[] FactoryToPowerTag(string[] FactoryList, string strTagTime)
         {
             List<string> TagNameList = new List<string>();
-            //List<string> orgList = new List<string>(PowerTagNames);
 
             foreach (string factory in FactoryList)
             {
@@ -71,7 +70,6 @@ namespace ScadaHisAPI
                         if (tag.ToUpper().Contains(factory.ToUpper()))
                         {
                             TagNameList.Add(tag + strTagTime);
-                            //orgList.Remove(tag);
                         }
                     }
                 }
