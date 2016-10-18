@@ -135,7 +135,7 @@ namespace ScadaHisAPI
                 {
                     DateTime end2 = start.AddMinutes(CycleMinutes);
 
-                    var q = (from p in db.AnalogSummaryHistories
+                    List<DataPoint> q = (from p in db.AnalogSummaryHistories
                                          where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.StartDateTime >= start && p.EndDateTime <= end2 && p.OPCQuality >= 192
                                          orderby p.StartDateTime
                                          select new DataPoint
@@ -143,12 +143,12 @@ namespace ScadaHisAPI
                                              DateTime = p.StartDateTime,
                                              TagName = p.TagName,
                                              Value = summaryType == SummaryType.Average ? p.Average : (summaryType == SummaryType.Maximum ? p.Maximum : p.Minimum),
-                                         });
+                                         }).ToList();
 
                     start = end2;
 
-                    if (q != null)
-                        result.AddRange(q.ToList());
+                    if (q.Count > 0)
+                        result.AddRange(q);
                 }
 
                 return result;
