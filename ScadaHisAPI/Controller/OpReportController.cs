@@ -43,7 +43,7 @@ namespace ScadaHisAPI
             while (start < end)
             {
                 DateTime end2 = start.AddMinutes(60);
-                List<DataPoint> data = ScadaHisDao.AnalogSummaryHistory(start, end2, TagNameQuery.ToArray(), ScadaHisDao.SummaryType.Maximum).ToList();
+                List<DataPoint> data = ScadaHisDao.AnalogSummaryHistory(start, end2, TagNameQuery.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
 
                 for (int i = 0; i < result.Count; i++)
                 {
@@ -80,7 +80,7 @@ namespace ScadaHisAPI
             while (start < end)
             {
                 DateTime end2 = start.AddMinutes(60);
-                List<DataPoint> data = ScadaHisDao.AnalogSummaryHistory(start, end2, TagNameQuery.ToArray(), ScadaHisDao.SummaryType.Maximum).ToList();
+                List<DataPoint> data = ScadaHisDao.AnalogSummaryHistory(start, end2, TagNameQuery.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
 
                 for (int i = 0; i < result.Count; i++)
                 {

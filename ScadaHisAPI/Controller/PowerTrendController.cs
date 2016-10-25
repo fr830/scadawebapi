@@ -57,7 +57,7 @@ namespace ScadaHisAPI
 
                 if (taglist.Count > 0)
                 {
-                    result = ScadaHisDao.AnalogSummaryHistoryCyclic(start, end, 30, taglist.ToArray(), ScadaHisDao.SummaryType.Maximum);
+                    result = ScadaHisDao.AnalogSummaryHistoryCyclic(start, end, 30, taglist.ToArray(), ScadaHisDao.SummaryType.Average);
                 }
 
                 return result;
@@ -78,7 +78,7 @@ namespace ScadaHisAPI
 
                 if (taglist.Count > 0)
                 {
-                    result = ScadaHisDao.AnalogSummaryHistoryCyclic(start, end, 30, taglist.ToArray(), ScadaHisDao.SummaryType.Maximum);
+                    result = ScadaHisDao.AnalogSummaryHistoryCyclic(start, end, 30, taglist.ToArray(), ScadaHisDao.SummaryType.Average);
                 }
 
                 return result;
@@ -99,7 +99,7 @@ namespace ScadaHisAPI
 
                 if (taglist.Count > 0)
                 {
-                    result = ScadaHisDao.AnalogSummaryHistoryCyclic(start, end, 30, taglist.ToArray(), ScadaHisDao.SummaryType.Maximum);
+                    result = ScadaHisDao.AnalogSummaryHistoryCyclic(start, end, 30, taglist.ToArray(), ScadaHisDao.SummaryType.Average);
                 }
 
                 return result;

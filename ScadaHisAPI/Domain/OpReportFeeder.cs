@@ -58,7 +58,7 @@ namespace ScadaHisAPI
 
         public bool ParsingValues(int index, OpReportFeederTagNames TagNames, IEnumerable<DataPoint> datalist)
         {
-            if ((datalist.Count() == 0) || (TagNames == null)) return false;
+            //if ((datalist.Count() == 0) || (TagNames == null)) return false;           
 
             this.Uab.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Uab, datalist));
             this.Ubc.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ubc, datalist));

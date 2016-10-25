@@ -23,7 +23,7 @@ namespace ScadaHisAPI
 
         public void SetValues(int index, double? value)
         {
-            if (value == null) return;
+            if ((this.Values == null) && (value == null)) return;
             if (this.Values == null) this.Values = new List<double?>(new double?[index]);
             Values.Add(value);
         } 
