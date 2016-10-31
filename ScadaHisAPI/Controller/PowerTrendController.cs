@@ -106,5 +106,28 @@ namespace ScadaHisAPI
             }
             catch { return new List<DataPoint>(); }
         }
+
+        // GET "api/GeneratorCount/{FactoryName}"
+        [Route("GeneratorCount/{FactoryName}")]
+        [HttpGet]
+        public IEnumerable<string> GeneratorCount(string FactoryName)
+        {
+            try
+            {
+                List<OpReportGeneratorTagNames> genList = OpReportUtils.GetGeneratorTagNames(FactoryName);
+                List<string> result = new List<string>();
+
+                if (genList.Count > 0)
+                {
+                    foreach (OpReportGeneratorTagNames item in genList)
+                    {
+                        result.Add(item.Name);
+                    }
+                }
+
+                return result;
+            }
+            catch { return null; }
+        }
     }
 }
