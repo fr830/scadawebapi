@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+
 namespace ScadaHisAPI
 {
     public class ScadaHisDao
@@ -23,15 +24,16 @@ namespace ScadaHisAPI
                 DateTime now = DateTime.Now;
 
                 var q = (from p in db.AnalogLives
-                                     where TagNameList.Contains(p.TagName)
-                                     select new DataPoint
-                                     {
-                                         DateTime = p.DateTime,
-                                         TagName = p.TagName,
-                                         Value = p.Value,
-                                     }).ToList();
+                         where TagNameList.Contains(p.TagName)
+                         select new DataPoint
+                         {
+                             DateTime = p.DateTime,
+                             TagName = p.TagName,
+                             Value = p.Value,
+                             OPCQuality = p.OPCQuality,
+                         }).ToList();
 
-                return (from p in q where Math.Abs((p.DateTime - now).TotalHours) < 1 select p);
+                return (from p in q where (Math.Abs((p.DateTime - now).TotalHours) < 1) || (p.DateTime > now) select p);
             }
             catch { return null; }
         }
@@ -47,6 +49,7 @@ namespace ScadaHisAPI
                              DateTime = p.DateTime,
                              TagName = p.TagName,
                              Value = p.Value,
+                             OPCQuality = p.OPCQuality,
                          });
 
                 return q;
@@ -68,7 +71,8 @@ namespace ScadaHisAPI
                          {
                              DateTime = p.DateTime,
                              TagName = p.TagName,
-                             Value = p.Value
+                             Value = p.Value,
+                             OPCQuality = p.OPCQuality,
                          });                 
 
                 return q;
@@ -92,7 +96,8 @@ namespace ScadaHisAPI
                          {
                              DateTime = p.DateTime,
                              TagName = p.TagName,
-                             Value = p.Value
+                             Value = p.Value,
+                             OPCQuality = p.OPCQuality,
                          });
 
                 return q;
@@ -115,6 +120,7 @@ namespace ScadaHisAPI
                                          DateTime = p.StartDateTime,
                                          TagName = p.TagName,
                                          Value = summaryType == SummaryType.Average ? p.Average : (summaryType == SummaryType.Maximum ? p.Maximum : p.Minimum),
+                                         OPCQuality = p.OPCQuality,
                                      });
 
                 return q;
@@ -143,6 +149,7 @@ namespace ScadaHisAPI
                                              DateTime = p.StartDateTime,
                                              TagName = p.TagName,
                                              Value = summaryType == SummaryType.Average ? p.Average : (summaryType == SummaryType.Maximum ? p.Maximum : p.Minimum),
+                                             OPCQuality = p.OPCQuality,
                                          }).ToList();
 
                     start = end2;
@@ -172,6 +179,7 @@ namespace ScadaHisAPI
                              DateTime = p.StartDateTime,
                              TagName = p.SourceTag,
                              Value = p.Average,
+                             OPCQuality = p.OPCQuality,
                          });
 
                 return q;

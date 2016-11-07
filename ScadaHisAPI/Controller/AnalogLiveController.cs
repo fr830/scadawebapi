@@ -42,7 +42,7 @@ namespace ScadaHisAPI
             {
                 if (factory != null)
                 {
-                    var data = (from p in power where p.TagName.ToUpper().Contains(factory.ToUpper()) && Math.Abs((p.DateTime - now).TotalHours) < 1 select p);
+                    var data = (from p in power where p.TagName.ToUpper().Contains(factory.ToUpper()) && p.OPCQuality >= 192 /*&& Math.Abs((p.DateTime - now).TotalHours) < 1*/ select p);
 
                     DataPoint dp;
 
