@@ -7,12 +7,9 @@ namespace ScadaHisAPI
 {
     public class _Define
     {
-        public const string UongBi_ID = "UONGBIMR";
-        public const string BanVe_ID = "BANVE";
-        public const string DaiNinh_ID = "DAININH";
-        public const string DongNai3_ID = "DONGNAI3";
-        public const string DongNai4_ID = "DONGNAI4";
-        public const string SongTranh2_ID = "SONGTRANH2";
+        public const string VinhTan2_ID = "VINHTAN2";
+        public const string MongDuong1_ID = "MONGDUONG1";
+        
 
         public const string strNameGenParams = "Dòng điện, điện áp máy phát";
         public const string strNameGenRotor = "Rotor";
@@ -32,6 +29,7 @@ namespace ScadaHisAPI
         public const string strNameQ = "Q (MVar)";
         public const string strNameF = "Tần số (Hz)";
 
+        public const string strNameTAP = "Vị trí TAP";
         public const string strNameOilTemp = "Nhiệt độ dầu (C)";
         public const string strNameWindTemp = "Nhiệt độ cuộn dây (C)";
 
@@ -47,13 +45,10 @@ namespace ScadaHisAPI
 
         public static readonly string[] PowerTagNames = new string[]
         {
-            "UONGBIMR_907_P", 
-            "UONGBIMR_908_P", 
-            "BANVE_COM_Ptotal", 
-            "DAININH_COM_Ptotal", 
-            "DONGNAI3_COM_Ptotal", 
-            "DONGNAI4_COM_Ptotal", 
-            "SONGTRANH2_COM_Ptotal",
+            "MONGDUONG1_S1_P", 
+            "MONGDUONG1_S2_P",
+            "VINHTAN2_901_P", 
+            "VINHTAN2_902_P",
         };
     }
 }
