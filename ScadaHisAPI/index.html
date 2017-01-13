@@ -61,6 +61,8 @@
     <p>
 		<textarea id="Result" name="S1" ></textarea>
 	</p>
+
+
 </body>
 </html>
 
@@ -153,7 +155,8 @@
                     
                     message += item.DateTime + " ";
                     message += item.TagName + " ";
-                    message += item.Value + "\n";
+                    message += item.Value + " Quality=";
+                    message += item.OPCQuality + "\n";
                 });
 
                 //var x = 0;
@@ -177,6 +180,7 @@
         start.setMinutes(0);
         start.setSeconds(0);
 
+        alert(end);
 
         $('[id^=TagName]').each(function (i, item) {
             list[k++] = item.value;
@@ -247,14 +251,11 @@
         var k = 0;
 
         var end = new Date();
-        end.setDate(12);
-        end.setHours(0);
         end.setMinutes(0);
         end.setSeconds(0);
         end.setMilliseconds(0);
 
         var start = new Date();
-        start.setDate(11);
         start.setHours(0);
         start.setMinutes(0);
         start.setSeconds(0);
@@ -511,9 +512,9 @@
         var k = 0;
 
         var end = new Date();
-        end.setMinutes(0);
-        end.setSeconds(0);
-        end.setMilliseconds(0);
+        //end.setMinutes(0);
+        //end.setSeconds(0);
+        //end.setMilliseconds(0);
 
         var start = new Date();
         start.setHours(0);

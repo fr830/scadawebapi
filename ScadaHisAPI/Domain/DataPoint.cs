@@ -18,6 +18,7 @@ namespace ScadaHisAPI
         [DataMemberAttribute]
         public double? Value { get; set; }
 
+        [DataMemberAttribute]
         public int? OPCQuality { get; set; }
     }
 }
