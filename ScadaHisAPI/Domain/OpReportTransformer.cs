@@ -67,6 +67,9 @@ namespace ScadaHisAPI
         public OpReportHourlyData Ic { get; set; }
 
         [DataMemberAttribute]
+        public OpReportHourlyData TAP { get; set; }
+
+        [DataMemberAttribute]
         public OpReportHourlyData OilTemp { get; set; }
 
         [DataMemberAttribute]
@@ -84,6 +87,7 @@ namespace ScadaHisAPI
             Ib = new OpReportHourlyData(_Define.strNameIb);
             Ic = new OpReportHourlyData(_Define.strNameIc);
 
+            TAP = new OpReportHourlyData(_Define.strNameTAP);
             OilTemp = new OpReportHourlyData(_Define.strNameOilTemp);
             WindTemp = new OpReportHourlyData(_Define.strNameWindTemp);
         }
@@ -100,6 +104,7 @@ namespace ScadaHisAPI
             this.Ib.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ib, datalist));
             this.Ic.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ic, datalist));
 
+            this.TAP.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.TAP, datalist));
             this.OilTemp.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.OilTemp, datalist));
             this.WindTemp.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.WindTemp, datalist));
 
@@ -116,6 +121,7 @@ namespace ScadaHisAPI
         public string Ia { get; set; }
         public string Ib { get; set; }
         public string Ic { get; set; }
+        public string TAP { get; set; }
         public string OilTemp { get; set; }
         public string WindTemp { get; set; }
 
@@ -129,6 +135,7 @@ namespace ScadaHisAPI
             result.Add(Ia);
             result.Add(Ib);
             result.Add(Ic);
+            result.Add(TAP);
             result.Add(OilTemp);
             result.Add(WindTemp);
 

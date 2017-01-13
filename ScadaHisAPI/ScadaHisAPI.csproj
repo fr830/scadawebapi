@@ -98,17 +98,15 @@
     <Compile Include="AnalogLive.cs">
       <DependentUpon>HisModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Defines\MongDuong1Define.cs" />
+    <Compile Include="Defines\VinhTan2Define.cs" />
     <Compile Include="Defines\_Define.cs" />
-    <Compile Include="Defines\BanVeDefine.cs" />
     <Compile Include="Controller\AnalogSummaryHistoryController.cs" />
     <Compile Include="Controller\AnalogLiveController.cs" />
     <Compile Include="AnalogSummaryHistory.cs">
       <DependentUpon>HisModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controller\DiscreteLiveController.cs" />
-    <Compile Include="Defines\DaiNinhDefine.cs" />
-    <Compile Include="Defines\DongNai3Define.cs" />
-    <Compile Include="Defines\DongNai4Define.cs" />
     <Compile Include="EnergyUtils.cs" />
     <Compile Include="Domain\DataPoint.cs" />
     <Compile Include="DiscreteLive.cs">
@@ -142,8 +140,6 @@
     <Compile Include="Domain\OpReportFeeder.cs" />
     <Compile Include="OpReportUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Defines\SongTranh2Define.cs" />
-    <Compile Include="Defines\UongBiDefine.cs" />
     <Compile Include="WebAPIConfig.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Dao\ScadaHisDao.cs" />
