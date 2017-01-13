@@ -19,22 +19,31 @@
                 Factory #1 <input id="Factory1" type ="text" value ="MONGDUONG1"/> (for Energy Method)
              </p>
              <p>TagName #2 <input id="TagName2" type ="text" value ="MONGDUONG1_S2_P" />    
-                Factory #2 <input id="Factory2" type ="text" value =""/> (for Energy Method)
+                Factory #2 <input id="Factory2" type ="text" value ="VINHTAN2"/> (for Energy Method)
              </p>
 		     <p>TagName #3 <input id="TagName3" type ="text" value ="VINHTAN2_901_P" />    
-                Factory #3 <input id="Factory3" type ="text" value ="VINHTAN2" /> (for Energy Method)
+                Factory #3 <input id="Factory3" type ="text" value ="SREPOK3" /> (for Energy Method)
 		     </p>
 		     <p>TagName #4 <input id="TagName4" type ="text" value ="VINHTAN2_902_P"/>    
-                Factory #4 <input id="Factory4" type ="text" value =""/> (for Energy Method)
+                Factory #4 <input id="Factory4" type ="text" value ="BUONKUOP"/> (for Energy Method)
 		     </p>
-		     <p>TagName #5 <input id="TagName5" type ="text" value =""/>    
-                Factory #5 <input id="Factory5" type ="text" value =""/> (for Energy Method)
+		     <p>TagName #5 <input id="TagName5" type ="text" value ="SP3_H1_H1_H1_KW"/>    
+                Factory #5 <input id="Factory5" type ="text" value ="BUONTUASHAR"/> (for Energy Method)
 		     </p>
-             <p>TagName #6 <input id="TagName6" type ="text" value =""/>    
-                Factory #6 <input id="Factory6" type ="text" value =""/> (for Energy Method)
+             <p>TagName #6 <input id="TagName6" type ="text" value ="SP3_H2_H2_H2_KW"/>    
+                Factory #6 <input id="Factory6" type ="text" value ="PHUMY1"/> (for Energy Method)
              </p>
-             <p>TagName #7 <input id="TagName7" type ="text" value =""/>    
-                Factory #7 <input id="Factory7" type ="text" value =""/> (for Energy Method)
+             <p>TagName #7 <input id="TagName7" type ="text" value ="BK901_901_H1_KW"/>    
+                Factory #7 <input id="Factory7" type ="text" value ="PHUMY21"/> (for Energy Method)
+             </p>
+             <p>TagName #8 <input id="TagName8" type ="text" value ="BK901_902_H1_KW"/>    
+                Factory #8 <input id="Factory8" type ="text" value ="PHUMY3"/> (for Energy Method)
+             </p>
+             <p>TagName #9 <input id="TagName9" type ="text" value ="H1_Device1_KW"/>    
+                Factory #9 <input id="Factory9" type ="text" value ="PHUMY4"/> (for Energy Method)
+             </p>
+             <p>TagName #10 <input id="TagName10" type ="text" value ="H2_Device1_KW"/>    
+                Factory #10 <input id="Factory10" type ="text" value ="BARIA"/> (for Energy Method)
              </p>
          </div> 
 		 <p>
@@ -265,7 +274,6 @@
         $('[id^=Factory]').each(function (i, item) {
             list[k++] = item.value;
         });
-
 
         var uri = "/api/EnergyHistory/hourly?start=" + start.toISOString() + "&end=" + end.toISOString();
 

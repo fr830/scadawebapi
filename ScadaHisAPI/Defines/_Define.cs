@@ -9,7 +9,15 @@ namespace ScadaHisAPI
     {
         public const string VinhTan2_ID = "VINHTAN2";
         public const string MongDuong1_ID = "MONGDUONG1";
-        
+        public const string PhuMy1_ID = "PHUMY1";
+        public const string PhuMy21_ID = "PHUMY21";
+        public const string PhuMy22_ID = "PHUMY22";
+        public const string PhuMy3_ID = "PHUMY3";
+        public const string PhuMy4_ID = "PHUMY4";
+        public const string BaRia_ID = "BARIA";
+        public const string BuonKuop_ID = "BUONKUOP";
+        public const string BuonTuaShar_ID = "BUONTUASHAR";
+        public const string Srepok3_ID = "SREPOK3";
 
         public const string strNameGenParams = "Dòng điện, điện áp máy phát";
         public const string strNameGenRotor = "Rotor";
@@ -42,13 +50,5 @@ namespace ScadaHisAPI
         public const string strNameTransPrimary = "Sơ cấp";
         public const string strNameTransSecondary1 = "Thứ cấp 1";
         public const string strNameTransSecondary2 = "Thứ cấp 2";
-
-        public static readonly string[] PowerTagNames = new string[]
-        {
-            "MONGDUONG1_S1_P", 
-            "MONGDUONG1_S2_P",
-            "VINHTAN2_901_P", 
-            "VINHTAN2_902_P",
-        };
     }
 }

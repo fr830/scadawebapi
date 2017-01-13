@@ -98,7 +98,16 @@
     <Compile Include="AnalogLive.cs">
       <DependentUpon>HisModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Defines\BaRiaDefine.cs" />
+    <Compile Include="Defines\BuonKuopDefine.cs" />
+    <Compile Include="Defines\BuonTuaSharDefine.cs" />
     <Compile Include="Defines\MongDuong1Define.cs" />
+    <Compile Include="Defines\PhuMy1Define.cs" />
+    <Compile Include="Defines\PhuMy21Define.cs" />
+    <Compile Include="Defines\PhuMy22Define.cs" />
+    <Compile Include="Defines\PhuMy3Define.cs" />
+    <Compile Include="Defines\PhuMy4Define.cs" />
+    <Compile Include="Defines\Srepok3Define.cs" />
     <Compile Include="Defines\VinhTan2Define.cs" />
     <Compile Include="Defines\_Define.cs" />
     <Compile Include="Controller\AnalogSummaryHistoryController.cs" />
@@ -164,7 +173,7 @@
       <LastGenOutput>HisModel.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\ScadaHis.pubxml" />
-    <None Include="Properties\PublishProfiles\ScadaHisAPI.pubxml" />
+    <None Include="Properties\PublishProfiles\ScadaHisAPIG3.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
