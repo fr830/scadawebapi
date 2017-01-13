@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Objects.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -27,7 +28,7 @@ namespace ScadaHisAPI
                          where TagNameList.Contains(p.TagName)
                          select new DataPoint
                          {
-                             DateTime = p.DateTime,
+                             DateTime = p.TagName.Contains("UONGBIMR") ? (DateTime)SqlFunctions.DateAdd("hh", -7, p.DateTime) : p.DateTime,
                              TagName = p.TagName,
                              Value = p.Value,
                              OPCQuality = p.OPCQuality,
