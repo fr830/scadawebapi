@@ -171,17 +171,31 @@ namespace ScadaHisAPI
             /* workaround: to prevent invalid Tagname request to server */
             string str_null = "";
 
+            DateTime end2 = end;
+
+            foreach (string tag in TagNameList)
+            {
+                if (tag.Contains("UONGBIMR"))
+                {
+                    end = end.AddHours(7);
+                    break;
+                }
+            }
+
             try
             {
-                var q = (from p in db.AnalogSummaryHistories
+                var q1 = (from p in db.AnalogSummaryHistories
                          where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.StartDateTime >= start && p.EndDateTime <= end && p.wwRetrievalMode == full_mode && p.OPCQuality >= 192
                          select new DataPoint
                          {
-                             DateTime = p.StartDateTime,
+                             //DateTime = p.StartDateTime,
+                             DateTime = p.TagName.Contains("UONGBIMR") ? (DateTime)SqlFunctions.DateAdd("hh", -7, p.StartDateTime) : p.StartDateTime,
                              TagName = p.SourceTag,
                              Value = p.Average,
                              OPCQuality = p.OPCQuality,
                          });
+
+                var q = (from p in q1 where p.DateTime >= start && p.DateTime <= end2 select p);
 
                 return q;
             }
