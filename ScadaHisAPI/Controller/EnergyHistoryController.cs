@@ -18,6 +18,7 @@ namespace ScadaHisAPI
         {
             try
             {
+
                 List<DataPoint> energy = EnergyUtils.EnergyHistory(start, end, FactoryList);
 
                 List<DataPoint> result = new List<DataPoint>();

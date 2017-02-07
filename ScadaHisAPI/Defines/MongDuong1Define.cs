@@ -9,8 +9,8 @@ namespace ScadaHisAPI.Defines
     {
         public static readonly string[] PowerTagNames = new string[]
         {
-            "MONGDUONG1_S1_P", 
-            "MONGDUONG1_S2_P",
+            "MONGDUONG1_901_P", 
+            "MONGDUONG1_902_P",
         };
 
         public static readonly OpReportGeneratorTagNames[] Generators = new OpReportGeneratorTagNames[]
@@ -18,17 +18,17 @@ namespace ScadaHisAPI.Defines
             new OpReportGeneratorTagNames
             {
                 Name = "Tổ máy S1",
-                Uab = "MONGDUONG1_S1_U",
+                Uab = "MONGDUONG1_901_U",
                 Ubc = null,
                 Uca = null,
                 //Ua = null,
                 //Ub = null,
                 //Uc = null,
-                Ia = "MONGDUONG1_S1_I",
+                Ia = "MONGDUONG1_901_I",
                 Ib = null,
                 Ic = null,
-                P = "MONGDUONG1_S1_P",
-                Q = "MONGDUONG1_S1_Q",
+                P = "MONGDUONG1_901_P",
+                Q = "MONGDUONG1_901_Q",
                 F = null,
                 URotor = null,
                 IRotor = null,
@@ -37,17 +37,17 @@ namespace ScadaHisAPI.Defines
             new OpReportGeneratorTagNames
             {
                 Name = "Tổ máy S2",
-                Uab = "MONGDUONG1_S2_U",
+                Uab = "MONGDUONG1_902_U",
                 Ubc = null,
                 Uca = null,
                 //Ua = null,
                 //Ub = null,
                 //Uc = null,
-                Ia = "MONGDUONG1_S2_I",
+                Ia = "MONGDUONG1_902_I",
                 Ib = null,
                 Ic = null,
-                P = "MONGDUONG1_S2_P",
-                Q = "MONGDUONG1_S2_Q",
+                P = "MONGDUONG1_902_P",
+                Q = "MONGDUONG1_902_Q",
                 F = null,
                 URotor = null,
                 IRotor = null,
@@ -102,7 +102,7 @@ namespace ScadaHisAPI.Defines
                 Uab = "MONGDUONG1_172_U",
                 Ubc = null,
                 Uca = null,
-                Ia = "BMONGDUONG1_172_I",
+                Ia = "MONGDUONG1_172_I",
                 Ib = null,
                 Ic = null,
                 P = "MONGDUONG1_172_P",
@@ -142,14 +142,14 @@ namespace ScadaHisAPI.Defines
             new OpReportTransformerTagNames
             {
                 Name = "T1",
-                Ua = "MONGDUONG1_132_U",
+                Ua = "MONGDUONG1_T1_U",
                 Ub = null,
                 Uc = null,
-                Ia = "MONGDUONG1_132_I",
+                Ia = "MONGDUONG1_T1_I",
                 Ib = null,
                 Ic = null,
-                TAP = "MONGDUONG1_132_P",
-                OilTemp = "MONGDUONG1_132_Q",
+                TAP = "MONGDUONG1_T1_P",
+                OilTemp = "MONGDUONG1_T1_Q",
                 WindTemp = null,
             }
         };
@@ -157,14 +157,14 @@ namespace ScadaHisAPI.Defines
 
         public static readonly string[] U_Generators = new string[]
         {
-            "MONGDUONG1_S1_U", 
-            "MONGDUONG1_S2_U", 
+            "MONGDUONG1_901_U", 
+            "MONGDUONG1_902_U", 
         };
 
         public static readonly string[] I_Generators = new string[]
         {
-            "MONGDUONG1_S1_I", 
-            "MONGDUONG1_S2_I", 
+            "MONGDUONG1_901_I", 
+            "MONGDUONG1_902_I", 
         };
 
         public static readonly string[] P_Generators = PowerTagNames;

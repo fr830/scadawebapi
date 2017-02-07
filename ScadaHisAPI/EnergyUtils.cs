@@ -24,7 +24,9 @@ namespace ScadaHisAPI
 
         public static double? GetEnergyByHour(IEnumerable<DataPoint> list, DateTime time, string FactoryName)
         {
-            var data = (from p in list where (p.TagName.ToUpper().Contains(FactoryName.ToUpper()) && p.DateTime.CompareTo(time) >= 0 && (p.DateTime - time).TotalHours < 1 && p.Value.HasValue) select (double)p.Value);
+            string[] TagNameList = FactoryToPowerTag(new string[]{FactoryName}, null);
+
+            var data = (from p in list where (TagNameList.Contains(p.TagName.ToUpper()) && p.DateTime.CompareTo(time) >= 0 && (p.DateTime - time).TotalHours < 1 && p.Value.HasValue) select (double)p.Value);
 
             if (data.Count<double>() == 0) return null;
 
@@ -42,7 +44,9 @@ namespace ScadaHisAPI
 
         public static double? GetEnergyByDay(IEnumerable<DataPoint> list, DateTime time, string FactoryName)
         {
-            var data = (from p in list where (p.TagName.ToUpper().Contains(FactoryName.ToUpper()) && p.DateTime.CompareTo(time) >= 0 && (p.DateTime - time).TotalDays < 1 && p.Value.HasValue) select (double)p.Value);
+            string[] TagNameList = FactoryToPowerTag(new string[] { FactoryName }, null);
+
+            var data = (from p in list where (TagNameList.Contains(p.TagName.ToUpper()) && p.DateTime.CompareTo(time) >= 0 && (p.DateTime - time).TotalDays < 1 && p.Value.HasValue) select (double)p.Value);
 
             if (data.Count<double>() == 0) return null;
 

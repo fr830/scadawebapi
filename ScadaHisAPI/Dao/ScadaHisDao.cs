@@ -113,7 +113,7 @@ namespace ScadaHisAPI
                 string str_null = "";
 
                 var q = (from p in db.AnalogSummaryHistories
-                                     where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.StartDateTime >= start && p.EndDateTime <= end && p.OPCQuality >= 192
+                                     where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.StartDateTime >= start && p.EndDateTime <= end && p.OPCQuality >= 192 && p.Minimum != null && p.Maximum != null
                                      orderby p.StartDateTime
                                      select new DataPoint
                                      {
