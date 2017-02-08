@@ -15,44 +15,44 @@ namespace ScadaHisAPI.Defines
 
         public static readonly OpReportGeneratorTagNames[] Generators = new OpReportGeneratorTagNames[]
         {
-            new OpReportGeneratorTagNames
-            {
-                Name = "Tổ máy 1",
-                Uab = null,
-                Ubc = null,
-                Uca = null,
-                //Ua = null,
-                //Ub = null,
-                //Uc = null,
-                Ia = null,
-                Ib = null,
-                Ic = null,
-                P = "PMG_PM22_LINE1_MW",
-                Q = null,
-                F = null,
-                URotor = null,
-                IRotor = null,
-                VRotor = null,
-            },
-            new OpReportGeneratorTagNames
-            {
-                Name = "Tổ máy 2",
-                Uab = null,
-                Ubc = null,
-                Uca = null,
-                //Ua = null,
-                //Ub = null,
-                //Uc = null,
-                Ia = null,
-                Ib = null,
-                Ic = null,
-                P = "PMG_PM22_LINE2_MW",
-                Q = null,
-                F = null,
-                URotor = null,
-                IRotor = null,
-                VRotor = null,
-            },
+            //new OpReportGeneratorTagNames
+            //{
+            //    Name = "Tổ máy 1",
+            //    Uab = null,
+            //    Ubc = null,
+            //    Uca = null,
+            //    //Ua = null,
+            //    //Ub = null,
+            //    //Uc = null,
+            //    Ia = null,
+            //    Ib = null,
+            //    Ic = null,
+            //    P = "PMG_PM22_LINE1_MW",
+            //    Q = null,
+            //    F = null,
+            //    URotor = null,
+            //    IRotor = null,
+            //    VRotor = null,
+            //},
+            //new OpReportGeneratorTagNames
+            //{
+            //    Name = "Tổ máy 2",
+            //    Uab = null,
+            //    Ubc = null,
+            //    Uca = null,
+            //    //Ua = null,
+            //    //Ub = null,
+            //    //Uc = null,
+            //    Ia = null,
+            //    Ib = null,
+            //    Ic = null,
+            //    P = "PMG_PM22_LINE2_MW",
+            //    Q = null,
+            //    F = null,
+            //    URotor = null,
+            //    IRotor = null,
+            //    VRotor = null,
+            //},
         };
 
         public static readonly OpReportFeederTagNames[] Feeders = new OpReportFeederTagNames[]
@@ -98,6 +98,8 @@ namespace ScadaHisAPI.Defines
         {
         };
 
-        public static readonly string[] P_Generators = PowerTagNames;
+        public static readonly string[] P_Generators = new string[]
+        {
+        };
     }
 }
