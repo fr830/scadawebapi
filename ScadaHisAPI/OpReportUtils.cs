@@ -40,8 +40,8 @@ namespace ScadaHisAPI
             else if (String.Compare(FactoryName.ToUpper(), _Define.BuonKuop_ID) == 0)
                 return new List<OpReportGeneratorTagNames>(BuonKuopDefine.Generators);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonTuaShar_ID) == 0)
-                return new List<OpReportGeneratorTagNames>(BuonTuaSharDefine.Generators);
+            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonTuaSrah_ID) == 0)
+                return new List<OpReportGeneratorTagNames>(BuonTuaSrahDefine.Generators);
 
             else if (String.Compare(FactoryName.ToUpper(), _Define.Srepok3_ID) == 0)
                 return new List<OpReportGeneratorTagNames>(Srepok3Define.Generators);
@@ -81,8 +81,8 @@ namespace ScadaHisAPI
             else if (String.Compare(FactoryName.ToUpper(), _Define.BuonKuop_ID) == 0)
                 return new List<OpReportFeederTagNames>(BuonKuopDefine.Feeders);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonTuaShar_ID) == 0)
-                return new List<OpReportFeederTagNames>(BuonTuaSharDefine.Feeders);
+            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonTuaSrah_ID) == 0)
+                return new List<OpReportFeederTagNames>(BuonTuaSrahDefine.Feeders);
 
             else if (String.Compare(FactoryName.ToUpper(), _Define.Srepok3_ID) == 0)
                 return new List<OpReportFeederTagNames>(Srepok3Define.Feeders);
@@ -122,8 +122,8 @@ namespace ScadaHisAPI
             else if (String.Compare(FactoryName.ToUpper(), _Define.BuonKuop_ID) == 0)
                 return new List<string>(BuonKuopDefine.U_Generators);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonTuaShar_ID) == 0)
-                return new List<string>(BuonTuaSharDefine.U_Generators);
+            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonTuaSrah_ID) == 0)
+                return new List<string>(BuonTuaSrahDefine.U_Generators);
 
             else if (String.Compare(FactoryName.ToUpper(), _Define.Srepok3_ID) == 0)
                 return new List<string>(Srepok3Define.U_Generators);
@@ -164,8 +164,8 @@ namespace ScadaHisAPI
             else if (String.Compare(FactoryName.ToUpper(), _Define.BuonKuop_ID) == 0)
                 return new List<string>(BuonKuopDefine.I_Generators);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonTuaShar_ID) == 0)
-                return new List<string>(BuonTuaSharDefine.I_Generators);
+            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonTuaSrah_ID) == 0)
+                return new List<string>(BuonTuaSrahDefine.I_Generators);
 
             else if (String.Compare(FactoryName.ToUpper(), _Define.Srepok3_ID) == 0)
                 return new List<string>(Srepok3Define.I_Generators);
@@ -205,8 +205,8 @@ namespace ScadaHisAPI
             else if (String.Compare(FactoryName.ToUpper(), _Define.BuonKuop_ID) == 0)
                 return new List<string>(BuonKuopDefine.P_Generators);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonTuaShar_ID) == 0)
-                return new List<string>(BuonTuaSharDefine.P_Generators);
+            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonTuaSrah_ID) == 0)
+                return new List<string>(BuonTuaSrahDefine.P_Generators);
 
             else if (String.Compare(FactoryName.ToUpper(), _Define.Srepok3_ID) == 0)
                 return new List<string>(Srepok3Define.P_Generators);

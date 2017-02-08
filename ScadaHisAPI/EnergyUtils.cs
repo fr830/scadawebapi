@@ -124,9 +124,9 @@ namespace ScadaHisAPI
                             TagNameList.Add(tag + strTagTime);
                     }
 
-                    else if (String.Compare(factory.ToUpper(), _Define.BuonTuaShar_ID) == 0)
+                    else if (String.Compare(factory.ToUpper(), _Define.BuonTuaSrah_ID) == 0)
                     {
-                        foreach (string tag in BuonTuaSharDefine.PowerTagNames)
+                        foreach (string tag in BuonTuaSrahDefine.PowerTagNames)
                             TagNameList.Add(tag + strTagTime);
                     }
 

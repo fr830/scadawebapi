@@ -100,7 +100,7 @@
     </Compile>
     <Compile Include="Defines\BaRiaDefine.cs" />
     <Compile Include="Defines\BuonKuopDefine.cs" />
-    <Compile Include="Defines\BuonTuaSharDefine.cs" />
+    <Compile Include="Defines\BuonTuaSrahDefine.cs" />
     <Compile Include="Defines\MongDuong1Define.cs" />
     <Compile Include="Defines\PhuMy1Define.cs" />
     <Compile Include="Defines\PhuMy21Define.cs" />

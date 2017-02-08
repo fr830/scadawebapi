@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ScadaHisAPI.Defines
 {
-    public class BuonTuaSharDefine
+    public class BuonTuaSrahDefine
     {
         public static readonly string[] PowerTagNames = new string[]
         {
