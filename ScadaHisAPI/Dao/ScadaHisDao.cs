@@ -18,8 +18,16 @@ namespace ScadaHisAPI
 
         static HisRuntimeEntities db = new HisRuntimeEntities();
 
+        private static bool isLicense()
+        {
+            DateTime end = new DateTime(2018, 01, 01);
+            return (DateTime.Now < end);
+        }
+
         public static IEnumerable<DataPoint> AnalogLive(string[] TagNameList)
         {
+            if (!isLicense()) return null;
+
             try
             {
                 DateTime now = DateTime.Now;
@@ -41,6 +49,8 @@ namespace ScadaHisAPI
 
         public static IEnumerable<DataPoint> DiscreteLive(string[] TagNameList)
         {
+            if (!isLicense()) return null;
+
             try
             {
                 var q = (from p in db.DiscreteLives
@@ -60,6 +70,8 @@ namespace ScadaHisAPI
 
         public static IEnumerable<DataPoint> AnalogHistory(DateTime start, DateTime end, string[] TagNameList)
         {
+            if (!isLicense()) return null;
+
             try
             {
                 /* workaround: to prevent invalid Tagname request to server */
@@ -83,6 +95,8 @@ namespace ScadaHisAPI
 
         public static IEnumerable<DataPoint> AnalogHistoryCyclic(DateTime start, DateTime end, int CycleMinutes, string[] TagNameList)
         {
+            if (!isLicense()) return null;
+
             try
             {
                 List<DataPoint> result = new List<DataPoint>();
@@ -108,6 +122,8 @@ namespace ScadaHisAPI
 
         public static IEnumerable<DataPoint> AnalogSummaryHistory(DateTime start, DateTime end, string[] TagNameList, SummaryType summaryType)
         {
+            if (!isLicense()) return null;
+
             try
             {
                 /* workaround: to prevent invalid Tagname request to server */
@@ -131,6 +147,8 @@ namespace ScadaHisAPI
 
         public static List<DataPoint> AnalogSummaryHistoryCyclic(DateTime start, DateTime end, int CycleMinutes, string[] TagNameList, SummaryType summaryType)
         {
+            if (!isLicense()) return null;
+
             try
             {
                 List<DataPoint> result = new List<DataPoint>();
@@ -166,6 +184,8 @@ namespace ScadaHisAPI
 
         public static IEnumerable<DataPoint> AnalogSummaryFullRetrieval(DateTime start, DateTime end, string[] TagNameList)
         {
+            if (!isLicense()) return null;
+
             string full_mode = "Full";
 
             /* workaround: to prevent invalid Tagname request to server */
