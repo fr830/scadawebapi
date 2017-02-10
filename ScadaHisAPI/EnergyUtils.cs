@@ -23,7 +23,9 @@ namespace ScadaHisAPI
 
         public static double? GetEnergyByHour(IEnumerable<DataPoint> list, DateTime time, string FactoryName)
         {
-            var data = (from p in list where (p.TagName.ToUpper().Contains(FactoryName.ToUpper()) && p.DateTime.CompareTo(time) >= 0 && (p.DateTime - time).TotalHours < 1 && p.Value.HasValue) select (double)p.Value);
+            string[] TagNameList = FactoryToPowerTag(new string[]{FactoryName}, null);
+
+            var data = (from p in list where (TagNameList.Contains(p.TagName.ToUpper()) && p.DateTime.CompareTo(time) >= 0 && (p.DateTime - time).TotalHours < 1 && p.Value.HasValue) select (double)p.Value);
 
             if (data.Count<double>() == 0) return null;
 
@@ -41,7 +43,9 @@ namespace ScadaHisAPI
 
         public static double? GetEnergyByDay(IEnumerable<DataPoint> list, DateTime time, string FactoryName)
         {
-            var data = (from p in list where (p.TagName.ToUpper().Contains(FactoryName.ToUpper()) && p.DateTime.CompareTo(time) >= 0 && (p.DateTime - time).TotalDays < 1 && p.Value.HasValue) select (double)p.Value);
+            string[] TagNameList = FactoryToPowerTag(new string[] { FactoryName }, null);
+
+            var data = (from p in list where (TagNameList.Contains(p.TagName.ToUpper()) && p.DateTime.CompareTo(time) >= 0 && (p.DateTime - time).TotalDays < 1 && p.Value.HasValue) select (double)p.Value);
 
             if (data.Count<double>() == 0) return null;
 
@@ -65,12 +69,40 @@ namespace ScadaHisAPI
             {
                 if (factory != null)
                 {
-                    foreach (string tag in _Define.PowerTagNames)
+                    if (String.Compare(factory.ToUpper(), _Define.UongBi_ID) == 0)
                     {
-                        if (tag.ToUpper().Contains(factory.ToUpper()))
-                        {
+                        foreach (string tag in UongBiDefine.PowerTagNames)
                             TagNameList.Add(tag + strTagTime);
-                        }
+                    }
+
+                    else if (String.Compare(factory.ToUpper(), _Define.BanVe_ID) == 0)
+                    {
+                        foreach (string tag in BanVeDefine.PowerTagNames)
+                            TagNameList.Add(tag + strTagTime);
+                    }
+
+                    else if (String.Compare(factory.ToUpper(), _Define.DaiNinh_ID) == 0)
+                    {
+                        foreach (string tag in DaiNinhDefine.PowerTagNames)
+                            TagNameList.Add(tag + strTagTime);
+                    }
+
+                    else if (String.Compare(factory.ToUpper(), _Define.DongNai3_ID) == 0)
+                    {
+                        foreach (string tag in DongNai3Define.PowerTagNames)
+                            TagNameList.Add(tag + strTagTime);
+                    }
+
+                    else if (String.Compare(factory.ToUpper(), _Define.DongNai4_ID) == 0)
+                    {
+                        foreach (string tag in DongNai3Define.PowerTagNames)
+                            TagNameList.Add(tag + strTagTime);
+                    }
+
+                    else if (String.Compare(factory.ToUpper(), _Define.SongTranh2_ID) == 0)
+                    {
+                        foreach (string tag in SongTranh2Define.PowerTagNames)
+                            TagNameList.Add(tag + strTagTime);
                     }
                 }
             }

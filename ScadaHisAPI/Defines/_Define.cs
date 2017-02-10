@@ -44,16 +44,5 @@ namespace ScadaHisAPI
         public const string strNameTransPrimary = "Sơ cấp";
         public const string strNameTransSecondary1 = "Thứ cấp 1";
         public const string strNameTransSecondary2 = "Thứ cấp 2";
-
-        public static readonly string[] PowerTagNames = new string[]
-        {
-            "UONGBIMR_907_P", 
-            "UONGBIMR_908_P", 
-            "BANVE_COM_Ptotal", 
-            "DAININH_COM_Ptotal", 
-            "DONGNAI3_COM_Ptotal", 
-            "DONGNAI4_COM_Ptotal", 
-            "SONGTRANH2_COM_Ptotal",
-        };
     }
 }

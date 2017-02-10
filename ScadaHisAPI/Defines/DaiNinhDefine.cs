@@ -7,6 +7,13 @@ namespace ScadaHisAPI
 {
     public class DaiNinhDefine
     {
+
+        public static readonly string[] PowerTagNames = new string[]
+        {
+            "DAININH_931_P", 
+            "DAININH_932_P", 
+        };
+
         public static readonly OpReportGeneratorTagNames[] Generators = new OpReportGeneratorTagNames[2]
         {
             new OpReportGeneratorTagNames
@@ -104,11 +111,7 @@ namespace ScadaHisAPI
             "DAININH_932_I", 
         };
 
-        public static readonly string[] P_Generators = new string[]
-        {
-            "DAININH_931_P", 
-            "DAININH_932_P", 
-        };
+        public static readonly string[] P_Generators = PowerTagNames;
 
     }
 }

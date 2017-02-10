@@ -7,7 +7,13 @@ namespace ScadaHisAPI
 {
     public class UongBiDefine
     {
-        public static readonly OpReportGeneratorTagNames[] Generators = new OpReportGeneratorTagNames[2]
+        public static readonly string[] PowerTagNames = new string[]
+        {
+            "UONGBIMR_907_P", 
+            "UONGBIMR_908_P",
+        };
+
+        public static readonly OpReportGeneratorTagNames[] Generators = new OpReportGeneratorTagNames[]
         {
             new OpReportGeneratorTagNames
             {
@@ -105,10 +111,6 @@ namespace ScadaHisAPI
             "UONGBIMR_908_Ia", 
         };
 
-        public static readonly string[] P_Generators = new string[]
-        {
-            "UONGBIMR_907_P", 
-            "UONGBIMR_908_P", 
-        };
+        public static readonly string[] P_Generators = PowerTagNames;
     }
 }

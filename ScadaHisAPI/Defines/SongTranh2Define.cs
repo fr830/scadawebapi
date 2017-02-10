@@ -7,6 +7,13 @@ namespace ScadaHisAPI
 {
     public class SongTranh2Define
     {
+
+        public static readonly string[] PowerTagNames = new string[]
+        {
+            "SONGTRANH2_901_P", 
+            "SONGTRANH2_902_P", 
+        };
+
         public static readonly OpReportGeneratorTagNames[] Generators = new OpReportGeneratorTagNames[2]
         {
             new OpReportGeneratorTagNames
@@ -91,10 +98,7 @@ namespace ScadaHisAPI
             "SONGTRANH2_902_Ia", 
         };
 
-        public static readonly string[] P_Generators = new string[]
-        {
-            "SONGTRANH2_901_P", 
-            "SONGTRANH2_902_P", 
-        };
+        public static readonly string[] P_Generators = PowerTagNames;
+
     }
 }

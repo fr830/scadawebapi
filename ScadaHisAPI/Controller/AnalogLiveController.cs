@@ -30,11 +30,7 @@ namespace ScadaHisAPI
         [HttpPost]
         public IEnumerable<DataPoint> Power([FromBody]string[] FactoryList)
         {
-            string[] TagNameList = EnergyUtils.FactoryToPowerTag(FactoryList, null);
-
             List<DataPoint> result = new List<DataPoint>();
-
-            var power = ScadaHisDao.AnalogLive(TagNameList);
 
             DateTime now = DateTime.Now;
 
@@ -42,7 +38,10 @@ namespace ScadaHisAPI
             {
                 if (factory != null)
                 {
-                    var data = (from p in power where p.TagName.ToUpper().Contains(factory.ToUpper()) && p.OPCQuality >= 192 /*&& Math.Abs((p.DateTime - now).TotalHours) < 1*/ select p);
+                    string[] TagNameList = EnergyUtils.FactoryToPowerTag(new string[]{factory}, null);
+                    var power = ScadaHisDao.AnalogLive(TagNameList);
+
+                    var data = (from p in power where p.OPCQuality >= 192 /*&& Math.Abs((p.DateTime - now).TotalHours) < 1*/ select p);
 
                     DataPoint dp;
 

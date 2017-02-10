@@ -7,6 +7,13 @@ namespace ScadaHisAPI
 {
     public class DongNai3Define
     {
+
+        public static readonly string[] PowerTagNames = new string[]
+        {
+            "DONGNAI3_901_P", 
+            "DONGNAI3_902_P",
+        };
+
         public static readonly OpReportGeneratorTagNames[] Generators = new OpReportGeneratorTagNames[2]
         {
             new OpReportGeneratorTagNames
@@ -91,10 +98,6 @@ namespace ScadaHisAPI
             "DONGNAI3_902_Ia", 
         };
 
-        public static readonly string[] P_Generators = new string[]
-        {
-            "DONGNAI3_901_P", 
-            "DONGNAI3_902_P",
-        };
+        public static readonly string[] P_Generators = PowerTagNames;
     }
 }
