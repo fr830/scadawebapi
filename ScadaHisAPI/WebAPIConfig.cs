@@ -13,8 +13,8 @@ namespace ScadaHisAPI
         public static void Register(HttpConfiguration config)
         {
             // Enable Cross-Origin Request for all clients
-            var corsAttr = new EnableCorsAttribute(origins: "*", headers: "*", methods: "*");
-            config.EnableCors(corsAttr);
+            //var corsAttr = new EnableCorsAttribute(origins: "*", headers: "*", methods: "*");
+            //config.EnableCors(corsAttr);
 
             // Enable Route Attribution
             config.MapHttpAttributeRoutes();
