@@ -10,8 +10,7 @@ namespace ScadaHisAPI
 
         public static readonly string[] PowerTagNames = new string[]
         {
-            "DONGNAI4_901_P", 
-            "DONGNAI4_902_P",
+            "DONGNAI4_COM_Ptotal",
         };
 
         public static readonly OpReportGeneratorTagNames[] Generators = new OpReportGeneratorTagNames[2]
@@ -98,7 +97,11 @@ namespace ScadaHisAPI
             "DONGNAI4_902_Ia", 
         };
 
-        public static readonly string[] P_Generators = PowerTagNames;
+        public static readonly string[] P_Generators = new string[]
+        {
+            "DONGNAI4_901_P", 
+            "DONGNAI4_902_P",
+        };
 
     }
 }

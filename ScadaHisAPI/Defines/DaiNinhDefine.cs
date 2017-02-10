@@ -10,8 +10,7 @@ namespace ScadaHisAPI
 
         public static readonly string[] PowerTagNames = new string[]
         {
-            "DAININH_931_P", 
-            "DAININH_932_P", 
+            "DAININH_COM_Ptotal",  
         };
 
         public static readonly OpReportGeneratorTagNames[] Generators = new OpReportGeneratorTagNames[2]
@@ -111,7 +110,11 @@ namespace ScadaHisAPI
             "DAININH_932_I", 
         };
 
-        public static readonly string[] P_Generators = PowerTagNames;
+        public static readonly string[] P_Generators = new string[]
+        {
+            "DAININH_931_P", 
+            "DAININH_932_P", 
+        };
 
     }
 }

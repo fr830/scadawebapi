@@ -25,7 +25,7 @@ namespace ScadaHisAPI
         {
             string[] TagNameList = FactoryToPowerTag(new string[]{FactoryName}, null);
 
-            var data = (from p in list where (TagNameList.Contains(p.TagName.ToUpper()) && p.DateTime.CompareTo(time) >= 0 && (p.DateTime - time).TotalHours < 1 && p.Value.HasValue) select (double)p.Value);
+            var data = (from p in list where (TagNameList.Contains(p.TagName) && p.DateTime.CompareTo(time) >= 0 && (p.DateTime - time).TotalHours < 1 && p.Value.HasValue) select (double)p.Value);
 
             if (data.Count<double>() == 0) return null;
 
@@ -45,7 +45,7 @@ namespace ScadaHisAPI
         {
             string[] TagNameList = FactoryToPowerTag(new string[] { FactoryName }, null);
 
-            var data = (from p in list where (TagNameList.Contains(p.TagName.ToUpper()) && p.DateTime.CompareTo(time) >= 0 && (p.DateTime - time).TotalDays < 1 && p.Value.HasValue) select (double)p.Value);
+            var data = (from p in list where (TagNameList.Contains(p.TagName) && p.DateTime.CompareTo(time) >= 0 && (p.DateTime - time).TotalDays < 1 && p.Value.HasValue) select (double)p.Value);
 
             if (data.Count<double>() == 0) return null;
 
@@ -95,7 +95,7 @@ namespace ScadaHisAPI
 
                     else if (String.Compare(factory.ToUpper(), _Define.DongNai4_ID) == 0)
                     {
-                        foreach (string tag in DongNai3Define.PowerTagNames)
+                        foreach (string tag in DongNai4Define.PowerTagNames)
                             TagNameList.Add(tag + strTagTime);
                     }
 

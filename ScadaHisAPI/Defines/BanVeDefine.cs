@@ -9,8 +9,7 @@ namespace ScadaHisAPI
     {
         public static readonly string[] PowerTagNames = new string[]
         {
-            "BANVE_901_P", 
-            "BANVE_902_P", 
+            "BANVE_COM_Ptotal", 
         };
 
         public static readonly OpReportGeneratorTagNames[] Generators = new OpReportGeneratorTagNames[2]
@@ -97,7 +96,11 @@ namespace ScadaHisAPI
             "BANVE_902_Ia", 
         };
 
-        public static readonly string[] P_Generators = PowerTagNames;
+        public static readonly string[] P_Generators = new string[]
+        {
+            "BANVE_901_P", 
+            "BANVE_902_P", 
+        };
 
     }
 }
