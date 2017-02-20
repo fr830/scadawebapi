@@ -21,6 +21,7 @@ namespace ScadaHisAPI
 
                 /* group by DateTime and sum = Ptotal */
                 List<DataPoint> data = (from p in result where (p.Value.HasValue) select p)
+                    .OrderBy(x => x.DateTime)
                     .GroupBy(g => g.DateTime, v => v.Value)
                     .Select(g => new DataPoint
                     {
