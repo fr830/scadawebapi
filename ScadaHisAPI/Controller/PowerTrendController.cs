@@ -30,6 +30,10 @@ namespace ScadaHisAPI
                         Value = g.Sum()
                     }).ToList();
 
+                /* remove the last Item to prevent rapidly drop of the trend */
+                if (data.Count > 0)
+                    data.Remove(data.LastOrDefault());
+
                 return data;
             }
             catch { return new List<DataPoint>(); }
