@@ -17,6 +17,7 @@ namespace ScadaHisAPI
         {
             try
             {
+
                 List<DataPoint> result = EnergyUtils.PowerHistory30M(start, end, FactoryList);
 
                 /* group by DateTime and sum = Ptotal */
@@ -29,6 +30,11 @@ namespace ScadaHisAPI
                         TagName = "PTOTAL",
                         Value = g.Sum()
                     }).ToList();
+
+
+                /* The last Item maybe not accurate since all newest data have not fully calculated and logged */
+                if (data.Count > 0)
+                    data.Remove(data.LastOrDefault());
 
                 return data;
             }
