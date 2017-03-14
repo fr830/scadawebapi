@@ -32,43 +32,35 @@ namespace ScadaHisAPI
         {
             List<DataPoint> result = new List<DataPoint>();
 
-            DateTime now = DateTime.Now;
+            string[] TagNameList = EnergyUtils.FactoryToPowerTag(FactoryList, null);
+            var power = ScadaHisDao.AnalogLive(TagNameList);
 
             foreach (string factory in FactoryList)
             {
                 if (factory != null)
                 {
-                    string[] TagNameList = EnergyUtils.FactoryToPowerTag(new string[]{factory}, null);
-                    var power = ScadaHisDao.AnalogLive(TagNameList);
+                    string[] PowerList = EnergyUtils.FactoryToPowerTag(new string[] { factory }, null);
 
-                    var data = (from p in power where p.OPCQuality >= 192 /*&& Math.Abs((p.DateTime - now).TotalHours) < 1*/ select p);
-
-                    DataPoint dp;
-
-                    if (data.Count<DataPoint>() > 0)
-                    {
-                        dp = new DataPoint
-                        {
-                            DateTime = data.FirstOrDefault().DateTime,
-                            TagName = factory,
-                            Value = (from p in data where p.Value.HasValue select p.Value).Sum()
-                        };
-                    }
-                    else
-                    {
-                        dp = new DataPoint
-                        {
-                            DateTime = now,
-                            TagName = factory,
-                            Value = null
-                        };
-                    }
-
-                    result.Add(dp);
+                    result.Add(DataPointSum(power, PowerList, factory));
                 }
             }
 
             return result;
+        }
+
+        private DataPoint DataPointSum(IEnumerable<DataPoint> datalist, string[] TagNameList, string NewTagName)
+        {
+            DataPoint sum = new DataPoint() { DateTime = DateTime.Now, TagName = NewTagName, Value = null };
+
+            var data = (from p in datalist where TagNameList.Contains(p.TagName) select p);
+
+            if (data.Count<DataPoint>() > 0)
+            {
+                sum.DateTime = data.FirstOrDefault().DateTime;
+                sum.Value = (from p in data where p.Value.HasValue select p.Value).Sum();
+            }
+
+            return sum;
         }
     }
 }
