@@ -10,7 +10,7 @@ namespace ScadaHisAPI.Defines
         public static readonly string[] PowerTagNames = new string[]
         {
             "BK901_901_H1_KW", 
-            "BK901_902_H1_KW",
+            "BK901_902_H2_KW",
         };
 
         public static readonly OpReportGeneratorTagNames[] Generators = new OpReportGeneratorTagNames[]
