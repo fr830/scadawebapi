@@ -42,7 +42,7 @@ namespace ScadaHisAPI
                              OPCQuality = p.OPCQuality,
                          }).ToList();
 
-                return (from p in q where (Math.Abs((p.DateTime - now).TotalHours) < 1) || (p.DateTime > now) select p);
+                return q;// (from p in q where (Math.Abs((p.DateTime - now).TotalHours) < 1) || (p.DateTime > now) select p);
             }
             catch { return null; }
         }
