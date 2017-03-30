@@ -110,6 +110,8 @@ namespace ScadaHisAPI
 
                 result.Add(DataPointSum(datalist, EnergyUtils.FactoryToPowerTag(new string[] { _Define.PhuMy3_ID }, null), "PTOTAL_PM3"));
 
+                /* Clone PMG_BR_ST9_MW */
+                result.Add(DataPointSum(datalist, new string[] { "PMG_BR_ST9_MW"}, "PMG_BR_ST10_MW"));
             }
 
             /* Apply for BuonKuop & Genco3 */
