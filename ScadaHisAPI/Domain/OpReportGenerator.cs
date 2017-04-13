@@ -61,6 +61,12 @@ namespace ScadaHisAPI
         public string Name;
 
         [DataMemberAttribute]
+        public OpReportHourlyData P { get; set; }
+
+        [DataMemberAttribute]
+        public OpReportHourlyData Q { get; set; }
+
+        [DataMemberAttribute]
         public OpReportHourlyData Uab { get; set; }
 
         [DataMemberAttribute]
@@ -86,12 +92,6 @@ namespace ScadaHisAPI
 
         [DataMemberAttribute]
         public OpReportHourlyData Ic { get; set; }
-
-        [DataMemberAttribute]
-        public OpReportHourlyData P { get; set; }
-
-        [DataMemberAttribute]
-        public OpReportHourlyData Q { get; set; }
 
         [DataMemberAttribute]
         public OpReportHourlyData F { get; set; }

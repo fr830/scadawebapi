@@ -19,8 +19,8 @@ namespace ScadaHisAPI
         public const string BuonTuaSrah_ID = "BUONTUASRAH";
         public const string Srepok3_ID = "SREPOK3";
 
-        public const string strNameGenParams = "Dòng điện, điện áp máy phát";
-        public const string strNameGenRotor = "Rotor";
+        public const string strNameGenParams = "Thông số vận hành";
+        public const string strNameGenRotor = ""; // Rotor
         public const string strNameUab = "Uab (kV)";
         public const string strNameUbc = "Ubc (kV)";
         public const string strNameUca = "Uca (kV)";

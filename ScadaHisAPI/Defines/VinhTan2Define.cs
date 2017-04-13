@@ -17,7 +17,7 @@ namespace ScadaHisAPI.Defines
         {
             new OpReportGeneratorTagNames
             {
-                Name = "Tổ máy G1",
+                Name = "Tổ máy S1",
                 Uab = "VINHTAN2_901_U",
                 Ubc = null,
                 Uca = null,
@@ -36,7 +36,7 @@ namespace ScadaHisAPI.Defines
             },
             new OpReportGeneratorTagNames
             {
-                Name = "Tổ máy G2",
+                Name = "Tổ máy S2",
                 Uab = "VINHTAN2_902_U",
                 Ubc = null,
                 Uca = null,
@@ -59,7 +59,7 @@ namespace ScadaHisAPI.Defines
         {
             new OpReportFeederTagNames
             {
-                Name = "641",
+                Name = "MC tự dùng 641",
                 Uab = "VINHTAN2_641_U",
                 Ubc = null,
                 Uca = null,
@@ -72,7 +72,7 @@ namespace ScadaHisAPI.Defines
             },
             new OpReportFeederTagNames
             {
-                Name = "642",
+                Name = "MC tự dùng 642",
                 Uab = "VINHTAN2_642_U",
                 Ubc = null,
                 Uca = null,
@@ -85,7 +85,7 @@ namespace ScadaHisAPI.Defines
             },
             new OpReportFeederTagNames
             {
-                Name = "643",
+                Name = "MC tự dùng 643",
                 Uab = "VINHTAN2_643_U",
                 Ubc = null,
                 Uca = null,
@@ -98,7 +98,7 @@ namespace ScadaHisAPI.Defines
             },
             new OpReportFeederTagNames
             {
-                Name = "644",
+                Name = "MC tự dùng 644",
                 Uab = "VINHTAN2_644_U",
                 Ubc = null,
                 Uca = null,
@@ -111,7 +111,7 @@ namespace ScadaHisAPI.Defines
             },
             new OpReportFeederTagNames
             {
-                Name = "645",
+                Name = "MC tự dùng 645",
                 Uab = "VINHTAN2_645_U",
                 Ubc = null,
                 Uca = null,
@@ -124,7 +124,7 @@ namespace ScadaHisAPI.Defines
             },
             new OpReportFeederTagNames
             {
-                Name = "646",
+                Name = "MC tự dùng 646",
                 Uab = "VINHTAN2_646_U",
                 Ubc = null,
                 Uca = null,
