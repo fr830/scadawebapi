@@ -25,9 +25,6 @@ namespace ScadaHisAPI
             else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy22_ID) == 0)
                 return new List<OpReportGeneratorTagNames>(PhuMy22Define.Generators);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy22_ID) == 0)
-                return new List<OpReportGeneratorTagNames>(PhuMy22Define.Generators);
-
             else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy3_ID) == 0)
                 return new List<OpReportGeneratorTagNames>(PhuMy3Define.Generators);
 
@@ -66,9 +63,6 @@ namespace ScadaHisAPI
             else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy22_ID) == 0)
                 return new List<OpReportFeederTagNames>(PhuMy22Define.Feeders);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy22_ID) == 0)
-                return new List<OpReportFeederTagNames>(PhuMy22Define.Feeders);
-
             else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy3_ID) == 0)
                 return new List<OpReportFeederTagNames>(PhuMy3Define.Feeders);
 
@@ -103,9 +97,6 @@ namespace ScadaHisAPI
 
             else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy21_ID) == 0)
                 return new List<string>(PhuMy21Define.U_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy22_ID) == 0)
-                return new List<string>(PhuMy22Define.U_Generators);
 
             else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy22_ID) == 0)
                 return new List<string>(PhuMy22Define.U_Generators);
@@ -149,9 +140,6 @@ namespace ScadaHisAPI
             else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy22_ID) == 0)
                 return new List<string>(PhuMy22Define.I_Generators);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy22_ID) == 0)
-                return new List<string>(PhuMy22Define.I_Generators);
-
             else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy3_ID) == 0)
                 return new List<string>(PhuMy3Define.I_Generators);
 
@@ -186,9 +174,6 @@ namespace ScadaHisAPI
 
             else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy21_ID) == 0)
                 return new List<string>(PhuMy21Define.P_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy22_ID) == 0)
-                return new List<string>(PhuMy22Define.P_Generators);
 
             else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy22_ID) == 0)
                 return new List<string>(PhuMy22Define.P_Generators);
