@@ -56,6 +56,52 @@ namespace ScadaHisAPI
             return result;
         }
 
+        // POST apiOpReport/Generator/PQ/{day=day}/{month=month}/{year=year}
+        [Route("OpReport/Generator/PQ/{day=day}/{month=month}/{year=year}")]
+        [HttpPost]
+        public IEnumerable<OpReportFactoryPQ> FactoryPQ([FromUri]int day, [FromUri]int month, [FromUri]int year, [FromBody]string[] FactoryList)
+        {
+            List<OpReportFactoryPQ> result = new List<OpReportFactoryPQ>();
+            List<string> TagNameQuery = new List<string>();
+            
+            List<DataPoint> data = new List<DataPoint>();
+
+            foreach (string FactoryName in FactoryList)
+            {
+                List<OpReportGeneratorTagNames> TagNames = OpReportUtils.GetGeneratorTagNames(FactoryName);
+                OpReportFactoryPQ factory = new OpReportFactoryPQ(FactoryName);
+
+                result.Add(factory);
+
+                foreach (OpReportGeneratorTagNames tag in TagNames)
+                {
+                    factory.AddGenerator(new OpReportGeneratorPQ(tag.Name, tag));
+                    TagNameQuery.AddRange(tag.toPQString());
+                }
+            }
+
+            DateTime start = new DateTime(year, month, day);
+            DateTime end = start.AddDays(1);
+
+            while (start < end)
+            {
+                DateTime end2 = start.AddMinutes(60);
+                data = ScadaHisDao.AnalogSummaryHistory(start, end2, TagNameQuery.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
+
+                foreach (OpReportFactoryPQ factory in result)
+                {
+                    foreach(OpReportGeneratorPQ gen in factory.Generator)
+                    {
+                        gen.ParsingValues(start.Hour, data);
+                    }
+                }
+
+                start = end2;
+            }
+
+            return result;
+        }
+
         // GET api/OpReport/Feeder/{FactoryName}/{day}/{month}/{year}
         [Route("OpReport/Feeder/{FactoryName}/{day}/{month}/{year}")]
         [HttpGet]

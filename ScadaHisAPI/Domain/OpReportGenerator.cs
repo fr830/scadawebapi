@@ -162,6 +162,16 @@ namespace ScadaHisAPI
         public string IRotor { get; set; }
         public string VRotor { get; set; }
 
+        public string[] toPQString()
+        {
+            List<string> result = new List<string>();
+
+            result.Add(P);
+            result.Add(Q);
+            
+            return result.ToArray();
+        }
+
         public string[] ToStringArray()
         {
             List<string> result = new List<string>();

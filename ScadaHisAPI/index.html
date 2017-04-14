@@ -7,7 +7,7 @@
     <style type="text/css">
         #Result
         {
-            width: 551px;
+            width: 800px;
             height: 272px;
         }
     </style>
@@ -64,6 +64,7 @@
             <input id="GetPowerTrendDay" type="button" value="Power Trend today" />
             <input id="GetPowerTrendWeek" type="button" value="Power Trend this week" />
             <input id="GetPowerTrendMonth" type="button" value="Power Trend this Month" />
+            <input id="GetPQReport" type="button" value="PQ Report today" />
             <input id="Clear" type="button" value="Clear" />
          </p>
 		</form>
@@ -138,6 +139,9 @@
         powerTrendMonth();
     });
 
+    $("#GetPQReport").click(function () {
+        getPQReport();
+    });
 
     function liveFunc() {
         var list = {};
@@ -632,5 +636,64 @@
         });
     };
     
+    function getPQReport() {
+        var list = {};
+        var k = 0;
+
+        var start = new Date();
+        var day = start.getDate();
+        var month = start.getMonth() + 1;
+        var year = start.getFullYear();
+
+        $('[id^=Factory]').each(function (i, item) {
+            list[k++] = item.value;
+        });
+
+        var uri = "/api/OpReport/Generator/PQ" + "/" + day + "/" + month + "/" + year;
+
+        $("#Result").text(uri);
+
+        $.ajax({
+            url: uri,
+            type: "POST",
+            data: { "": list },
+            dataType: "json",
+            crossDomain: true,
+            success: function (data) {
+                message = "";
+                $.each(data, function (i, item) {
+                    var j = 0;
+
+                    /* Tên nha may */
+                    message += "\n" + item.FactoryID;
+
+                    var genCount = item.GeneratorCount;
+
+                    for (j = 0; j < genCount; j++) {
+                        var h = 0;
+
+                        /* Tên to may */
+                        message += "\n" + item.Generator[j].Name;
+
+                        if (!!item.Generator[j].P.Values) {
+                            message += "\n" + item.Generator[j].P.Name + ": ";
+                            for (h = 0; h < 24; h++) {
+                                message += " " + item.Generator[j].P.Values[h];
+                            }
+                        }
+
+                        if (!!item.Generator[j].Q.Values) {
+                            message += "\n" + item.Generator[j].Q.Name + ": ";
+                            for (h = 0; h < 24; h++) {
+                                message += " " + item.Generator[j].Q.Values[h];
+                            }
+                        }
+                    }
+                });
+
+                $("#Result").text(message);
+            }
+        });
+    };
 
 </script>
