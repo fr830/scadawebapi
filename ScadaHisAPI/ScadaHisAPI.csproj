@@ -116,6 +116,7 @@
       <DependentUpon>HisModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controller\DiscreteLiveController.cs" />
+    <Compile Include="Domain\OpReportFactoryPQ.cs" />
     <Compile Include="EnergyUtils.cs" />
     <Compile Include="Domain\DataPoint.cs" />
     <Compile Include="DiscreteLive.cs">
