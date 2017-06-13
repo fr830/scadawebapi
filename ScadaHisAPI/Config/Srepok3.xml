@@ -1,0 +1,94 @@
+﻿<Srepok3>
+	<EnergySources>
+        <tagname>SP3_H1_H1_H1_KW</tagname> 
+        <tagname>SP3_H2_H2_H2_KW</tagname>
+	</EnergySources>
+	
+	<P_Generators>
+        <G1>SP3_H1_H1_H1_KW</G1> 
+        <G2>SP3_H2_H2_H2_KW</G2>
+	</P_Generators>
+	
+	<U_Generators>
+		<G1></G1>
+		<G2></G2>
+	</U_Generators>
+	
+	<I_Generators>
+		<G1></G1>
+		<G2></G2>
+	</I_Generators>
+
+    <Generators>
+        <Generator>
+            <Name>Tổ máy H1</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>SP3_H1_H1_H1_KW</P>
+            <Q>SP3_H1_H1_H1_KVAr</Q>
+            <F></F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+			
+		<Generator>
+            <Name>Tổ máy H2</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>SP3_H2_H2_H2_KW</P>
+            <Q>SP3_H2_H2_H2_KVAr</Q>
+            <F></F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+	</Generators>
+	
+    <Feeders>
+        <Feeder>
+            <Name>272</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>SWY_SP4_SP4_KW</P>
+            <Q>SWY_SP4_SP4_KVAr</Q>
+            <F></F>
+        </Feeder>
+		<Feeder>
+            <Name>274</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>SWY_BK_BK_KW</P>
+            <Q>SWY_BK_BK_KVAr</Q>
+            <F></F>
+        </Feeder>
+	</Feeders>        
+</Srepok3>

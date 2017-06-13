@@ -1,0 +1,154 @@
+﻿<PowerPlantID>
+	<EnergySources>
+        <tagname>VINHTAN2_901_P</tagname> 
+        <tagname>VINHTAN2_902_P</tagname>
+	</EnergySources>
+	
+	<P_Generators>
+        <G1>VINHTAN2_901_P</G1> 
+        <G2>VINHTAN2_902_P</G2>
+	</P_Generators>
+	
+	<U_Generators>
+		<G1>VINHTAN2_901_U</G1>
+		<G2>VINHTAN2_902_U</G2>
+	</U_Generators>
+	
+	<I_Generators>
+		<G1>VINHTAN2_901_I</G1>
+		<G2>VINHTAN2_902_I</G2>
+	</I_Generators>
+
+    <Generators>
+        <Generator>
+            <Name>Tổ máy S1</Name>
+            <Uab>VINHTAN2_901_U</Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia>VINHTAN2_901_I</Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>VINHTAN2_901_P</P>
+            <Q>VINHTAN2_901_Q</Q>
+            <F>VINHTAN2_901_F</F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+			
+		<Generator>
+            <Name>Tổ máy S2</Name>
+            <Uab>VINHTAN2_902_U</Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia>VINHTAN2_902_I</Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>VINHTAN2_902_P</P>
+            <Q>VINHTAN2_902_Q</Q>
+            <F>VINHTAN2_902_F</F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+	</Generators>
+	
+    <Feeders>
+        <Feeder>
+            <Name>MC tự dùng 641</Name>
+            <Uab>VINHTAN2_641_U</Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia>VINHTAN2_641_I</Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>VINHTAN2_641_P</P>
+            <Q>VINHTAN2_641_Q</Q>
+            <F></F>
+        </Feeder>
+		<Feeder>
+            <Name>MC tự dùng 642</Name>
+            <Uab>VINHTAN2_642_U</Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia>VINHTAN2_642_I</Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>VINHTAN2_642_P</P>
+            <Q>VINHTAN2_642_Q</Q>
+            <F></F>
+        </Feeder>
+		<Feeder>
+            <Name>MC tự dùng 643</Name>
+            <Uab>VINHTAN2_643_U</Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia>VINHTAN2_643_I</Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>VINHTAN2_643_P</P>
+            <Q>VINHTAN2_643_Q</Q>
+            <F></F>
+        </Feeder>
+		<Feeder>
+            <Name>MC tự dùng 644</Name>
+            <Uab>VINHTAN2_644_U</Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia>VINHTAN2_644_I</Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>VINHTAN2_644_P</P>
+            <Q>VINHTAN2_644_Q</Q>
+            <F></F>
+        </Feeder>
+		<Feeder>
+            <Name>MC tự dùng 645</Name>
+            <Uab>VINHTAN2_645_U</Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia>VINHTAN2_645_I</Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>VINHTAN2_645_P</P>
+            <Q>VINHTAN2_645_Q</Q>
+            <F></F>
+        </Feeder>
+		<Feeder>
+            <Name>MC tự dùng 646</Name>
+            <Uab>VINHTAN2_646_U</Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia>VINHTAN2_646_I</Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>VINHTAN2_646_P</P>
+            <Q>VINHTAN2_646_Q</Q>
+            <F></F>
+        </Feeder>
+	</Feeders>        
+</PowerPlantID>

@@ -1,0 +1,159 @@
+﻿<PowerPlantID>
+	<EnergySources>
+        <tagname>MONGDUONG1_901_P</tagname> 
+        <tagname>MONGDUONG1_902_P</tagname>
+	</EnergySources>
+	
+	<P_Generators>
+        <G1>MONGDUONG1_901_P</G1> 
+        <G2>MONGDUONG1_902_P</G2>
+	</P_Generators>
+	
+	<U_Generators>
+		<G1>MONGDUONG1_901_U</G1>
+		<G2>MONGDUONG1_902_U</G2>
+	</U_Generators>
+	
+	<I_Generators>
+		<G1>MONGDUONG1_901_I</G1>
+		<G2>MONGDUONG1_902_I</G2>
+	</I_Generators>
+
+    <Generators>
+        <Generator>
+            <Name>Tổ máy S1</Name>
+            <Uab>MONGDUONG1_901_U</Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia>MONGDUONG1_901_I</Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>MONGDUONG1_901_P</P>
+            <Q>MONGDUONG1_901_Q</Q>
+            <F></F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+			
+		<Generator>
+            <Name>Tổ máy S2</Name>
+            <Uab>MONGDUONG1_902_U</Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia>MONGDUONG1_902_I</Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>MONGDUONG1_902_P</P>
+            <Q>MONGDUONG1_902_Q</Q>
+            <F></F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+	</Generators>
+	
+    <Feeders>
+        <Feeder>
+            <Name>571</Name>
+            <Uab>MONGDUONG1_571_U</Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia>MONGDUONG1_571_I</Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>MONGDUONG1_571_P</P>
+            <Q>MONGDUONG1_571_Q</Q>
+            <F></F>
+        </Feeder>
+		
+		<Feeder>
+            <Name>573</Name>
+            <Uab>MONGDUONG1_573_U</Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia>MONGDUONG1_573_I</Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>MONGDUONG1_573_P</P>
+            <Q>MONGDUONG1_573_Q</Q>
+            <F></F>
+        </Feeder>
+		
+		<Feeder>
+            <Name>171</Name>
+            <Uab>MONGDUONG1_171_U</Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia>MONGDUONG1_171_I</Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>MONGDUONG1_171_P</P>
+            <Q>MONGDUONG1_171_Q</Q>
+            <F></F>
+        </Feeder>
+		
+		<Feeder>
+            <Name>172</Name>
+            <Uab>MONGDUONG1_172_U</Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia>MONGDUONG1_172_I</Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>MONGDUONG1_172_P</P>
+            <Q>MONGDUONG1_172_Q</Q>
+            <F></F>
+        </Feeder>
+		
+		<Feeder>
+            <Name>131</Name>
+            <Uab>MONGDUONG1_131_U</Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia>MONGDUONG1_131_I</Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>MONGDUONG1_131_P</P>
+            <Q>MONGDUONG1_131_Q</Q>
+            <F></F>
+        </Feeder>
+		
+		<Feeder>
+            <Name>132</Name>
+            <Uab>MONGDUONG1_132_U</Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia>MONGDUONG1_132_I</Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>MONGDUONG1_132_P</P>
+            <Q>MONGDUONG1_132_Q</Q>
+            <F></F>
+        </Feeder>
+	</Feeders>        
+</PowerPlantID>

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ScadaHisAPI.Defines;
 
 namespace ScadaHisAPI
 {
@@ -70,70 +69,9 @@ namespace ScadaHisAPI
             {
                 if (factory != null)
                 {
-                    if (String.Compare(factory.ToUpper(), _Define.MongDuong1_ID) == 0)
+                    foreach (string tag in Hubs.GetEnergySources(factory))
                     {
-                        foreach (string tag in MongDuong1Define.PowerTagNames)
-                            TagNameList.Add(tag + strTagTime);
-                    }
-
-                    else if (String.Compare(factory.ToUpper(), _Define.VinhTan2_ID) == 0)
-                    {
-                        foreach (string tag in VinhTan2Define.PowerTagNames)
-                            TagNameList.Add(tag + strTagTime);
-                    }
-
-                    else if (String.Compare(factory.ToUpper(), _Define.PhuMy1_ID) == 0)
-                    {
-                        foreach (string tag in PhuMy1Define.PowerTagNames)
-                            TagNameList.Add(tag + strTagTime);
-                    }
-
-                    else if (String.Compare(factory.ToUpper(), _Define.PhuMy21_ID) == 0)
-                    {
-                        foreach (string tag in PhuMy21Define.PowerTagNames)
-                            TagNameList.Add(tag + strTagTime);
-                    }
-
-                    else if (String.Compare(factory.ToUpper(), _Define.PhuMy22_ID) == 0)
-                    {
-                        foreach (string tag in PhuMy22Define.PowerTagNames)
-                            TagNameList.Add(tag + strTagTime);
-                    }
-
-                    else if (String.Compare(factory.ToUpper(), _Define.PhuMy3_ID) == 0)
-                    {
-                        foreach (string tag in PhuMy3Define.PowerTagNames)
-                            TagNameList.Add(tag + strTagTime);
-                    }
-
-                    else if (String.Compare(factory.ToUpper(), _Define.PhuMy4_ID) == 0)
-                    {
-                        foreach (string tag in PhuMy4Define.PowerTagNames)
-                            TagNameList.Add(tag + strTagTime);
-                    }
-
-                    else if (String.Compare(factory.ToUpper(), _Define.BaRia_ID) == 0)
-                    {
-                        foreach (string tag in BaRiaDefine.PowerTagNames)
-                            TagNameList.Add(tag + strTagTime);
-                    }
-
-                    else if (String.Compare(factory.ToUpper(), _Define.BuonKuop_ID) == 0)
-                    {
-                        foreach (string tag in BuonKuopDefine.PowerTagNames)
-                            TagNameList.Add(tag + strTagTime);
-                    }
-
-                    else if (String.Compare(factory.ToUpper(), _Define.BuonTuaSrah_ID) == 0)
-                    {
-                        foreach (string tag in BuonTuaSrahDefine.PowerTagNames)
-                            TagNameList.Add(tag + strTagTime);
-                    }
-
-                    else if (String.Compare(factory.ToUpper(), _Define.Srepok3_ID) == 0)
-                    {
-                        foreach (string tag in Srepok3Define.PowerTagNames)
-                            TagNameList.Add(tag + strTagTime);
+                        if (tag != null) TagNameList.Add(tag + strTagTime);
                     }
                 }
             }

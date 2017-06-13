@@ -53,8 +53,10 @@ namespace ScadaHisAPI
         {
             this.Name = name;
 
-            P = new OpReportHourlyData(_Define.strNameP);
-            Q = new OpReportHourlyData(_Define.strNameQ);
+            OpReportTitle title = Hubs.GetReportTitle();
+
+            P = new OpReportHourlyData(title.strNameP);
+            Q = new OpReportHourlyData(title.strNameQ);
 
             TagNames = tagnames;
         }
@@ -63,8 +65,8 @@ namespace ScadaHisAPI
         {
             //if ((datalist.Count() == 0) || (TagNames == null)) return false;
 
-            this.P.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.P, datalist));
-            this.Q.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Q, datalist));
+            this.P.SetValues(index, Utils.GetHourlyValues(TagNames.P, datalist));
+            this.Q.SetValues(index, Utils.GetHourlyValues(TagNames.Q, datalist));
 
             return true;
         }

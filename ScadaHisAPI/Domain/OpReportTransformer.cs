@@ -25,9 +25,11 @@ namespace ScadaHisAPI
         {
             Name = name;
 
-            Primary = new OpReportTransformerWind(_Define.strNameTransPrimary);
-            Secondary1 = new OpReportTransformerWind(_Define.strNameTransSecondary1);
-            Secondary2 = new OpReportTransformerWind(_Define.strNameTransSecondary2);
+            OpReportTitle title = Hubs.GetReportTitle();
+
+            Primary = new OpReportTransformerWind(title.strNameTransPrimary);
+            Secondary1 = new OpReportTransformerWind(title.strNameTransSecondary1);
+            Secondary2 = new OpReportTransformerWind(title.strNameTransSecondary2);
         }
 
         public bool ParsingValues(int index, OpReportTransformerTagNames TagNames, IEnumerable<DataPoint> datalist)
@@ -79,34 +81,36 @@ namespace ScadaHisAPI
         {
             Name = name;
 
-            Ua = new OpReportHourlyData(_Define.strNameUa);
-            Ub = new OpReportHourlyData(_Define.strNameUb);
-            Uc = new OpReportHourlyData(_Define.strNameUc);
+            OpReportTitle title = Hubs.GetReportTitle();
 
-            Ia = new OpReportHourlyData(_Define.strNameIa);
-            Ib = new OpReportHourlyData(_Define.strNameIb);
-            Ic = new OpReportHourlyData(_Define.strNameIc);
+            Ua = new OpReportHourlyData(title.strNameUa);
+            Ub = new OpReportHourlyData(title.strNameUb);
+            Uc = new OpReportHourlyData(title.strNameUc);
 
-            TAP = new OpReportHourlyData(_Define.strNameTAP);
-            OilTemp = new OpReportHourlyData(_Define.strNameOilTemp);
-            WindTemp = new OpReportHourlyData(_Define.strNameWindTemp);
+            Ia = new OpReportHourlyData(title.strNameIa);
+            Ib = new OpReportHourlyData(title.strNameIb);
+            Ic = new OpReportHourlyData(title.strNameIc);
+
+            TAP = new OpReportHourlyData(title.strNameTAP);
+            OilTemp = new OpReportHourlyData(title.strNameOilTemp);
+            WindTemp = new OpReportHourlyData(title.strNameWindTemp);
         }
 
         public bool ParsingValues(int index, OpReportTransformerTagNames TagNames, IEnumerable<DataPoint> datalist)
         {
             if ((datalist.Count() == 0) || (TagNames == null)) return false;
 
-            this.Ua.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ua, datalist));
-            this.Ub.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ub, datalist));
-            this.Uc.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Uc, datalist));
+            this.Ua.SetValues(index, Utils.GetHourlyValues(TagNames.Ua, datalist));
+            this.Ub.SetValues(index, Utils.GetHourlyValues(TagNames.Ub, datalist));
+            this.Uc.SetValues(index, Utils.GetHourlyValues(TagNames.Uc, datalist));
 
-            this.Ia.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ia, datalist));
-            this.Ib.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ib, datalist));
-            this.Ic.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ic, datalist));
+            this.Ia.SetValues(index, Utils.GetHourlyValues(TagNames.Ia, datalist));
+            this.Ib.SetValues(index, Utils.GetHourlyValues(TagNames.Ib, datalist));
+            this.Ic.SetValues(index, Utils.GetHourlyValues(TagNames.Ic, datalist));
 
-            this.TAP.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.TAP, datalist));
-            this.OilTemp.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.OilTemp, datalist));
-            this.WindTemp.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.WindTemp, datalist));
+            this.TAP.SetValues(index, Utils.GetHourlyValues(TagNames.TAP, datalist));
+            this.OilTemp.SetValues(index, Utils.GetHourlyValues(TagNames.OilTemp, datalist));
+            this.WindTemp.SetValues(index, Utils.GetHourlyValues(TagNames.WindTemp, datalist));
 
             return true;
         }

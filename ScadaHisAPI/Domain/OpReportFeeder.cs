@@ -10,7 +10,7 @@ namespace ScadaHisAPI
     public class OpReportFeeder
     {
         [DataMemberAttribute]
-        public string Name;
+        public string Name { get; set; }
 
         [DataMemberAttribute]
         public OpReportHourlyData P { get; set; }
@@ -28,6 +28,15 @@ namespace ScadaHisAPI
         public OpReportHourlyData Uca { get; set; }
 
         [DataMemberAttribute]
+        public OpReportHourlyData Ua { get; set; }
+
+        [DataMemberAttribute]
+        public OpReportHourlyData Ub { get; set; }
+
+        [DataMemberAttribute]
+        public OpReportHourlyData Uc { get; set; }
+
+        [DataMemberAttribute]
         public OpReportHourlyData Ia { get; set; }
 
         [DataMemberAttribute]
@@ -43,34 +52,44 @@ namespace ScadaHisAPI
         {
             this.Name = name;
 
-            Uab = new OpReportHourlyData(_Define.strNameUab);
-            Ubc = new OpReportHourlyData(_Define.strNameUbc);
-            Uca = new OpReportHourlyData(_Define.strNameUca);
+            OpReportTitle title = Hubs.GetReportTitle();
 
-            Ia = new OpReportHourlyData(_Define.strNameIa);
-            Ib = new OpReportHourlyData(_Define.strNameIb);
-            Ic = new OpReportHourlyData(_Define.strNameIc);
+            Uab = new OpReportHourlyData(title.strNameUab);
+            Ubc = new OpReportHourlyData(title.strNameUbc);
+            Uca = new OpReportHourlyData(title.strNameUca);
 
-            P = new OpReportHourlyData(_Define.strNameP);
-            Q = new OpReportHourlyData(_Define.strNameQ);
-            F = new OpReportHourlyData(_Define.strNameF);
+            Ua = new OpReportHourlyData(title.strNameUa);
+            Ub = new OpReportHourlyData(title.strNameUb);
+            Uc = new OpReportHourlyData(title.strNameUc);
+
+            Ia = new OpReportHourlyData(title.strNameIa);
+            Ib = new OpReportHourlyData(title.strNameIb);
+            Ic = new OpReportHourlyData(title.strNameIc);
+
+            P = new OpReportHourlyData(title.strNameP);
+            Q = new OpReportHourlyData(title.strNameQ);
+            F = new OpReportHourlyData(title.strNameF);
         }
 
         public bool ParsingValues(int index, OpReportFeederTagNames TagNames, IEnumerable<DataPoint> datalist)
         {
             //if ((datalist.Count() == 0) || (TagNames == null)) return false;           
 
-            this.Uab.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Uab, datalist));
-            this.Ubc.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ubc, datalist));
-            this.Uca.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Uca, datalist));
+            this.Uab.SetValues(index, Utils.GetHourlyValues(TagNames.Uab, datalist));
+            this.Ubc.SetValues(index, Utils.GetHourlyValues(TagNames.Ubc, datalist));
+            this.Uca.SetValues(index, Utils.GetHourlyValues(TagNames.Uca, datalist));
 
-            this.Ia.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ia, datalist));
-            this.Ib.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ib, datalist));
-            this.Ic.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Ic, datalist));
+            this.Ua.SetValues(index, Utils.GetHourlyValues(TagNames.Ua, datalist));
+            this.Ub.SetValues(index, Utils.GetHourlyValues(TagNames.Ub, datalist));
+            this.Uc.SetValues(index, Utils.GetHourlyValues(TagNames.Uc, datalist));
 
-            this.P.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.P, datalist));
-            this.Q.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.Q, datalist));
-            this.F.SetValues(index, OpReportUtils.GetHourlyValues(TagNames.F, datalist));
+            this.Ia.SetValues(index, Utils.GetHourlyValues(TagNames.Ia, datalist));
+            this.Ib.SetValues(index, Utils.GetHourlyValues(TagNames.Ib, datalist));
+            this.Ic.SetValues(index, Utils.GetHourlyValues(TagNames.Ic, datalist));
+
+            this.P.SetValues(index, Utils.GetHourlyValues(TagNames.P, datalist));
+            this.Q.SetValues(index, Utils.GetHourlyValues(TagNames.Q, datalist));
+            this.F.SetValues(index, Utils.GetHourlyValues(TagNames.F, datalist));
 
             return true;
         }
@@ -82,6 +101,9 @@ namespace ScadaHisAPI
         public string Uab { get; set; }
         public string Ubc { get; set; }
         public string Uca { get; set; }
+        public string Ua { get; set; }
+        public string Ub { get; set; }
+        public string Uc { get; set; }
         public string Ia { get; set; }
         public string Ib { get; set; }
         public string Ic { get; set; }
@@ -96,6 +118,9 @@ namespace ScadaHisAPI
             result.Add(Uab);
             result.Add(Ubc);
             result.Add(Uca);
+            result.Add(Ua);
+            result.Add(Ub);
+            result.Add(Uc);
             result.Add(Ia);
             result.Add(Ib);
             result.Add(Ic);

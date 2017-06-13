@@ -1,0 +1,271 @@
+﻿<BaRia>
+	<EnergySources>
+        <tagname>PMG_BR_GT1_MW</tagname> 
+        <tagname>PMG_BR_GT2_MW</tagname>
+		<tagname>PMG_BR_GT3_MW</tagname>
+		<tagname>PMG_BR_GT4_MW</tagname>
+		<tagname>PMG_BR_GT5_MW</tagname>
+		<tagname>PMG_BR_GT6_MW</tagname>
+		<tagname>PMG_BR_GT7_MW</tagname>
+		<tagname>PMG_BR_GT8_MW</tagname>
+		<tagname>PMG_BR_ST9_MW</tagname>
+	</EnergySources>
+	
+	<P_Generators>
+        <G1>PMG_BR_GT1_MW</G1> 
+        <G1>PMG_BR_GT2_MW</G1> 
+		<G1>PMG_BR_GT3_MW</G1> 
+		<G1>PMG_BR_GT4_MW</G1> 
+		<G1>PMG_BR_GT5_MW</G1> 
+		<G1>PMG_BR_GT6_MW</G1> 
+		<G1>PMG_BR_GT7_MW</G1> 
+		<G1>PMG_BR_GT8_MW</G1> 
+		<G1>PMG_BR_ST9_MW</G1> 
+	</P_Generators>
+	
+	<U_Generators>
+		<G1></G1>
+		<G2></G2>
+	</U_Generators>
+	
+	<I_Generators>
+		<G1></G1>
+		<G2></G2>
+	</I_Generators>
+
+    <Generators>
+        <Generator>
+            <Name>Tổ máy GT1</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>PMG_BR_GT1_MW</P>
+            <Q></Q>
+            <F></F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+			
+		<Generator>
+            <Name>Tổ máy GT2</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>PMG_BR_GT2_MW</P>
+            <Q></Q>
+            <F></F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+		
+		<Generator>
+            <Name>Tổ máy GT3</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>PMG_BR_GT3_MW</P>
+            <Q></Q>
+            <F></F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+		
+		<Generator>
+            <Name>Tổ máy GT4</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>PMG_BR_GT4_MW</P>
+            <Q></Q>
+            <F></F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+		
+		<Generator>
+            <Name>Tổ máy GT5</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>PMG_BR_GT5_MW</P>
+            <Q></Q>
+            <F></F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+		
+		<Generator>
+            <Name>Tổ máy GT6</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>PMG_BR_GT6_MW</P>
+            <Q></Q>
+            <F></F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+		
+		<Generator>
+            <Name>Tổ máy GT7</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>PMG_BR_GT7_MW</P>
+            <Q></Q>
+            <F></F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+		
+		<Generator>
+            <Name>Tổ máy GT8</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>PMG_BR_GT8_MW</P>
+            <Q></Q>
+            <F></F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+		
+		<Generator>
+            <Name>Tổ máy ST9</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>PMG_BR_ST9_MW</P>
+            <Q></Q>
+            <F></F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+	</Generators>
+	
+    <Feeders>
+        <Feeder>
+            <Name>110kV Line #1</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>PMG_BR_110KV_LINE1_MW</P>
+            <Q></Q>
+            <F></F>
+        </Feeder>
+		<Feeder>
+            <Name>110kV Line #2</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>PMG_BR_110KV_LINE2_MW</P>
+            <Q></Q>
+            <F></F>
+        </Feeder>
+		<Feeder>
+            <Name>220kV Line #1</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>PMG_BR_220KV_LINE1_MW</P>
+            <Q></Q>
+            <F></F>
+        </Feeder>
+		<Feeder>
+            <Name>220kV Line #2</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>PMG_BR_220KV_LINE2_MW</P>
+            <Q></Q>
+            <F></F>
+        </Feeder>
+	</Feeders>        
+</BaRia>

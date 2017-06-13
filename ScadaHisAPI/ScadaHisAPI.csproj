@@ -98,17 +98,6 @@
     <Compile Include="AnalogLive.cs">
       <DependentUpon>HisModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Defines\BaRiaDefine.cs" />
-    <Compile Include="Defines\BuonKuopDefine.cs" />
-    <Compile Include="Defines\BuonTuaSrahDefine.cs" />
-    <Compile Include="Defines\MongDuong1Define.cs" />
-    <Compile Include="Defines\PhuMy1Define.cs" />
-    <Compile Include="Defines\PhuMy21Define.cs" />
-    <Compile Include="Defines\PhuMy22Define.cs" />
-    <Compile Include="Defines\PhuMy3Define.cs" />
-    <Compile Include="Defines\PhuMy4Define.cs" />
-    <Compile Include="Defines\Srepok3Define.cs" />
-    <Compile Include="Defines\VinhTan2Define.cs" />
     <Compile Include="Defines\_Define.cs" />
     <Compile Include="Controller\AnalogSummaryHistoryController.cs" />
     <Compile Include="Controller\AnalogLiveController.cs" />
@@ -117,6 +106,7 @@
     </Compile>
     <Compile Include="Controller\DiscreteLiveController.cs" />
     <Compile Include="Domain\OpReportFactoryPQ.cs" />
+    <Compile Include="Domain\OpReportTitle.cs" />
     <Compile Include="EnergyUtils.cs" />
     <Compile Include="Domain\DataPoint.cs" />
     <Compile Include="DiscreteLive.cs">
@@ -148,7 +138,7 @@
     <Compile Include="Domain\OpReportTransformer.cs" />
     <Compile Include="Controller\OpReportController.cs" />
     <Compile Include="Domain\OpReportFeeder.cs" />
-    <Compile Include="OpReportUtils.cs" />
+    <Compile Include="Hubs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebAPIConfig.cs" />
     <Compile Include="Utils.cs" />

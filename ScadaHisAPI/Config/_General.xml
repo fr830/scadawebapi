@@ -1,0 +1,42 @@
+﻿<General>
+	<PowerPlantIDs>
+        <id>VINHTAN2</id>
+        <id>MONGDUONG</id>
+        <id>PHUMY1</id>
+        <id>PHUMY21</id>
+        <id>PHUMY22</id>
+        <id>PHUMY3</id>
+        <id>PHUMY4</id>
+        <id>BARIA</id>
+        <id>BUONKUOP</id>
+        <id>BUONTUASRAH</id>
+        <id>SREPOK3</id>
+	</PowerPlantIDs>
+
+	<ReportTitle>
+        <Parameters>Thông số vận hành</Parameters>
+        <Rotor>Rotor</Rotor>
+        <Uab>Uab (kV)</Uab>
+        <Ubc>Ubc (kV)</Ubc>
+        <Uca>Uca (kV)</Uca>
+        <Ua>Ua (kV)</Ua>
+        <Ub>Ub (kV)</Ub>
+        <Uc>Uc (kV)</Uc>
+        <Ia>Ia (A)</Ia>
+        <Ib>Ib (A)</Ib>
+        <Ic>Ic (A)</Ic>
+        <P>P (MW)</P>
+        <Q>Q (MVar)</Q>
+        <F>Tần số (Hz)</F>
+        <TAP>Vị trí TAP</TAP>
+        <OilTemp>Nhiệt độ dầu (C)</OilTemp>
+        <WindTemp>Nhiệt độ cuộn dây (C)</WindTemp>
+		<Energy>Sản lượng (MWh)</Energy>
+        <Voltage>Điện áp (kV)</Voltage>
+        <Current>Dòng điện (A)</Current>
+        <Velocity>Tốc độ (rpm)</Velocity>
+        <TransPrimary>Sơ cấp</TransPrimary>
+        <TransSecondary1>Thứ cấp 1</TransSecondary1>
+        <TransSecondary2>Thứ cấp 2</TransSecondary2>
+    </ReportTitle>
+</General>

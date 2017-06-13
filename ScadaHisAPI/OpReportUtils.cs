@@ -2,201 +2,130 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using ScadaHisAPI.Defines;
+using System.Xml.Linq;
 
 namespace ScadaHisAPI
 {
     public class OpReportUtils
     {
+        private static string GetFactoryConfigFile(string FactoryName)
+        {
+            string configDirectory = HttpContext.Current.Server.MapPath("~") + "\\Config";
+            string generalConfig = configDirectory + "\\_General.xml";
+
+            XElement content = XElement.Load(generalConfig);
+
+
+
+            return configDirectory + "\\" + FactoryName + ".xml";
+        }
+
+        //public static List<string> GetFactoryList()
+        //{
+
+        //}
+
         public static List<OpReportGeneratorTagNames> GetGeneratorTagNames(string FactoryName)
         {
-            if (String.Compare(FactoryName.ToUpper(), _Define.MongDuong1_ID) == 0)
-                return new List<OpReportGeneratorTagNames>(MongDuong1Define.Generators);
+            string xmlpath = GetFactoryConfigFile(FactoryName);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.VinhTan2_ID) == 0)
-                return new List<OpReportGeneratorTagNames>(VinhTan2Define.Generators);
+            XElement content = XElement.Load(xmlpath);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy1_ID) == 0)
-                return new List<OpReportGeneratorTagNames>(PhuMy1Define.Generators);
+            List<OpReportGeneratorTagNames> result =
+                (from x in content.Element("Generators").Elements("Generator")
+                 select new OpReportGeneratorTagNames()
+                 {
+                     Name = x.Element("Name").Value,
+                     Uab = x.Element("Uab").Value,
+                     Ubc = x.Element("Ubc").Value,
+                     Uca = x.Element("Uca").Value,
+                     Ua = x.Element("Ua").Value,
+                     Ub = x.Element("Ub").Value,
+                     Uc = x.Element("Uc").Value,
+                     Ia = x.Element("Ia").Value,
+                     Ib = x.Element("Ib").Value,
+                     Ic = x.Element("Ic").Value,
+                     P = x.Element("P").Value,
+                     Q = x.Element("Q").Value,
+                     F = x.Element("F").Value,
+                     IRotor = x.Element("IRotor").Value,
+                     URotor = x.Element("URotor").Value,
+                     VRotor = x.Element("VRotor").Value,
+                 }).ToList();
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy21_ID) == 0)
-                return new List<OpReportGeneratorTagNames>(PhuMy21Define.Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy22_ID) == 0)
-                return new List<OpReportGeneratorTagNames>(PhuMy22Define.Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy3_ID) == 0)
-                return new List<OpReportGeneratorTagNames>(PhuMy3Define.Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy4_ID) == 0)
-                return new List<OpReportGeneratorTagNames>(PhuMy4Define.Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BaRia_ID) == 0)
-                return new List<OpReportGeneratorTagNames>(BaRiaDefine.Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonKuop_ID) == 0)
-                return new List<OpReportGeneratorTagNames>(BuonKuopDefine.Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonTuaSrah_ID) == 0)
-                return new List<OpReportGeneratorTagNames>(BuonTuaSrahDefine.Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.Srepok3_ID) == 0)
-                return new List<OpReportGeneratorTagNames>(Srepok3Define.Generators);
-
-            return new List<OpReportGeneratorTagNames>();
+            return result;
         }
 
         public static List<OpReportFeederTagNames> GetFeederTagNames(string FactoryName)
         {
-            if (String.Compare(FactoryName.ToUpper(), _Define.MongDuong1_ID) == 0)
-                return new List<OpReportFeederTagNames>(MongDuong1Define.Feeders);
+            string xmlpath = GetFactoryConfigFile(FactoryName);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.VinhTan2_ID) == 0)
-                return new List<OpReportFeederTagNames>(VinhTan2Define.Feeders);
+            XElement content = XElement.Load(xmlpath);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy1_ID) == 0)
-                return new List<OpReportFeederTagNames>(PhuMy1Define.Feeders);
+            List<OpReportFeederTagNames> result =
+                (from x in content.Element("Feeders").Elements("Feeder")
+                 select new OpReportFeederTagNames()
+                 {
+                     Name = x.Element("Name").Value,
+                     Uab = x.Element("Uab").Value,
+                     Ubc = x.Element("Ubc").Value,
+                     Uca = x.Element("Uca").Value,
+                     Ua = x.Element("Ua").Value,
+                     Ub = x.Element("Ub").Value,
+                     Uc = x.Element("Uc").Value,
+                     Ia = x.Element("Ia").Value,
+                     Ib = x.Element("Ib").Value,
+                     Ic = x.Element("Ic").Value,
+                     P = x.Element("P").Value,
+                     Q = x.Element("Q").Value,
+                     F = x.Element("F").Value,
+                 }).ToList();
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy21_ID) == 0)
-                return new List<OpReportFeederTagNames>(PhuMy21Define.Feeders);
+            return result;
+        }
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy22_ID) == 0)
-                return new List<OpReportFeederTagNames>(PhuMy22Define.Feeders);
+        public static List<string> GetEnergySources(string FactoryName)
+        {
+            string xmlpath = GetFactoryConfigFile(FactoryName);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy3_ID) == 0)
-                return new List<OpReportFeederTagNames>(PhuMy3Define.Feeders);
+            XElement content = XElement.Load(xmlpath);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy4_ID) == 0)
-                return new List<OpReportFeederTagNames>(PhuMy4Define.Feeders);
+            List<string> result = content.Element("EnergySources").Elements().Select(s => (string)s).ToList();
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BaRia_ID) == 0)
-                return new List<OpReportFeederTagNames>(BaRiaDefine.Feeders);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonKuop_ID) == 0)
-                return new List<OpReportFeederTagNames>(BuonKuopDefine.Feeders);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonTuaSrah_ID) == 0)
-                return new List<OpReportFeederTagNames>(BuonTuaSrahDefine.Feeders);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.Srepok3_ID) == 0)
-                return new List<OpReportFeederTagNames>(Srepok3Define.Feeders);
-
-            return new List<OpReportFeederTagNames>();
+            return result;
         }
 
         public static List<string> GetUList(string FactoryName)
         {
-            if (String.Compare(FactoryName.ToUpper(), _Define.MongDuong1_ID) == 0)
-                return new List<string>(MongDuong1Define.U_Generators);
+            string xmlpath = GetFactoryConfigFile(FactoryName);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.VinhTan2_ID) == 0)
-                return new List<string>(VinhTan2Define.U_Generators);
+            XElement content = XElement.Load(xmlpath);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy1_ID) == 0)
-                return new List<string>(PhuMy1Define.U_Generators);
+            List<string> result = content.Element("U_Generators").Elements().Select(s => (string)s).ToList();
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy21_ID) == 0)
-                return new List<string>(PhuMy21Define.U_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy22_ID) == 0)
-                return new List<string>(PhuMy22Define.U_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy3_ID) == 0)
-                return new List<string>(PhuMy3Define.U_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy4_ID) == 0)
-                return new List<string>(PhuMy4Define.U_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BaRia_ID) == 0)
-                return new List<string>(BaRiaDefine.U_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonKuop_ID) == 0)
-                return new List<string>(BuonKuopDefine.U_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonTuaSrah_ID) == 0)
-                return new List<string>(BuonTuaSrahDefine.U_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.Srepok3_ID) == 0)
-                return new List<string>(Srepok3Define.U_Generators);
-
-
-            return new List<string>();
+            return result;
         }
 
         public static List<string> GetIList(string FactoryName)
         {
-            if (String.Compare(FactoryName.ToUpper(), _Define.MongDuong1_ID) == 0)
-                return new List<string>(MongDuong1Define.I_Generators);
+            string xmlpath = GetFactoryConfigFile(FactoryName);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.VinhTan2_ID) == 0)
-                return new List<string>(VinhTan2Define.I_Generators);
+            XElement content = XElement.Load(xmlpath);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy1_ID) == 0)
-                return new List<string>(PhuMy1Define.I_Generators);
+            List<string> result = content.Element("I_Generators").Elements().Select(s => (string)s).ToList();
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy21_ID) == 0)
-                return new List<string>(PhuMy21Define.I_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy22_ID) == 0)
-                return new List<string>(PhuMy22Define.I_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy3_ID) == 0)
-                return new List<string>(PhuMy3Define.I_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy4_ID) == 0)
-                return new List<string>(PhuMy4Define.I_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BaRia_ID) == 0)
-                return new List<string>(BaRiaDefine.I_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonKuop_ID) == 0)
-                return new List<string>(BuonKuopDefine.I_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonTuaSrah_ID) == 0)
-                return new List<string>(BuonTuaSrahDefine.I_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.Srepok3_ID) == 0)
-                return new List<string>(Srepok3Define.I_Generators);
-
-            return new List<string>();
+            return result;
         }
 
         public static List<string> GetPList(string FactoryName)
         {
-            if (String.Compare(FactoryName.ToUpper(), _Define.MongDuong1_ID) == 0)
-                return new List<string>(MongDuong1Define.P_Generators);
+            string xmlpath = GetFactoryConfigFile(FactoryName);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.VinhTan2_ID) == 0)
-                return new List<string>(VinhTan2Define.P_Generators);
+            XElement content = XElement.Load(xmlpath);
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy1_ID) == 0)
-                return new List<string>(PhuMy1Define.U_Generators);
+            List<string> result = content.Element("P_Generators").Elements().Select(s => (string)s).ToList();
 
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy21_ID) == 0)
-                return new List<string>(PhuMy21Define.P_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy22_ID) == 0)
-                return new List<string>(PhuMy22Define.P_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy3_ID) == 0)
-                return new List<string>(PhuMy3Define.P_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.PhuMy4_ID) == 0)
-                return new List<string>(PhuMy4Define.P_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BaRia_ID) == 0)
-                return new List<string>(BaRiaDefine.P_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonKuop_ID) == 0)
-                return new List<string>(BuonKuopDefine.P_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.BuonTuaSrah_ID) == 0)
-                return new List<string>(BuonTuaSrahDefine.P_Generators);
-
-            else if (String.Compare(FactoryName.ToUpper(), _Define.Srepok3_ID) == 0)
-                return new List<string>(Srepok3Define.P_Generators);
-
-            return new List<string>();
+            return result;
         }
 
         public static double? GetHourlyValues(string TagName, IEnumerable<DataPoint> datalist)

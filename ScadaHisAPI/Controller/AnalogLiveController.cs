@@ -23,7 +23,7 @@ namespace ScadaHisAPI
         public IEnumerable<DataPoint> Post([FromBody]string[] TagNameList)
         {
             var datalist = ScadaHisDao.AnalogLive(TagNameList);
-          
+
             List<DataPoint> result = datalist.ToList();
 
             if (TagNameList.Contains("PTOTAL_GENCO3"))

@@ -1,0 +1,94 @@
+﻿<PowerPlantID>
+	<EnergySources>
+        <tagname>PMG_PM22_LINE1_MW</tagname> 
+        <tagname>PMG_PM22_LINE2_MW</tagname>
+	</EnergySources>
+	
+	<P_Generators>
+        <G1></G1> 
+        <G2></G2>
+	</P_Generators>
+	
+	<U_Generators>
+		<G1></G1>
+		<G2></G2>
+	</U_Generators>
+	
+	<I_Generators>
+		<G1></G1>
+		<G2></G2>
+	</I_Generators>
+
+    <Generators>
+        <Generator>
+            <Name></Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P></P>
+            <Q></Q>
+            <F></F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+			
+		<Generator>
+            <Name></Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P></P>
+            <Q></Q>
+            <F></F>
+            <URotor></URotor>
+            <IRotor></IRotor>
+            <VRotor></VRotor>
+		</Generator>
+	</Generators>
+	
+    <Feeders>
+        <Feeder>
+            <Name>Line #1</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>PMG_PM22_LINE1_MW</P>
+            <Q></Q>
+            <F></F>
+        </Feeder>
+		<Feeder>
+            <Name>Line #2</Name>
+            <Uab></Uab>
+            <Ubc></Ubc>
+            <Uca></Uca>
+			<Ua></Ua>
+            <Ub></Ub>
+            <Uc></Uc>
+            <Ia></Ia>
+            <Ib></Ib>
+            <Ic></Ic>
+            <P>PMG_PM22_LINE2_MW</P>
+            <Q></Q>
+            <F></F>
+        </Feeder>
+	</Feeders>        
+</PowerPlantID>
