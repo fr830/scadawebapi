@@ -40,14 +40,17 @@ namespace ScadaHisAPI
                 TagNameQuery.AddRange(tag.ToStringArray());
             }
 
+            List<DataPoint> data = ScadaHisDao.AnalogHistoryHourly(start, end, TagNameQuery.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
+
             while (start < end)
             {
                 DateTime end2 = start.AddMinutes(60);
-                List<DataPoint> data = ScadaHisDao.AnalogSummaryHistory(start, end2, TagNameQuery.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
+
+                List<DataPoint> subdata = (from p in data where start.Hour == p.DateTime.Hour select p).ToList();
 
                 for (int i = 0; i < result.Count; i++)
                 {
-                    result.ElementAt(i).ParsingValues(start.Hour, TagNames.ElementAt(i), data);
+                    result.ElementAt(i).ParsingValues(start.Hour, TagNames.ElementAt(i), subdata);
                 }
 
                 start = end2;
@@ -83,16 +86,19 @@ namespace ScadaHisAPI
             DateTime start = new DateTime(year, month, day);
             DateTime end = start.AddDays(1);
 
+            data = ScadaHisDao.AnalogHistoryHourly(start, end, TagNameQuery.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
+
             while (start < end)
             {
                 DateTime end2 = start.AddMinutes(60);
-                data = ScadaHisDao.AnalogSummaryHistory(start, end2, TagNameQuery.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
+
+                List<DataPoint> subdata = (from p in data where start.Hour == p.DateTime.Hour select p).ToList();
 
                 foreach (OpReportFactoryPQ factory in result)
                 {
                     foreach(OpReportGeneratorPQ gen in factory.Generator)
                     {
-                        gen.ParsingValues(start.Hour, data);
+                        gen.ParsingValues(start.Hour, subdata);
                     }
                 }
 
@@ -123,14 +129,18 @@ namespace ScadaHisAPI
                 TagNameQuery.AddRange(tag.ToStringArray());
             }
 
+
+            List<DataPoint> data = ScadaHisDao.AnalogHistoryHourly(start, end, TagNameQuery.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
+
             while (start < end)
             {
                 DateTime end2 = start.AddMinutes(60);
-                List<DataPoint> data = ScadaHisDao.AnalogSummaryHistory(start, end2, TagNameQuery.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
+
+                List<DataPoint> subdata = (from p in data where start.Hour == p.DateTime.Hour select p).ToList();
 
                 for (int i = 0; i < result.Count; i++)
                 {
-                    result.ElementAt(i).ParsingValues(start.Hour, TagNames.ElementAt(i), data);
+                    result.ElementAt(i).ParsingValues(start.Hour, TagNames.ElementAt(i), subdata);
                 }
 
                 start = end2;

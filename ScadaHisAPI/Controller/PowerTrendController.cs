@@ -18,7 +18,7 @@ namespace ScadaHisAPI
             try
             {
                 List<DataPoint> result = EnergyUtils.PowerHistory30M(start, end, FactoryList);
-
+                
                 /* group by DateTime and sum = Ptotal */
                 List<DataPoint> data = (from p in result where (p.Value.HasValue) select p)
                     .OrderBy(x => x.DateTime)
@@ -62,7 +62,7 @@ namespace ScadaHisAPI
 
                 if (taglist.Count > 0)
                 {
-                    result = ScadaHisDao.AnalogSummaryHistoryCyclic(start, end, 30, taglist.ToArray(), ScadaHisDao.SummaryType.Average);
+                    result = ScadaHisDao.AnalogHistory30Min(start, end, taglist.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
                 }
 
                 return result;
@@ -83,7 +83,7 @@ namespace ScadaHisAPI
 
                 if (taglist.Count > 0)
                 {
-                    result = ScadaHisDao.AnalogSummaryHistoryCyclic(start, end, 30, taglist.ToArray(), ScadaHisDao.SummaryType.Average);
+                    result = ScadaHisDao.AnalogHistory30Min(start, end, taglist.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
                 }
 
                 return result;
@@ -104,7 +104,7 @@ namespace ScadaHisAPI
 
                 if (taglist.Count > 0)
                 {
-                    result = ScadaHisDao.AnalogSummaryHistoryCyclic(start, end, 30, taglist.ToArray(), ScadaHisDao.SummaryType.Average);
+                    result = ScadaHisDao.AnalogHistory30Min(start, end, taglist.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
                 }
 
                 return result;

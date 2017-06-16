@@ -163,6 +163,7 @@
       <DependentUpon>HisModel.edmx</DependentUpon>
       <LastGenOutput>HisModel.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\GENCO3.pubxml" />
     <None Include="Properties\PublishProfiles\ScadaHis.pubxml" />
     <None Include="Properties\PublishProfiles\ScadaHisAPIG3.pubxml" />
     <None Include="Web.Debug.config">

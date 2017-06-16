@@ -105,7 +105,133 @@ namespace ScadaHisAPI
             catch { return null; }
         }
 
-        public static IEnumerable<DataPoint> AnalogSummaryHistory(DateTime start, DateTime end, string[] TagNameList, SummaryType summaryType)
+        //private static string DateTime2String(DateTime dt)
+        //{
+        //    return dt.Month.ToString() + "-" + dt.Day.ToString() + "-" + dt.Year.ToString() + " " + dt.Hour.ToString() + ":" + dt.Minute.ToString() + ":" + dt.Second.ToString();
+        //}
+
+        //public static IEnumerable<DataPoint> AnalogSummaryHistoryHourly(DateTime start, DateTime end, string[] TagNameList, SummaryType summaryType)
+        //{
+        //    try
+        //    {
+        //        List<DataPoint> result = new List<DataPoint>();
+
+        //        string strSummary = summaryType == SummaryType.Average ? "AVG(Value)" : (summaryType == SummaryType.Maximum ? "MAX(Value)" : "MIN(Value)");
+
+        //        string querry = "Select DATEADD(hh, DATEPART(hh, DateTime), CAST(CAST(DateTime AS date) AS datetime)) AS DateTime, TagName, " + strSummary + " AS Value, AVG(OPCQuality) AS OPCQuality from AnalogHistory where TagName IN ('";
+
+        //        foreach (string tag in TagNameList)
+        //        {
+        //            querry += "','" + tag;
+        //        }
+        //        querry += "')";
+
+        //        querry += " and DateTime >= '" + DateTime2String(start) + "'";
+
+        //        querry += " and DateTime <= '" + DateTime2String(end) + "'";
+
+        //        querry += " and OPCQuality >= 192";
+
+        //        querry += " GROUP BY DATEADD(hh, DATEPART(hh, DateTime), CAST(CAST(DateTime AS date) AS datetime)), TagName";
+
+        //        querry += " ORDER BY DateTime ASC";
+
+        //        List<DataPoint> q = db.Database.SqlQuery<DataPoint>(querry).ToList();
+
+        //        result.AddRange(q);
+
+        //        return result;
+        //    }
+        //    catch { return null; }
+        //}
+
+        public static IEnumerable<DataPoint> AnalogHistoryHourly(DateTime start, DateTime end, string[] TagNameList, SummaryType summaryType)
+        {
+            try
+            {
+                List<DataPoint> result = new List<DataPoint>();
+
+                /* workaround: to prevent invalid Tagname request to server */
+                string str_null = "";
+
+                var first = (from p in db.AnalogHistories
+                             where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.DateTime >= start && p.DateTime <= end && p.OPCQuality >= 192
+                             orderby p.DateTime
+                             select new DataPoint
+                             {
+                                 DateTime = p.DateTime,
+                                 TagName = p.TagName,
+                                 Value = p.Value,
+                                 OPCQuality = p.OPCQuality,
+                             });
+
+                // Group by Hour in DateTime and TagName
+                var groups = first.ToList().Select(x => new DataPoint
+                {
+                    DateTime = x.DateTime.Date.AddHours(x.DateTime.Hour),
+                    TagName = x.TagName,
+                    Value = x.Value,
+                    OPCQuality = x.OPCQuality
+                }).GroupBy(x => new {x.DateTime, x.TagName });
+
+                var q = (from g in groups
+                         select new DataPoint
+                         {
+                             DateTime = g.Key.DateTime,
+                             TagName = g.Key.TagName,
+                             Value = summaryType == SummaryType.Average ? g.Average(x => x.Value) : (summaryType == SummaryType.Maximum ? g.Max(x => x.Value) : g.Min(x => x.Value)),
+                             OPCQuality = (int)g.Min(y => y.OPCQuality)
+                         });
+
+                return q;
+            }
+            catch { return null; }
+        }
+
+        public static IEnumerable<DataPoint> AnalogHistory30Min(DateTime start, DateTime end, string[] TagNameList, SummaryType summaryType)
+        {
+            try
+            {
+                List<DataPoint> result = new List<DataPoint>();
+
+                /* workaround: to prevent invalid Tagname request to server */
+                string str_null = "";
+
+                var first = (from p in db.AnalogHistories
+                             where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.DateTime >= start && p.DateTime <= end && p.OPCQuality >= 192
+                             orderby p.DateTime
+                             select new DataPoint
+                             {
+                                 DateTime = p.DateTime,
+                                 TagName = p.TagName,
+                                 Value = p.Value,
+                                 OPCQuality = p.OPCQuality,
+                             });
+
+                // Group by Hour in DateTime and TagName
+                var groups = first.ToList().Select(x => new DataPoint
+                {
+                    DateTime = x.DateTime.Minute < 30 ? x.DateTime.Date.AddHours(x.DateTime.Hour) : x.DateTime.Date.AddHours(x.DateTime.Hour).AddMinutes(30),
+                    TagName = x.TagName,
+                    Value = x.Value,
+                    OPCQuality = x.OPCQuality
+                }).GroupBy(x => new { x.DateTime, x.TagName });
+
+                var q = (from g in groups
+                         select new DataPoint
+                         {
+                             DateTime = g.Key.DateTime,
+                             TagName = g.Key.TagName,
+                             Value = summaryType == SummaryType.Average ? g.Average(x => x.Value) : (summaryType == SummaryType.Maximum ? g.Max(x => x.Value) : g.Min(x => x.Value)),
+                             OPCQuality = (int)g.Min(y => y.OPCQuality)
+                         });
+
+                return q;
+            }
+            catch { return null; }
+        }
+
+         public static IEnumerable<DataPoint> AnalogSummaryHistory(DateTime start, DateTime end, string[] TagNameList, SummaryType summaryType)
         {
             try
             {
