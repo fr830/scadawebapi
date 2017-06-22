@@ -104,6 +104,7 @@
       <DependentUpon>HisModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controller\DiscreteLiveController.cs" />
+    <Compile Include="Domain\SumTagName.cs" />
     <Compile Include="Domain\OpReportFactoryPQ.cs" />
     <Compile Include="Domain\OpReportTitle.cs" />
     <Compile Include="EnergyUtils.cs" />

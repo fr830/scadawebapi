@@ -25,5 +25,40 @@ namespace ScadaHisAPI
 
             return (from p in datalist where p.TagName == TagName select (p.Value != null ? (double?)Math.Round((double)p.Value, 2) : 0)).FirstOrDefault();
         }
+
+        public static List<SumTagName> SearchSumTagname(string[] TagnameList)
+        {
+            List<SumTagName> result = new List<SumTagName>();
+            char sumChar = '+';
+            char spaceChar = ' ';
+
+            foreach (string tag in TagnameList)
+            {
+                if (tag != null && tag.Contains(sumChar))
+                {
+                    SumTagName sumTag = new SumTagName(tag);
+                    sumTag.SumList = new List<string>(tag.Split(new char[]{sumChar, spaceChar}, StringSplitOptions.RemoveEmptyEntries));
+                    result.Add(sumTag);
+                }
+            }
+
+            return result;
+        }
+
+        public static DataPoint DataPointSum(IEnumerable<DataPoint> datalist, string[] TagNameList, string NewTagName)
+        {
+            DataPoint sum = new DataPoint() { DateTime = DateTime.Now, TagName = NewTagName, Value = null, OPCQuality = 0 };
+
+            var data = (from p in datalist where TagNameList.Contains(p.TagName) select p);
+
+            if (data.Count<DataPoint>() > 0)
+            {
+                sum.DateTime = data.FirstOrDefault().DateTime;
+                sum.Value = (from p in datalist where  p.Value.HasValue select p.Value).Sum();
+                sum.OPCQuality = data.FirstOrDefault().OPCQuality;
+            }
+
+            return sum;
+        }
     }
 }
