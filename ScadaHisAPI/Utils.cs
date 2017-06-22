@@ -54,7 +54,7 @@ namespace ScadaHisAPI
             if (data.Count<DataPoint>() > 0)
             {
                 sum.DateTime = data.FirstOrDefault().DateTime;
-                sum.Value = (from p in datalist where  p.Value.HasValue select p.Value).Sum();
+                sum.Value = (from p in data where  p.Value.HasValue select p.Value).Sum();
                 sum.OPCQuality = data.FirstOrDefault().OPCQuality;
             }
 
