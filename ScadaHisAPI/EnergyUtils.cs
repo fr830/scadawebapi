@@ -69,7 +69,7 @@ namespace ScadaHisAPI
             {
                 if (factory != null)
                 {
-                    foreach (string tag in Hubs.GetEnergySources(factory))
+                    foreach (string tag in XMLConfig.GetEnergySources(factory))
                     {
                         if (tag != null) TagNameList.Add(tag + strTagTime);
                     }

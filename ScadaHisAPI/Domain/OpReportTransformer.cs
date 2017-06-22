@@ -25,7 +25,7 @@ namespace ScadaHisAPI
         {
             Name = name;
 
-            OpReportTitle title = Hubs.GetReportTitle();
+            OpReportTitle title = XMLConfig.GetReportTitle();
 
             Primary = new OpReportTransformerWind(title.strNameTransPrimary);
             Secondary1 = new OpReportTransformerWind(title.strNameTransSecondary1);
@@ -81,7 +81,7 @@ namespace ScadaHisAPI
         {
             Name = name;
 
-            OpReportTitle title = Hubs.GetReportTitle();
+            OpReportTitle title = XMLConfig.GetReportTitle();
 
             Ua = new OpReportHourlyData(title.strNameUa);
             Ub = new OpReportHourlyData(title.strNameUb);

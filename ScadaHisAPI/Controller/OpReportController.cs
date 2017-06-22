@@ -26,7 +26,7 @@ namespace ScadaHisAPI
         {
             List<OpReportGenerator> result = new List<OpReportGenerator>();
 
-            List<OpReportGeneratorTagNames> TagNames = Hubs.GetGeneratorTagNames(FactoryName);
+            List<OpReportGeneratorTagNames> TagNames = XMLConfig.GetGeneratorTagNames(FactoryName);
 
             List<string> TagNameQuery = new List<string>();
 
@@ -71,7 +71,7 @@ namespace ScadaHisAPI
 
             foreach (string FactoryName in FactoryList)
             {
-                List<OpReportGeneratorTagNames> TagNames = Hubs.GetGeneratorTagNames(FactoryName);
+                List<OpReportGeneratorTagNames> TagNames = XMLConfig.GetGeneratorTagNames(FactoryName);
                 OpReportFactoryPQ factory = new OpReportFactoryPQ(FactoryName);
 
                 result.Add(factory);
@@ -115,7 +115,7 @@ namespace ScadaHisAPI
         {
             List<OpReportFeeder> result = new List<OpReportFeeder>();
 
-            List<OpReportFeederTagNames> TagNames = Hubs.GetFeederTagNames(FactoryName);
+            List<OpReportFeederTagNames> TagNames = XMLConfig.GetFeederTagNames(FactoryName);
 
             List<string> TagNameQuery = new List<string>();
 

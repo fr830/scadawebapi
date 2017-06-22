@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace ScadaHisAPI
 {
-    public class Hubs
+    public class XMLConfig
     {
         private static string GetXMLConfigFile(string fileName)
         {
@@ -211,6 +211,74 @@ namespace ScadaHisAPI
             catch (Exception)
             {
                 return new OpReportTitle();
+            }
+        }
+
+        public static int DiscreteLiveQuality()
+        {
+            try
+            {
+                string xmlpath = GetXMLConfigFile("_General");
+
+                XElement content = XElement.Load(xmlpath);
+
+                XElement x = content.Element("QualityCodeAcceptable");
+                return Convert.ToInt32(x.Element("DiscreteLive").Value);
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
+        public static int AnalogLiveQuality()
+        {
+            try
+            {
+                string xmlpath = GetXMLConfigFile("_General");
+
+                XElement content = XElement.Load(xmlpath);
+
+                XElement x = content.Element("QualityCodeAcceptable");
+                return Convert.ToInt32(x.Element("AnalogLive").Value);
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
+
+        public static int AnalogHistoryQuality()
+        {
+            try
+            {
+                string xmlpath = GetXMLConfigFile("_General");
+
+                XElement content = XElement.Load(xmlpath);
+
+                XElement x = content.Element("QualityCodeAcceptable");
+                return Convert.ToInt32(x.Element("AnalogHistory").Value);
+            }
+            catch (Exception)
+            {
+                return 192;
+            }
+        }
+
+        public static int AnalogHistorySummaryQuality()
+        {
+            try
+            {
+                string xmlpath = GetXMLConfigFile("_General");
+
+                XElement content = XElement.Load(xmlpath);
+
+                XElement x = content.Element("QualityCodeAcceptable");
+                return Convert.ToInt32(x.Element("AnalogHistorySummary").Value);
+            }
+            catch (Exception)
+            {
+                return 192;
             }
         }
     }

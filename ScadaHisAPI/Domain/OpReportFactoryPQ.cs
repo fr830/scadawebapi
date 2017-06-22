@@ -53,7 +53,7 @@ namespace ScadaHisAPI
         {
             this.Name = name;
 
-            OpReportTitle title = Hubs.GetReportTitle();
+            OpReportTitle title = XMLConfig.GetReportTitle();
 
             P = new OpReportHourlyData(title.strNameP);
             Q = new OpReportHourlyData(title.strNameQ);

@@ -22,7 +22,7 @@ namespace ScadaHisAPI
         {
             this.Name = name;
 
-            OpReportTitle title = Hubs.GetReportTitle();
+            OpReportTitle title = XMLConfig.GetReportTitle();
 
             Params = new OpReportGeneratorParam(title.strNameGenParams);
             Rotor = new OpReportGeneratorRotor(title.strNameGenRotor);
@@ -102,7 +102,7 @@ namespace ScadaHisAPI
         {
             this.Name = name;
 
-            OpReportTitle title = Hubs.GetReportTitle();
+            OpReportTitle title = XMLConfig.GetReportTitle();
 
             Uab = new OpReportHourlyData(title.strNameUab);
             Ubc = new OpReportHourlyData(title.strNameUbc);
@@ -141,7 +141,7 @@ namespace ScadaHisAPI
         {
             this.Name = name;
 
-            OpReportTitle title = Hubs.GetReportTitle();
+            OpReportTitle title = XMLConfig.GetReportTitle();
 
             U = new OpReportHourlyData(title.strNameVoltage);
             I = new OpReportHourlyData(title.strNameCurrent);

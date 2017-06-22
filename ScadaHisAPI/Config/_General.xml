@@ -13,6 +13,13 @@
         <id>SREPOK3</id>
 	</PowerPlantIDs>
 
+	<QualityCodeAcceptable>
+		<AnalogLive>0</AnalogLive>
+		<DiscreteLive>0</DiscreteLive>
+		<AnalogHistory>64</AnalogHistory>
+		<AnalogHistorySummary>192</AnalogHistorySummary>
+	</QualityCodeAcceptable>
+	
 	<ReportTitle>
         <Parameters>Thông số vận hành</Parameters>
         <Rotor>Rotor</Rotor>

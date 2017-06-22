@@ -21,10 +21,12 @@ namespace ScadaHisAPI
         {
             try
             {
-                DateTime now = DateTime.Now;
+                //DateTime now = DateTime.Now;
+
+                int OPCQualityAcceptable = XMLConfig.AnalogLiveQuality();
 
                 var q = (from p in db.AnalogLives
-                         where TagNameList.Contains(p.TagName)
+                         where TagNameList.Contains(p.TagName) && p.OPCQuality >= OPCQualityAcceptable
                          select new DataPoint
                          {
                              DateTime = p.DateTime,
@@ -42,8 +44,10 @@ namespace ScadaHisAPI
         {
             try
             {
+                int OPCQualityAcceptable = XMLConfig.DiscreteLiveQuality();
+
                 var q = (from p in db.DiscreteLives
-                         where TagNameList.Contains(p.TagName)
+                         where TagNameList.Contains(p.TagName) && p.OPCQuality >= OPCQualityAcceptable
                          select new DataPoint
                          {
                              DateTime = p.DateTime,
@@ -63,9 +67,10 @@ namespace ScadaHisAPI
             {
                 /* workaround: to prevent invalid Tagname request to server */
                 string str_null = "";
+                int OPCQualityAcceptable = XMLConfig.AnalogHistoryQuality();
 
                 var q = (from p in db.AnalogHistories
-                         where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.DateTime >= start && p.DateTime <= end && p.OPCQuality >= 192
+                         where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.DateTime >= start && p.DateTime <= end && p.OPCQuality >= OPCQualityAcceptable
                          orderby p.DateTime
                          select new DataPoint
                          {
@@ -84,13 +89,14 @@ namespace ScadaHisAPI
         {
             try
             {
-                List<DataPoint> result = new List<DataPoint>();
+                //List<DataPoint> result = new List<DataPoint>();
+                int OPCQualityAcceptable = XMLConfig.AnalogHistoryQuality();
 
                 /* workaround: to prevent invalid Tagname request to server */
                 string str_null = "";
 
                 var q = (from p in db.AnalogHistories
-                         where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.DateTime >= start && p.DateTime <= end && p.wwTimeDeadband == CycleMinutes * 60000 && p.OPCQuality >= 192
+                         where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.DateTime >= start && p.DateTime <= end && p.wwTimeDeadband == CycleMinutes * 60000 && p.OPCQuality >= OPCQualityAcceptable
                          orderby p.DateTime
                          select new DataPoint
                          {
@@ -149,13 +155,14 @@ namespace ScadaHisAPI
         {
             try
             {
-                List<DataPoint> result = new List<DataPoint>();
+                //List<DataPoint> result = new List<DataPoint>();
+                int OPCQualityAcceptable = XMLConfig.AnalogHistoryQuality();
 
                 /* workaround: to prevent invalid Tagname request to server */
                 string str_null = "";
 
                 var first = (from p in db.AnalogHistories
-                             where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.DateTime >= start && p.DateTime <= end && p.OPCQuality >= 192
+                             where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.DateTime >= start && p.DateTime <= end && p.OPCQuality >= OPCQualityAcceptable
                              orderby p.DateTime
                              select new DataPoint
                              {
@@ -192,13 +199,14 @@ namespace ScadaHisAPI
         {
             try
             {
-                List<DataPoint> result = new List<DataPoint>();
+                //List<DataPoint> result = new List<DataPoint>();
+                int OPCQualityAcceptable = XMLConfig.AnalogHistoryQuality();
 
                 /* workaround: to prevent invalid Tagname request to server */
                 string str_null = "";
 
                 var first = (from p in db.AnalogHistories
-                             where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.DateTime >= start && p.DateTime <= end && p.OPCQuality >= 192
+                             where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.DateTime >= start && p.DateTime <= end && p.OPCQuality >= OPCQualityAcceptable
                              orderby p.DateTime
                              select new DataPoint
                              {
@@ -237,9 +245,10 @@ namespace ScadaHisAPI
             {
                 /* workaround: to prevent invalid Tagname request to server */
                 string str_null = "";
+                int OPCQualityAcceptable = XMLConfig.AnalogHistorySummaryQuality();
 
                 var q = (from p in db.AnalogSummaryHistories
-                                     where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.StartDateTime >= start && p.EndDateTime <= end && p.OPCQuality >= 192 && p.Minimum != null && p.Maximum != null
+                         where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.StartDateTime >= start && p.EndDateTime <= end && p.OPCQuality >= OPCQualityAcceptable && p.Minimum != null && p.Maximum != null
                                      orderby p.StartDateTime
                                      select new DataPoint
                                      {
@@ -259,6 +268,7 @@ namespace ScadaHisAPI
             try
             {
                 List<DataPoint> result = new List<DataPoint>();
+                int OPCQualityAcceptable = XMLConfig.AnalogHistorySummaryQuality();
 
                 /* workaround: to prevent invalid Tagname request to server */
                 string str_null = "";
@@ -268,7 +278,7 @@ namespace ScadaHisAPI
                     DateTime end2 = start.AddMinutes(CycleMinutes);
 
                     List<DataPoint> q = (from p in db.AnalogSummaryHistories
-                                         where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.StartDateTime >= start && p.EndDateTime <= end2 && p.OPCQuality >= 192
+                                         where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.StartDateTime >= start && p.EndDateTime <= end2 && p.OPCQuality >= OPCQualityAcceptable
                                          orderby p.StartDateTime
                                          select new DataPoint
                                          {
@@ -295,11 +305,12 @@ namespace ScadaHisAPI
 
             /* workaround: to prevent invalid Tagname request to server */
             string str_null = "";
+            int OPCQualityAcceptable = XMLConfig.AnalogHistorySummaryQuality();
 
             try
             {
                 var q = (from p in db.AnalogSummaryHistories
-                         where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.StartDateTime >= start && p.EndDateTime <= end && p.wwRetrievalMode == full_mode && p.OPCQuality >= 192
+                         where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.StartDateTime >= start && p.EndDateTime <= end && p.wwRetrievalMode == full_mode && p.OPCQuality >= OPCQualityAcceptable
                          select new DataPoint
                          {
                              DateTime = p.StartDateTime,

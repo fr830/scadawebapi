@@ -56,7 +56,7 @@ namespace ScadaHisAPI
         {
             try
             {
-                List<string> taglist = Hubs.GetUList(FactoryName);
+                List<string> taglist = XMLConfig.GetUList(FactoryName);
 
                 List<DataPoint> result = new List<DataPoint>();
 
@@ -77,7 +77,7 @@ namespace ScadaHisAPI
         {
             try
             {
-                List<string> taglist = Hubs.GetIList(FactoryName);
+                List<string> taglist = XMLConfig.GetIList(FactoryName);
 
                 List<DataPoint> result = new List<DataPoint>();
 
@@ -98,7 +98,7 @@ namespace ScadaHisAPI
         {
             try
             {
-                List<string> taglist = Hubs.GetPList(FactoryName);
+                List<string> taglist = XMLConfig.GetPList(FactoryName);
 
                 List<DataPoint> result = new List<DataPoint>();
 
@@ -119,7 +119,7 @@ namespace ScadaHisAPI
         {
             try
             {
-                List<OpReportGeneratorTagNames> genList = Hubs.GetGeneratorTagNames(FactoryName);
+                List<OpReportGeneratorTagNames> genList = XMLConfig.GetGeneratorTagNames(FactoryName);
                 List<string> result = new List<string>();
 
                 if (genList.Count > 0)
