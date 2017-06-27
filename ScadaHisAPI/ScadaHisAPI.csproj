@@ -97,7 +97,6 @@
     <Compile Include="AnalogLive.cs">
       <DependentUpon>HisModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Defines\_Define.cs" />
     <Compile Include="Controller\AnalogSummaryHistoryController.cs" />
     <Compile Include="Controller\AnalogLiveController.cs" />
     <Compile Include="AnalogSummaryHistory.cs">
