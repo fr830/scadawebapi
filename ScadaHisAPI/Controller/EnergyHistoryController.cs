@@ -11,6 +11,11 @@ namespace ScadaHisAPI
 {
     public class EnergyHistoryController : ApiController
     {
+        private IEnumerable<DataPoint> EnergyHistory(DateTime start, DateTime end, string[] FactoryList)
+        {
+            return ScadaHisDao.AnalogSummaryFullRetrieval(start, end, Utils.GetAllPowerTagnames(FactoryList).Select(x => x + ".1H").ToArray()).ToList();
+        }
+
         // POST api/EnergyHistory/hourly/{start=start}/{end=end}
         [Route("EnergyHistory/hourly/{start=start}/{end=end}")]
         [HttpPost]
@@ -18,12 +23,11 @@ namespace ScadaHisAPI
         {
             try
             {
-
-                List<DataPoint> energy = EnergyUtils.EnergyHistory(start, end, FactoryList);
+                var energy = EnergyHistory(start, end, FactoryList);
 
                 List<DataPoint> result = new List<DataPoint>();
 
-                DateTime time = new DateTime(start.Year, start.Month, start.Day);
+                DateTime time = start.Date;
 
                 do
                 {
@@ -31,7 +35,12 @@ namespace ScadaHisAPI
                     {
                         if (factory != null)
                         {
-                            result.Add(new DataPoint { DateTime = time, TagName = factory, Value = EnergyUtils.GetEnergyByHour(energy, time, factory) });
+                            List<string> TagNameList = XMLConfig.GetEnergySources(factory);
+
+                            var data = (from p in energy where (TagNameList.Contains(p.TagName) && p.DateTime.CompareTo(time) >= 0 && (p.DateTime - time).TotalHours < 1 && p.Value.HasValue) select (double)p.Value);
+
+                            if (data.Count<double>() > 0)
+                                result.Add(new DataPoint { DateTime = time, TagName = factory, Value = Math.Round(data.Sum(), 2) });
                         }
                     }
 
@@ -51,16 +60,19 @@ namespace ScadaHisAPI
         {
             try
             {
-                var energy = EnergyUtils.EnergyHistory(start, end, FactoryList);
+                var energy = EnergyHistory(start, end, FactoryList);
 
                 List<DataPoint> result = new List<DataPoint>();
 
-                DateTime time = new DateTime(start.Year, start.Month, start.Day);
+                DateTime time = start.Date;
 
                 do
                 {
+                    var data = (from p in energy where (p.DateTime.CompareTo(time) >= 0 && (p.DateTime - time).TotalHours < 1 && p.Value.HasValue) select (double)p.Value);
+
                     // Total Energy per Hour
-                    result.Add(new DataPoint { DateTime = time, TagName = "ETOTAL", Value = EnergyUtils.GetTotalEnergyByHour(energy, time) });
+                    if (data.Count<double>() > 0)
+                        result.Add(new DataPoint { DateTime = time, TagName = "ETOTAL", Value = Math.Round(data.Sum(), 2) });
 
                     time = time.AddHours(1);
 
@@ -78,11 +90,11 @@ namespace ScadaHisAPI
         {
             try
             {
-                var energy = EnergyUtils.EnergyHistory(start, end, FactoryList);
+                var energy = EnergyHistory(start, end, FactoryList);
 
                 List<DataPoint> result = new List<DataPoint>();
 
-                DateTime time = new DateTime(start.Year, start.Month, start.Day);
+                DateTime time = start.Date;
 
                 do
                 {
@@ -90,7 +102,12 @@ namespace ScadaHisAPI
                     {
                         if (factory != null)
                         {
-                            result.Add(new DataPoint { DateTime = time, TagName = factory, Value = EnergyUtils.GetEnergyByDay(energy, time, factory) });
+                            List<string> TagNameList = XMLConfig.GetEnergySources(factory);
+
+                            var data = (from p in energy where (TagNameList.Contains(p.TagName) && p.DateTime.CompareTo(time) >= 0 && (p.DateTime - time).TotalDays < 1 && p.Value.HasValue) select (double)p.Value);
+
+                            if (data.Count<double>() > 0)
+                                result.Add(new DataPoint { DateTime = time, TagName = factory, Value = Math.Round(data.Sum(), 2) });
                         }
                     }
 
@@ -110,16 +127,19 @@ namespace ScadaHisAPI
         {
             try
             {
-                var energy = EnergyUtils.EnergyHistory(start, end, FactoryList);
+                var energy = EnergyHistory(start, end, FactoryList);
 
                 List<DataPoint> result = new List<DataPoint>();
 
-                DateTime time = new DateTime(start.Year, start.Month, start.Day);
+                DateTime time = start.Date;
 
                 do
                 {
+                    var data = (from p in energy where (p.DateTime.CompareTo(time) >= 0 && (p.DateTime - time).TotalDays < 1 && p.Value.HasValue) select (double)p.Value);
+
                     // Total Energy per Day
-                    result.Add(new DataPoint { DateTime = time, TagName = "ETOTAL", Value = EnergyUtils.GetTotalEnergyByDay(energy, time) });
+                    if (data.Count<double>() > 0)
+                        result.Add(new DataPoint { DateTime = time, TagName = "ETOTAL", Value = Math.Round(data.Sum(), 2) });
 
                     time = time.AddDays(1);
 

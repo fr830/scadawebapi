@@ -106,7 +106,6 @@
     <Compile Include="Domain\SumTagName.cs" />
     <Compile Include="Domain\OpReportFactoryPQ.cs" />
     <Compile Include="Domain\OpReportTitle.cs" />
-    <Compile Include="EnergyUtils.cs" />
     <Compile Include="Domain\DataPoint.cs" />
     <Compile Include="DiscreteLive.cs">
       <DependentUpon>HisModel.tt</DependentUpon>

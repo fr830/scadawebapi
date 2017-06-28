@@ -53,20 +53,27 @@ namespace ScadaHisAPI
         [HttpPost]
         public IEnumerable<DataPoint> Power([FromBody]string[] FactoryList)
         {
-            List<DataPoint> result = new List<DataPoint>();
+            DateTime begin = DateTime.Now;
 
-            string[] TagNameList = EnergyUtils.FactoryToPowerTag(FactoryList, null);
-            var power = ScadaHisDao.AnalogLive(TagNameList);
+            List<DataPoint> result = new List<DataPoint>();
+            List<string> TagNameList = new List<string>();
+            List<SumTagName> SumTagList = new List<SumTagName>();
 
             foreach (string factory in FactoryList)
             {
                 if (factory != null)
                 {
-                    string[] PowerList = EnergyUtils.FactoryToPowerTag(new string[] { factory }, null);
-
-                    result.Add(Utils.DataPointSum(power, PowerList, factory));
+                    List<string> str = XMLConfig.GetEnergySources(factory);
+                    TagNameList.AddRange(str);
+                    SumTagList.Add(new SumTagName { TagName = factory, SumList = str });
                 }
             }
+
+            var power = ScadaHisDao.AnalogLive(TagNameList.ToArray());
+
+            SumTagList.ForEach(x => result.Add(Utils.DataPointSum(power, x.SumList.ToArray(), x.TagName)));
+            
+            double Duration = (DateTime.Now - begin).TotalMilliseconds;
 
             return result;
         }

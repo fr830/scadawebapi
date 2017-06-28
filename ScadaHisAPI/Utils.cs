@@ -36,8 +36,12 @@ namespace ScadaHisAPI
             {
                 if (tag != null && tag.Contains(sumChar))
                 {
-                    SumTagName sumTag = new SumTagName(tag);
-                    sumTag.SumList = new List<string>(tag.Split(new char[]{sumChar, spaceChar}, StringSplitOptions.RemoveEmptyEntries));
+                    SumTagName sumTag = new SumTagName
+                    {
+                        TagName = tag,
+                        SumList = new List<string>(tag.Split(new char[] { sumChar, spaceChar }, StringSplitOptions.RemoveEmptyEntries)),
+                    };
+                    //sumTag.SumList = new List<string>(tag.Split(new char[]{sumChar, spaceChar}, StringSplitOptions.RemoveEmptyEntries));
                     result.Add(sumTag);
                 }
             }
@@ -59,6 +63,32 @@ namespace ScadaHisAPI
             }
 
             return sum;
+        }
+
+        public static List<string> GetAllPowerTagnames(string[] FactoryList)
+        {
+            List<string> result = new List<string>();
+
+            foreach (string factory in FactoryList)
+            {
+                if (factory != null)
+                {
+                    result.AddRange(XMLConfig.GetEnergySources(factory));
+                }
+            }
+
+            return result;
+        }
+
+        public static string GetFactoryFromPowerTagname(string powertag, string[] FactoryList)
+        {
+            foreach (string factory in FactoryList)
+            {
+                if (factory != null && XMLConfig.GetEnergySources(factory).Contains(powertag))
+                    return factory;
+            }
+
+            return null;
         }
     }
 }

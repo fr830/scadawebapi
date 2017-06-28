@@ -12,11 +12,5 @@ namespace ScadaHisAPI
 
         public List<string> SumList { get; set; }
 
-        public SumTagName(string tagname)
-        {
-            this.TagName = tagname;
-            SumList = null;
-        }
-
     }
 }

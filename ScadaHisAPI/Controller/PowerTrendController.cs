@@ -17,10 +17,12 @@ namespace ScadaHisAPI
         {
             try
             {
-                List<DataPoint> result = EnergyUtils.PowerHistory30M(start, end, FactoryList);
-                
+                string[] powerTagnames = Utils.GetAllPowerTagnames(FactoryList).Select(x => x + ".30M").ToArray();
+
+                var q = ScadaHisDao.AnalogSummaryFullRetrieval(start, end, powerTagnames);
+
                 /* group by DateTime and sum = Ptotal */
-                List<DataPoint> data = (from p in result where (p.Value.HasValue) select p)
+                List<DataPoint> data = (from p in q where (p.Value.HasValue) select p)
                     .OrderBy(x => x.DateTime)
                     .GroupBy(g => g.DateTime, v => v.Value)
                     .Select(g => new DataPoint
