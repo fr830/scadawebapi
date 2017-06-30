@@ -40,7 +40,7 @@ namespace ScadaHisAPI
                 TagNameQuery.AddRange(tag.ToStringArray());
             }
 
-            List<DataPoint> data = ScadaHisDao.AnalogHistoryHourly(start, end, TagNameQuery.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
+            List<DataPoint> data = ScadaHisDao.AnalogHistoryCyclic2(start, end, TagNameQuery.ToArray(), ScadaHisDao.CycleTime.OneHour, ScadaHisDao.SummaryType.Average).ToList();
 
             while (start < end)
             {
@@ -86,7 +86,7 @@ namespace ScadaHisAPI
             DateTime start = new DateTime(year, month, day);
             DateTime end = start.AddDays(1);
 
-            data = ScadaHisDao.AnalogHistoryHourly(start, end, TagNameQuery.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
+            data = ScadaHisDao.AnalogHistoryCyclic2(start, end, TagNameQuery.ToArray(), ScadaHisDao.CycleTime.OneHour, ScadaHisDao.SummaryType.Average).ToList();
 
             while (start < end)
             {
@@ -130,7 +130,7 @@ namespace ScadaHisAPI
             }
 
 
-            List<DataPoint> data = ScadaHisDao.AnalogHistoryHourly(start, end, TagNameQuery.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
+            List<DataPoint> data = ScadaHisDao.AnalogHistoryCyclic2(start, end, TagNameQuery.ToArray(), ScadaHisDao.CycleTime.OneHour, ScadaHisDao.SummaryType.Average).ToList();
 
             while (start < end)
             {

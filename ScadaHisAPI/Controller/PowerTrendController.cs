@@ -64,7 +64,7 @@ namespace ScadaHisAPI
 
                 if (taglist.Count > 0)
                 {
-                    result = ScadaHisDao.AnalogHistory30Min(start, end, taglist.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
+                    result = ScadaHisDao.AnalogHistoryCyclic2(start, end, taglist.ToArray(), ScadaHisDao.CycleTime.HalfHour, ScadaHisDao.SummaryType.Average).ToList();
                 }
 
                 return result;
@@ -85,7 +85,7 @@ namespace ScadaHisAPI
 
                 if (taglist.Count > 0)
                 {
-                    result = ScadaHisDao.AnalogHistory30Min(start, end, taglist.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
+                    result = ScadaHisDao.AnalogHistoryCyclic2(start, end, taglist.ToArray(), ScadaHisDao.CycleTime.HalfHour, ScadaHisDao.SummaryType.Average).ToList();
                 }
 
                 return result;
@@ -106,7 +106,7 @@ namespace ScadaHisAPI
 
                 if (taglist.Count > 0)
                 {
-                    result = ScadaHisDao.AnalogHistory30Min(start, end, taglist.ToArray(), ScadaHisDao.SummaryType.Average).ToList();
+                    result = ScadaHisDao.AnalogHistoryCyclic2(start, end, taglist.ToArray(), ScadaHisDao.CycleTime.HalfHour, ScadaHisDao.SummaryType.Average).ToList();
                 }
 
                 return result;

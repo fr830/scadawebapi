@@ -33,9 +33,9 @@ namespace ScadaHisAPI
                 }
             }
 
-            var datalist = ScadaHisDao.AnalogLive(tagList.ToArray());
+            var datalist = ScadaHisDao.AnalogLive(tagList.ToArray()).ToList();
 
-            List<DataPoint> result = datalist.ToList();
+            List<DataPoint> result = datalist;
 
             if (SumTagnameList.Count > 0)
             {
@@ -44,7 +44,7 @@ namespace ScadaHisAPI
                     result.Add(Utils.DataPointSum(datalist, sumTag.SumList.ToArray(), sumTag.TagName));
                 }
             }
-
+                
             return result;
         }
 
@@ -53,8 +53,6 @@ namespace ScadaHisAPI
         [HttpPost]
         public IEnumerable<DataPoint> Power([FromBody]string[] FactoryList)
         {
-            DateTime begin = DateTime.Now;
-
             List<DataPoint> result = new List<DataPoint>();
             List<string> TagNameList = new List<string>();
             List<SumTagName> SumTagList = new List<SumTagName>();
@@ -72,8 +70,6 @@ namespace ScadaHisAPI
             var power = ScadaHisDao.AnalogLive(TagNameList.ToArray());
 
             SumTagList.ForEach(x => result.Add(Utils.DataPointSum(power, x.SumList.ToArray(), x.TagName)));
-            
-            double Duration = (DateTime.Now - begin).TotalMilliseconds;
 
             return result;
         }

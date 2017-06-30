@@ -15,6 +15,12 @@ namespace ScadaHisAPI
             Minimum = 2,
         }
 
+        public enum CycleTime
+        {
+            OneHour = 0,
+            HalfHour = 1,
+        }
+
         static HisRuntimeEntities db = new HisRuntimeEntities();
 
         public static IEnumerable<DataPoint> AnalogLive(string[] TagNameList)
@@ -151,7 +157,7 @@ namespace ScadaHisAPI
         //    catch { return null; }
         //}
 
-        public static IEnumerable<DataPoint> AnalogHistoryHourly(DateTime start, DateTime end, string[] TagNameList, SummaryType summaryType)
+        public static IEnumerable<DataPoint> AnalogHistoryCyclic2(DateTime start, DateTime end, string[] TagNameList, CycleTime cycle, SummaryType summaryType)
         {
             try
             {
@@ -175,55 +181,11 @@ namespace ScadaHisAPI
                 // Group by Hour in DateTime and TagName
                 var groups = first.ToList().Select(x => new DataPoint
                 {
-                    DateTime = x.DateTime.Date.AddHours(x.DateTime.Hour),
+                    DateTime = (cycle == CycleTime.OneHour) ? x.DateTime.Date.AddHours(x.DateTime.Hour) : (x.DateTime.Minute < 30 ? x.DateTime.Date.AddHours(x.DateTime.Hour) : x.DateTime.Date.AddHours(x.DateTime.Hour).AddMinutes(30)),
                     TagName = x.TagName,
                     Value = x.Value,
                     OPCQuality = x.OPCQuality
                 }).GroupBy(x => new {x.DateTime, x.TagName });
-
-                var q = (from g in groups
-                         select new DataPoint
-                         {
-                             DateTime = g.Key.DateTime,
-                             TagName = g.Key.TagName,
-                             Value = summaryType == SummaryType.Average ? g.Average(x => x.Value) : (summaryType == SummaryType.Maximum ? g.Max(x => x.Value) : g.Min(x => x.Value)),
-                             OPCQuality = (int)g.Min(y => y.OPCQuality)
-                         });
-
-                return q;
-            }
-            catch { return null; }
-        }
-
-        public static IEnumerable<DataPoint> AnalogHistory30Min(DateTime start, DateTime end, string[] TagNameList, SummaryType summaryType)
-        {
-            try
-            {
-                //List<DataPoint> result = new List<DataPoint>();
-                int OPCQualityAcceptable = XMLConfig.AnalogHistoryQuality();
-
-                /* workaround: to prevent invalid Tagname request to server */
-                string str_null = "";
-
-                var first = (from p in db.AnalogHistories
-                             where (p.TagName == str_null || TagNameList.Contains(p.TagName)) && p.DateTime >= start && p.DateTime <= end && p.OPCQuality >= OPCQualityAcceptable
-                             orderby p.DateTime
-                             select new DataPoint
-                             {
-                                 DateTime = p.DateTime,
-                                 TagName = p.TagName,
-                                 Value = p.Value,
-                                 OPCQuality = p.OPCQuality,
-                             });
-
-                // Group by Hour in DateTime and TagName
-                var groups = first.ToList().Select(x => new DataPoint
-                {
-                    DateTime = x.DateTime.Minute < 30 ? x.DateTime.Date.AddHours(x.DateTime.Hour) : x.DateTime.Date.AddHours(x.DateTime.Hour).AddMinutes(30),
-                    TagName = x.TagName,
-                    Value = x.Value,
-                    OPCQuality = x.OPCQuality
-                }).GroupBy(x => new { x.DateTime, x.TagName });
 
                 var q = (from g in groups
                          select new DataPoint
