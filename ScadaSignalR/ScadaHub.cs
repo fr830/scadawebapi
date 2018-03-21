@@ -9,19 +9,19 @@ using Microsoft.AspNet.SignalR.Hubs;
 
 namespace ScadaSignalR
 {
-    [HubName("scadaHub")]
+    [HubName("hubSSCADA")]
     public class ScadaHub : Hub
     {
-        private readonly OPCService _OPCService;
+        private readonly DAService _DAService;
 
         public ScadaHub()
-            : this(OPCService.Instance)
+            : this(DAService.Instance)
         {
         }
 
-        public ScadaHub(OPCService input)
+        public ScadaHub(DAService input)
         {
-            _OPCService = input;
+            _DAService = input;
         }
 
 
@@ -41,29 +41,29 @@ namespace ScadaSignalR
 
         public string GetDataByUserAjax(string LisTagName, string user)
         {
-            return _OPCService.GetDataByUserAjax(LisTagName, user);
+            return _DAService.GetDataByUserAjax(LisTagName, user);
         }
 
         public string GetMarketState()
         {
-            return _OPCService.MarketState.ToString();
+            return _DAService.MarketState.ToString();
         }
 
         public bool OpenMarket()
         {
-            _OPCService.OpenMarket();
+            _DAService.OpenMarket();
             return true;
         }
 
         public bool CloseMarket()
         {
-            _OPCService.CloseMarket();
+            _DAService.CloseMarket();
             return true;
         }
 
         public bool Reset()
         {
-            _OPCService.Reset();
+            _DAService.Reset();
             return true;
         }
     }
