@@ -12,31 +12,26 @@ namespace ScadaSignalR
     [HubName("hubSSCADA")]
     public class ScadaHub : Hub
     {
-        private readonly DAService _DAService;
+        private readonly OPCSignalR _DAService;
 
         public ScadaHub()
-            : this(DAService.Instance)
+            : this(OPCSignalR.Instance)
         {
         }
 
-        public ScadaHub(DAService input)
+        public ScadaHub(OPCSignalR input)
         {
             _DAService = input;
         }
 
-
         public override Task OnConnected()
         {
-            Clients.All.addMessage("Client connected: " + Context.ConnectionId);
-            //UserHandler.ConnectedIds.Add(Context.ConnectionId);
             return base.OnConnected();
         }
 
-        public string send(string message)
+        public override Task OnDisconnected(bool stopCalled)
         {
-            Clients.All.addMessage(message);
-
-            return message;
+            return base.OnDisconnected(stopCalled);
         }
 
         public string GetDataByUserAjax(string LisTagName, string user)

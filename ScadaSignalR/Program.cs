@@ -19,7 +19,7 @@ namespace ScadaSignalR
                 ServiceBase[] ServicesToRun;
                 ServicesToRun = new ServiceBase[] 
             { 
-                new DAService() 
+                new MainService() 
             };
                 ServiceBase.Run(ServicesToRun);
             }
