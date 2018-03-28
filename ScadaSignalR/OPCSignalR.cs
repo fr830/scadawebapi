@@ -166,6 +166,10 @@ namespace ScadaSignalR
         private DataPoint ReadOPC(OPCGroup opcGroup, OPCConfig opc)
         {
             OPCItem opcItem = null;
+
+            if (opc.ItemID == null)
+                return null;
+
             try
             {
                 opcItem = opcGroup.OPCItems.Item(opc.ItemID);
@@ -214,13 +218,14 @@ namespace ScadaSignalR
                     {
                         OPCConfig opc = _MFITagnames.FirstOrDefault(x => x.TagName == tagname);
 
-                        if (opc == null) break;
-
-                        DataPoint datapoint = ReadOPC(_opcMFIGroup, opc);
-
-                        if (datapoint != null)
+                        if (opc != null)
                         {
-                            result.Add(datapoint);
+                            DataPoint datapoint = ReadOPC(_opcMFIGroup, opc);
+
+                            if (datapoint != null)
+                            {
+                                result.Add(datapoint);
+                            }
                         }
                     }
                 }
@@ -244,15 +249,15 @@ namespace ScadaSignalR
 
                     OPCConfig opc = _DITagnames.FirstOrDefault(x => x.TagName == tagname);
 
-                    if (opc == null) break;
-
-                    DataPoint datapoint = ReadOPC(_opcDIGroup, opc);
-
-                    if (datapoint != null)
+                    if (opc != null)
                     {
-                        result.Add(datapoint);
-                    }
+                        DataPoint datapoint = ReadOPC(_opcDIGroup, opc);
 
+                        if (datapoint != null)
+                        {
+                            result.Add(datapoint);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
