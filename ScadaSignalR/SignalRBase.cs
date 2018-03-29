@@ -78,13 +78,15 @@ namespace ScadaSignalR
             {
                 if (MarketState == MarketState.Open)
                 {
-                    _eventlog.WriteEntry("GetDataByUserAjax: user id = " + user, EventLogEntryType.Information);
+                    string str = "GetDataByUserAjax: user id = " + user + "\n";
 
                     bool existed = _reqTagGroups.FirstOrDefault(x => x.GroupID == user) != null;
 
                     if (!existed)
                     {
                         string[] list = ListTagName.Split(',');
+                        string strDI = "Discrete Tagnames:-------\n";
+                        string strAI = "Analog Tagnames:---------\n";
 
                         TagNameGroup g = new TagNameGroup()
                         {
@@ -101,16 +103,22 @@ namespace ScadaSignalR
                                 if (listitem[1].Contains("CB SW") || listitem[1].Contains("DS SW"))
                                 {
                                     g.DiscreteTagNames.Add(listitem[0]);
+                                    strDI += listitem[0] + "\n";
                                 }
                                 else
                                 {
                                     g.AnalogTagNames.Add(listitem[0]);
+                                    strAI += listitem[0] + "\n";
                                 }
                             }
                         }
 
                         _reqTagGroups.Add(g);
+
+                        str = str + strDI + strAI;
                     }
+
+                    _eventlog.WriteEntry(str, EventLogEntryType.Information);
                 }
             }
 
