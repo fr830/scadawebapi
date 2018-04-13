@@ -125,13 +125,21 @@ namespace ScadaSignalR
 
                 while ((line = readFile.ReadLine()) != null)
                 {
+                    double scale = 1;
+
                     row = line.Split(',');
+
+                    try
+                    {
+                        scale = (row.Length > 2) && (row[2] != null) ? Convert.ToDouble(row[2]) : 1;
+                    }
+                    catch { };
 
                     OPCConfig tag = new OPCConfig
                     {
                         TagName = row[0],
                         ItemID = row[1],
-                        ScaleValue = row.Length > 2 ? Convert.ToDouble(row[2]) : 1,
+                        ScaleValue = scale,
                     };
 
                     itemIDs.Add(tag.ItemID);
@@ -157,7 +165,7 @@ namespace ScadaSignalR
             }
             catch (Exception ex)
             {
-                Log.WriteEntry(ex.Message, EventLogEntryType.Error);
+                Log.WriteEntry("ImportTagfromCSV: " + ex.Message, EventLogEntryType.Error);
             }
 
             return cnfgTagnames;
